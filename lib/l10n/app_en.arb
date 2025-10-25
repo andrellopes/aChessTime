@@ -1,0 +1,277 @@
+{
+  "@@locale": "en",
+  "appName": "a Chess Time",
+  "close": "Close",
+  "ok": "OK",
+  "cancel": "Cancel",
+  "save": "Save",
+  "saveAndClose": "Save and Close",
+  "settings": "Settings",
+  "about": "About",
+  "resetConfirm": "Do you really want to reset the game?",
+  "confirm": "Confirm",
+  "tapToStart": "Tap to Start",
+  "gameOver": "Game Over",
+  "victory": "Victory!",
+  "player1": "Player 1",
+  "player2": "Player 2",
+  "winner": "Winner",
+  "whitePlayer": "White",
+  "blackPlayer": "Black",
+  "turnOf": "Turn of",
+  "won": "won!",
+  "play": "Play",
+  "pause": "Pause",
+  "reset": "Reset",
+  "swapColors": "Swap Colors",
+  "quickSettings": "Quick Settings",
+  "options": "Options",
+  "settingsTitle": "Settings",
+  "appearance": "Appearance",
+  "language": "Language",
+  "gameSettings": "Game Settings",
+  "timeControls": "Time Controls",
+  "sounds": "Sounds",
+  "other": "Other",
+  "help": "Help",
+  "darkMode": "Dark Mode",
+  "darkModeSubtitle": "Dark theme interface",
+  "soundsSubtitle": "Sounds during game",
+  "vibration": "Vibration",
+  "vibrationSubtitle": "Vibrate when switching turns",
+  "player1StartsAsWhite": "Player 1 starts as white",
+  "initialTime": "Initial Time",
+  "increment": "Increment",
+  "timePreset": "Time Preset",
+  "timePresets": "Time Presets",
+  "custom": "Custom",
+  "menu": "Menu",
+  "immersiveMode": "Immersive Mode",
+  "immersiveModeSubtitle": "Hide system bars for full screen",
+  "presetTournament": "Tournament",
+  "presetBlitz": "Blitz",
+  "presetBullet": "Bullet",
+  "presetRapid": "Rapid",
+  "presetClassical": "Classical",
+  "presetLong": "Long Game",
+  "presetBasic": "Basic",
+  "createCustomPreset": "Create Custom Preset",
+  "editPreset": "Edit Preset",
+  "presetName": "Preset Name",
+  "presetCreated": "Preset created",
+  "presetUpdated": "Preset updated",
+  "presetDeleted": "Preset deleted",
+  "deletePresetConfirm": "Delete preset",
+  "create": "Create",
+  "edit": "Edit",
+  "delete": "Delete",
+  "aboutTitle": "About a Chess Time",
+  "aboutContactLinks": "Contact & Links",
+  "aboutSupportMessage": "Support the development of this app!",
+  "aboutSupportWithPix": "Support with PIX",
+  "aboutPixCopied": "PIX key copied to clipboard!",
+  "developedBy": "Developed by André Lopes",
+  "resetTooltip": "Reset game",
+  "swapTooltip": "Swap player colors",
+  "settingsTooltip": "Settings",
+  "aboutTooltip": "About",
+  "advancedSettings": "Advanced Settings",
+  "evaluateInPlayStore": "Rate on Play Store",
+  "share": "Share",
+  "aboutApp": "About the App",
+  "linkCopied": "Link copied to clipboard!",
+  "shareMessage": "Check out ChessTime - a simple and modern chess timer!",
+  "minutes": "Minutes",
+  "seconds": "Seconds",
+  "minutesShort": "min",
+  "secondsShort": "sec",
+  "minutesUnit": "{count} minutes",
+  "@minutesUnit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "secondsUnit": "{count} seconds",
+  "@secondsUnit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playerWon": "won!",
+  "moves": "Moves",
+  "movesCount": "{count}",
+  "@movesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "victoryMessage": "{winnerName} won!",
+  "@victoryMessage": {
+    "placeholders": {
+      "winnerName": {
+        "type": "String"
+      }
+    }
+  },
+  "fontSizeTitle": "Font size of timer",
+  "fontSizeSubtitle": "Adjust for better visibility",
+  "themeTitle": "Theme",
+  "themeSubtitle": "Choose app appearance",
+  "themeClassicDark": "Classic Dark",
+  "themeTraditionalBoard": "Traditional Board",
+  "themeGreenFocus": "Green Focus",
+  "themeTournamentBlue": "Tournament Blue",
+  "themeRoyalGold": "Royal Gold",
+  "themeGrandmasterPurple": "Grandmaster Purple",
+  "themeCompetitiveRed": "Competitive Red",
+  "themeDeepOcean": "Deep Ocean",
+  "themeMysticForest": "Mystic Forest",
+  "themeElegantRose": "Elegant Rose",
+  "themePremiumSilver": "Premium Silver",
+  "themeAuroraBoreal": "Aurora Boreal",
+  "themeCustom": "Custom",
+  "premiumThemeRequired": "Premium Theme - Upgrade required",
+  "unlockPremiumThemes": "Unlock premium themes",
+  "premiumThemesDescription": "Unlock exclusive themes and remove ads with Pro version",
+  "proFeature1": "Access to 8 exclusive themes",
+  "proFeature2": "Themes optimized for productivity",
+  "proFeature3": "Remove ads",
+  "proFeature4": "Support app development",
+  "proFeature5": "Future updates included",
+  "buyPro": "Buy Pro",
+  "purchaseFor": "Purchase for {price}",
+  "@purchaseFor": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "processing": "Processing...",
+  "unavailable": "Unavailable",
+  "restorePurchases": "Restore Purchases",
+  "upgradeToProTitle": "Upgrade to Pro",
+  "upgradeToProSubtitle": "8 premium themes + ad-free",
+  "statistics": "Statistics",
+  "statisticsTitle": "Statistics",
+  "generalSummary": "General Summary",
+  "totalGames": "Total Games",
+  "whiteWins": "White Wins",
+  "blackWins": "Black Wins",
+  "draws": "Draws",
+  "timeoutGames": "By Timeout",
+  "manualGames": "Manual Finishes",
+  "totalTime": "Total Time",
+  "averageDuration": "Average Duration",
+  "winRate": "Win Rate",
+  "recentGames": "Recent Games",
+  "noGamesFound": "No games found",
+  "clearStatistics": "Clear Statistics",
+  "clearStatisticsConfirm": "Are you sure you want to delete all statistics? This action cannot be undone.",
+  "deleteStatistics": "Delete",
+  "statisticsCleared": "Statistics cleared successfully",
+  "errorLoadingStatistics": "Error loading statistics",
+  "errorLoadingStatisticsWithMessage": "Error loading statistics: {message}",
+  "@errorLoadingStatisticsWithMessage": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "today": "Today",
+  "yesterday": "Yesterday",
+  "daysAgo": "days ago",
+  "draw": "Draw",
+  "whiteWinsTimeout": "White wins (timeout)",
+  "blackWinsTimeout": "Black wins (timeout)",
+  "whiteWinsManual": "White wins",
+  "blackWinsManual": "Black wins",
+  "viewStatistics": "View Statistics",
+  "statisticsSubtitle": "Game history and detailed statistics",
+  "finishGame": "Finish Game",
+  "whiteVictory": "White Victory",
+  "blackVictory": "Black Victory",
+  "drawGame": "Draw",
+  "agreementBetweenPlayers": "Agreement between players",
+  "continueGame": "Continue Game",
+  "loadingAd": "Loading ad...",
+  "debugProMode": "Debug Pro Mode",
+  "debugProModeSubtitle": "Activate Pro for testing",
+  "resumeGame": "Resume game",
+  "productNotFound": "Product not found",
+  "purchaseError": "Purchase error",
+  "paypal": "PayPal",
+  "backup": "Backup",
+  "backupSubtitle": "Save settings and statistics",
+  "restore": "Restore",
+  "restoreSubtitle": "Load previously saved backup",
+  "createBackup": "Create Backup",
+  "backupCreated": "Backup created successfully",
+  "backupError": "Error creating backup",
+  "restoreBackup": "Restore Backup",
+  "backupRestored": "Backup restored successfully",
+  "restoreError": "Error restoring backup",
+  "backupFileInvalid": "Invalid backup file",
+  "backupVersionIncompatible": "Backup version incompatible",
+  "createBackupSubtitle": "Save all app data",
+  "restoreBackupSubtitle": "Load data from backup file",
+  "backupCreatedMessage": "The backup was created and saved in the Downloads folder",
+  "backupRestoreError": "Restore Error",
+  "exportStatistics": "Export CSV",
+  "exportStatisticsSubtitle": "Save game data to CSV",
+  "exportCsvShareText": "ChessTime Statistics",
+  "exportCsvShareSubject": "Detailed ChessTime game statistics in CSV format",
+  "exportCsvSuccess": "Statistics exported successfully!",
+  "exportCsvNoData": "No statistics to export or export error.",
+  "exportCsvError": "Error exporting statistics: {error}",
+  "@exportCsvError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreBackupConfirmMessage": "This action will replace all current data. Do you want to continue?",
+  "csvHeader": "Date/Time,Result Type,Winner,Game Duration,White Time Remaining,Black Time Remaining,White Moves,Black Moves,Initial Time,Increment",
+  "backupShareTitle": "ChessTime Backup",
+  "backupShareSubject": "Backup of ChessTime settings and statistics",
+  "backupNoFileSelected": "No file selected",
+  "backupInvalidFile": "Invalid file",
+  "backupValidationError": "Unknown validation error",
+  "backupRestoreSuccess": "Backup restored successfully",
+  "backupRestoreErrorWithMessage": "Error restoring backup: {error}",
+  "@backupRestoreErrorWithMessage": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "backupVersionNotFound": "Invalid backup file: version not found",
+  "backupVersionIncompatibleWithDetails": "Backup version incompatible. Expected: {expected}, found: {found}",
+  "@backupVersionIncompatibleWithDetails": {
+    "placeholders": {
+      "expected": {
+        "type": "String"
+      },
+      "found": {
+        "type": "String"
+      }
+    }
+  },
+  "backupRequiredFieldMissing": "Invalid backup file: required field \"{field}\" not found",
+  "@backupRequiredFieldMissing": {
+    "placeholders": {
+      "field": {
+        "type": "String"
+      }
+    }
+  }
+}

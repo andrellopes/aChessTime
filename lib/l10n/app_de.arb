@@ -1,0 +1,284 @@
+{
+  "@@locale": "de",
+  "appName": "a Chess Time",
+  "close": "Schließen",
+  "ok": "OK",
+  "cancel": "Abbrechen",
+  "save": "Speichern",
+  "saveAndClose": "Speichern und Schließen",
+  "settings": "Einstellungen",
+  "about": "Über",
+  "resetConfirm": "Möchten Sie das Spiel wirklich zurücksetzen?",
+  "confirm": "Bestätigen",
+  "tapToStart": "Tippen zum Starten",
+  "gameOver": "Spiel beendet",
+  "victory": "Sieg!",
+  "player1": "Spieler 1",
+  "player2": "Spieler 2",
+  "winner": "Gewinner",
+  "whitePlayer": "Weiß",
+  "blackPlayer": "Schwarz",
+  "turnOf": "Zug von",
+  "won": "gewonnen!",
+  "play": "Spielen",
+  "pause": "Pausieren",
+  "reset": "Zurücksetzen",
+  "swapColors": "Farben tauschen",
+  "quickSettings": "Schnelleinstellungen",
+  "options": "Optionen",
+  "settingsTitle": "Einstellungen",
+  "appearance": "Erscheinungsbild",
+  "language": "Sprache",
+  "gameSettings": "Spieleinstellungen",
+  "timeControls": "Zeitsteuerung",
+  "sounds": "Töne",
+  "other": "Sonstiges",
+  "help": "Hilfe",
+  "darkMode": "Dunkler Modus",
+  "darkModeSubtitle": "Dunkles Thema Interface",
+  "soundsSubtitle": "Töne während des Spiels",
+  "vibration": "Vibration",
+  "vibrationSubtitle": "Vibrieren beim Wechseln der Züge",
+  "player1StartsAsWhite": "Spieler 1 beginnt als Weiß",
+  "initialTime": "Anfangszeit",
+  "increment": "Inkrement",
+  "timePreset": "Zeitvoreinstellung",
+  "timePresets": "Zeitvoreinstellungen",
+  "custom": "Benutzerdefiniert",
+  "menu": "Menü",
+  "immersiveMode": "Immersiver Modus",
+  "immersiveModeSubtitle": "Systemleisten für Vollbild ausblenden",
+  "presetTournament": "Turnier",
+  "presetBlitz": "Blitz",
+  "presetBullet": "Bullet",
+  "presetRapid": "Rapid",
+  "presetClassical": "Klassisch",
+  "presetLong": "Langes Spiel",
+  "presetBasic": "Basis",
+  "createCustomPreset": "Benutzerdefinierte Voreinstellung erstellen",
+  "editPreset": "Voreinstellung bearbeiten",
+  "presetName": "Name der Voreinstellung",
+  "presetCreated": "Voreinstellung erstellt",
+  "presetUpdated": "Voreinstellung aktualisiert",
+  "presetDeleted": "Voreinstellung gelöscht",
+  "deletePresetConfirm": "Voreinstellung löschen",
+  "create": "Erstellen",
+  "edit": "Bearbeiten",
+  "delete": "Löschen",
+  "aboutTitle": "Über a Chess Time",
+  "aboutContactLinks": "Kontakt & Links",
+  "aboutSupportMessage": "Unterstützen Sie die Entwicklung dieser App!",
+  "aboutSupportWithPix": "Mit PIX unterstützen",
+  "aboutPixCopied": "PIX-Schlüssel in die Zwischenablage kopiert!",
+  "developedBy": "Entwickelt von André Lopes",
+  "resetTooltip": "Spiel zurücksetzen",
+  "swapTooltip": "Spielerfarben tauschen",
+  "settingsTooltip": "Einstellungen",
+  "aboutTooltip": "Über",
+  "advancedSettings": "Erweiterte Einstellungen",
+  "evaluateInPlayStore": "Im Play Store bewerten",
+  "share": "Teilen",
+  "aboutApp": "Über die App",
+  "linkCopied": "Link in die Zwischenablage kopiert!",
+  "shareMessage": "Schauen Sie sich ChessTime an - einen einfachen und modernen Schach-Timer!",
+  "minutes": "Minuten",
+  "seconds": "Sekunden",
+  "minutesShort": "min",
+  "secondsShort": "sek",
+  "minutesUnit": "{count} Minuten",
+  "@minutesUnit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "secondsUnit": "{count} Sekunden",
+  "@secondsUnit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playerWon": "gewonnen!",
+  "moves": "Züge",
+  "movesCount": "{count}",
+  "@movesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "victoryMessage": "{winnerName} gewonnen!",
+  "@victoryMessage": {
+    "placeholders": {
+      "winnerName": {
+        "type": "String"
+      }
+    }
+  },
+  "fontSizeTitle": "Schriftgröße des Timers",
+  "fontSizeSubtitle": "Für bessere Sichtbarkeit anpassen",
+  "themeTitle": "Thema",
+  "themeSubtitle": "App-Erscheinungsbild wählen",
+  "themeClassicDark": "Klassisch Dunkel",
+  "themeTraditionalBoard": "Traditionelles Brett",
+  "themeGreenFocus": "Grüner Fokus",
+  "themeTournamentBlue": "Turnier Blau",
+  "themeRoyalGold": "Königliches Gold",
+  "themeGrandmasterPurple": "Großmeister Lila",
+  "themeCompetitiveRed": "Wettkampf Rot",
+  "themeDeepOcean": "Tiefer Ozean",
+  "themeMysticForest": "Mystischer Wald",
+  "themeElegantRose": "Elegante Rose",
+  "themePremiumSilver": "Premium Silber",
+  "themeAuroraBoreal": "Aurora Borealis",
+  "themeCustom": "Benutzerdefiniert",
+  "premiumThemeRequired": "Premium-Thema - Upgrade erforderlich",
+  "unlockPremiumThemes": "Premium-Themen freischalten",
+  "premiumThemesDescription": "Schalten Sie exklusive Themen frei und entfernen Sie Anzeigen mit der Pro-Version",
+  "proFeature1": "Zugang zu 8 exklusiven Themen",
+  "proFeature2": "Für Produktivität optimierte Themen",
+  "proFeature3": "Anzeigen entfernen",
+  "proFeature4": "App-Entwicklung unterstützen",
+  "proFeature5": "Zukünftige Updates enthalten",
+  "buyPro": "Pro kaufen",
+  "purchaseFor": "Kaufen für {price}",
+  "@purchaseFor": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "processing": "Verarbeitung...",
+  "unavailable": "Nicht verfügbar",
+  "restorePurchases": "Käufe wiederherstellen",
+  "upgradeToProTitle": "Auf Pro upgraden",
+  "upgradeToProSubtitle": "8 Premium-Themen + werbefrei",
+  "statistics": "Statistiken",
+  "statisticsTitle": "Statistiken",
+  "generalSummary": "Allgemeine Zusammenfassung",
+  "totalGames": "Gesamtspiele",
+  "whiteWins": "Weiß-Siege",
+  "blackWins": "Schwarz-Siege",
+  "draws": "Unentschieden",
+  "timeoutGames": "Durch Zeitüberschreitung",
+  "manualGames": "Manuelle Beendigungen",
+  "totalTime": "Gesamtzeit",
+  "averageDuration": "Durchschnittliche Dauer",
+  "winRate": "Siegesrate",
+  "recentGames": "Kürzliche Spiele",
+  "noGamesFound": "Keine Spiele gefunden",
+  "clearStatistics": "Statistiken löschen",
+  "clearStatisticsConfirm": "Sind Sie sicher, dass Sie alle Statistiken löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+  "deleteStatistics": "Löschen",
+  "statisticsCleared": "Statistiken erfolgreich gelöscht",
+  "errorLoadingStatistics": "Fehler beim Laden der Statistiken",
+  "errorLoadingStatisticsWithMessage": "Fehler beim Laden der Statistiken: {message}",
+  "@errorLoadingStatisticsWithMessage": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "today": "Heute",
+  "yesterday": "Gestern",
+  "daysAgo": "Tage her",
+  "draw": "Unentschieden",
+  "whiteWinsTimeout": "Weiß siegt (Zeitüberschreitung)",
+  "blackWinsTimeout": "Schwarz siegt (Zeitüberschreitung)",
+  "whiteWinsManual": "Weiß siegt",
+  "blackWinsManual": "Schwarz siegt",
+  "viewStatistics": "Statistiken anzeigen",
+  "statisticsSubtitle": "Spielverlauf und detaillierte Statistiken",
+  "finishGame": "Spiel beenden",
+  "whiteVictory": "Weiß-Sieg",
+  "blackVictory": "Schwarz-Sieg",
+  "drawGame": "Unentschieden",
+  "agreementBetweenPlayers": "Vereinbarung zwischen Spielern",
+  "continueGame": "Spiel fortsetzen",
+  "loadingAd": "Anzeige laden...",
+  "debugProMode": "Debug Pro-Modus",
+  "debugProModeSubtitle": "Pro für Tests aktivieren",
+  "resumeGame": "Spiel fortsetzen",
+  "productNotFound": "Produkt nicht gefunden",
+  "purchaseError": "Kauf-Fehler",
+  "paypal": "PayPal",
+  "backup": "Backup",
+  "restore": "Wiederherstellen",
+  "createBackup": "Backup erstellen",
+  "createBackupSubtitle": "Alle App-Daten speichern",
+  "restoreBackup": "Backup wiederherstellen",
+  "restoreBackupSubtitle": "Daten aus Backup-Datei laden",
+  "backupCreated": "Backup erstellt",
+  "backupCreatedMessage": "Das Backup wurde erstellt und im Downloads-Ordner gespeichert",
+  "backupRestored": "Backup wiederhergestellt",
+  "backupRestoredMessage": "Alle Daten wurden aus dem Backup wiederhergestellt",
+  "backupError": "Backup-Fehler",
+  "backupRestoreError": "Wiederherstellungs-Fehler",
+  "backupFileNotFound": "Backup-Datei nicht gefunden",
+  "backupInvalidFormat": "Ungültiges Backup-Dateiformat",
+  "backupVersionMismatch": "Backup-Version nicht kompatibel",
+  "backupCorrupted": "Backup-Datei beschädigt",
+  "backupPermissionDenied": "Zugriff auf Datei verweigert",
+  "backupUnknownError": "Unbekannter Fehler bei Backup-Operation",
+  "backupSubtitle": "Backup",
+  "restoreSubtitle": "Wiederherstellen",
+  "restoreError": "Wiederherstellungsfehler",
+  "backupFileInvalid": "Ungültige Backup-Datei",
+  "backupVersionIncompatible": "Backup-Version nicht kompatibel",
+  "exportStatistics": "CSV Exportieren",
+  "exportStatisticsSubtitle": "Spieldaten als CSV speichern",
+  "exportCsvShareText": "ChessTime Statistiken",
+  "exportCsvShareSubject": "Detaillierte ChessTime-Spielstatistiken im CSV-Format",
+  "exportCsvSuccess": "Statistiken erfolgreich exportiert!",
+  "exportCsvNoData": "Keine Statistiken zum Exportieren oder Exportfehler.",
+  "exportCsvError": "Fehler beim Exportieren der Statistiken: {error}",
+  "@exportCsvError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreBackupConfirmMessage": "Diese Aktion ersetzt alle aktuellen Daten. Möchten Sie fortfahren?",
+  "csvHeader": "Datum/Uhrzeit,Ergebnistyp,Gewinner,Spieldauer,Verbleibende Zeit Weiß,Verbleibende Zeit Schwarz,Züge Weiß,Züge Schwarz,Anfangszeit,Inkrement",
+  "backupShareTitle": "ChessTime Backup",
+  "backupShareSubject": "Backup der ChessTime-Einstellungen und -Statistiken",
+  "backupNoFileSelected": "Keine Datei ausgewählt",
+  "backupInvalidFile": "Ungültige Datei",
+  "backupValidationError": "Unbekannter Validierungsfehler",
+  "backupRestoreSuccess": "Backup erfolgreich wiederhergestellt",
+  "backupRestoreErrorWithMessage": "Fehler beim Wiederherstellen des Backups: {error}",
+  "@backupRestoreErrorWithMessage": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "backupVersionNotFound": "Ungültige Backup-Datei: Version nicht gefunden",
+  "backupVersionIncompatibleWithDetails": "Backup-Version inkompatibel. Erwartet: {expected}, gefunden: {found}",
+  "@backupVersionIncompatibleWithDetails": {
+    "placeholders": {
+      "expected": {
+        "type": "String"
+      },
+      "found": {
+        "type": "String"
+      }
+    }
+  },
+  "backupRequiredFieldMissing": "Ungültige Backup-Datei: erforderliches Feld \"{field}\" nicht gefunden",
+  "@backupRequiredFieldMissing": {
+    "placeholders": {
+      "field": {
+        "type": "String"
+      }
+    }
+  }
+}

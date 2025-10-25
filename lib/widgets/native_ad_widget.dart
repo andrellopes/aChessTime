@@ -1,0 +1,123 @@
+import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import '../utils/ad_config.dart';
+
+class NativeAdWidget extends StatefulWidget {
+  const NativeAdWidget({super.key});
+
+  @override
+  State<NativeAdWidget> createState() => _NativeAdWidgetState();
+}
+
+class _NativeAdWidgetState extends State<NativeAdWidget> {
+  NativeAd? _nativeAd;
+  bool _nativeAdIsLoaded = false;
+
+  // Uses centralized configuration
+  final String _adUnitId = AdConfig.currentNativeAdUnitId;
+
+  @override
+  void initState() {
+    super.initState();
+    // Only loads ads on supported platforms
+    if (AdConfig.isAdSupportedPlatform) {
+      _loadAd();
+    }
+  }
+
+  void _loadAd() {
+    _nativeAd = NativeAd(
+      adUnitId: _adUnitId,
+      listener: NativeAdListener(
+        onAdLoaded: (ad) {
+          debugPrint('Native Ad loaded successfully');
+          if (mounted) {
+            setState(() {
+              _nativeAdIsLoaded = true;
+            });
+          }
+        },
+        onAdFailedToLoad: (ad, error) {
+          debugPrint('Native ad failed to load: ${error.message}');
+          ad.dispose();
+          if (mounted) {
+            setState(() {
+              _nativeAdIsLoaded = false;
+            });
+          }
+        },
+        onAdOpened: (ad) {
+          debugPrint('Native ad opened');
+        },
+        onAdClosed: (ad) {
+          debugPrint('Native ad closed');
+        },
+        onAdClicked: (ad) {
+          debugPrint('Native ad clicked');
+        },
+      ),
+      request: const AdRequest(),
+      nativeTemplateStyle: NativeTemplateStyle(
+        templateType: TemplateType.small,
+        mainBackgroundColor: Colors.white,
+        cornerRadius: 12.0,
+        callToActionTextStyle: NativeTemplateTextStyle(
+          textColor: Colors.white,
+          backgroundColor: Colors.blue,
+          style: NativeTemplateFontStyle.bold,
+          size: 16.0,
+        ),
+        primaryTextStyle: NativeTemplateTextStyle(
+          textColor: Colors.black87,
+          backgroundColor: Colors.transparent,
+          style: NativeTemplateFontStyle.normal,
+          size: 14.0,
+        ),
+        secondaryTextStyle: NativeTemplateTextStyle(
+          textColor: Colors.black54,
+          backgroundColor: Colors.transparent,
+          style: NativeTemplateFontStyle.normal,
+          size: 12.0,
+        ),
+      ),
+    );
+
+    _nativeAd!.load();
+  }
+
+  @override
+  void dispose() {
+    _nativeAd?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // If platform does not support ads, returns empty
+    if (!AdConfig.isAdSupportedPlatform) {
+      return const SizedBox.shrink();
+    }
+    
+    if (!_nativeAdIsLoaded || _nativeAd == null) {
+      // Returns empty space when ad is not loaded
+      // Avoids showing blank space or unnecessary loading
+      return const SizedBox.shrink();
+    }
+
+    return Container(
+      alignment: Alignment.center,
+      width: double.infinity,
+      height: 80,
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: Colors.grey[50],
+        border: Border.all(color: Colors.grey[300]!, width: 0.5),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: AdWidget(ad: _nativeAd!),
+      ),
+    );
+  }
+}
