@@ -56,7 +56,7 @@ void showAppAboutDialog(BuildContext context) {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   buildContactButton(Icons.code, 'GitHub',
-                      () => _launchURL('https://github.com/andrellopes')),
+                      () => _launchURL('https://github.com/andrellopes/aChessTime')),
                   buildContactButton(Icons.email_outlined, 'Email',
                       () => _launchURL('mailto:allc.dev@hotmail.com')),
                   buildContactButton(Icons.chat_bubble_outline, 'WhatsApp',
