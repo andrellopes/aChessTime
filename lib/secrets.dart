@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:convert';
+import 'package:flutter/services.dart' as root_bundle;
 
 /// Centralizer of secrets/IDs loaded from secrets.json or fallback to test defaults
 /// Environment variables (--dart-define) can still override values.
@@ -26,24 +27,21 @@ class Secrets {
     _androidBannerAdUnitId = 'ca-app-pub-3940256099942544/6300978111';
     _iosBannerAdUnitId = 'ca-app-pub-3940256099942544/2934735716';
 
-    // Try to load from secrets.json
-    final secretsFile = File('secrets.json');
-    if (await secretsFile.exists()) {
-      try {
-        final content = await secretsFile.readAsString();
-        final json = jsonDecode(content);
-        final admob = json['admob'];
-        if (admob != null) {
-          _admobAppIdAndroid = admob['appIdAndroid'] ?? _admobAppIdAndroid;
-          _admobAppIdIos = admob['appIdIos'] ?? _admobAppIdIos;
-          _androidNativeAdUnitId = admob['nativeAdUnitIdAndroid'] ?? _androidNativeAdUnitId;
-          _iosNativeAdUnitId = admob['nativeAdUnitIdIos'] ?? _iosNativeAdUnitId;
-          _androidBannerAdUnitId = admob['bannerAdUnitIdAndroid'] ?? _androidBannerAdUnitId;
-          _iosBannerAdUnitId = admob['bannerAdUnitIdIos'] ?? _iosBannerAdUnitId;
-        }
-      } catch (e) {
-        // If JSON is invalid, keep test defaults
+    // Try to load from secrets.json as asset (bundled in app)
+    try {
+      final content = await root_bundle.rootBundle.loadString('secrets.json');
+      final json = jsonDecode(content);
+      final admob = json['admob'];
+      if (admob != null) {
+        _admobAppIdAndroid = admob['appIdAndroid'] ?? _admobAppIdAndroid;
+        _admobAppIdIos = admob['appIdIos'] ?? _admobAppIdIos;
+        _androidNativeAdUnitId = admob['nativeAdUnitIdAndroid'] ?? _androidNativeAdUnitId;
+        _iosNativeAdUnitId = admob['nativeAdUnitIdIos'] ?? _iosNativeAdUnitId;
+        _androidBannerAdUnitId = admob['bannerAdUnitIdAndroid'] ?? _androidBannerAdUnitId;
+        _iosBannerAdUnitId = admob['bannerAdUnitIdIos'] ?? _iosBannerAdUnitId;
       }
+    } catch (e) {
+      // If not found, keep test defaults
     }
 
     // Override with environment variables if set (highest priority)
