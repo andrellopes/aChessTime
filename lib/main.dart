@@ -12,9 +12,13 @@ import 'services/chess_theme_manager.dart';
 import 'services/purchase_service.dart';
 import 'services/language_service.dart';
 import 'services/chess_preset_service.dart';
+import 'services/ad_service.dart';
+import 'secrets.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
+  await Secrets.init();
   
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -36,6 +40,7 @@ void main() async {
   
   if (Platform.isAndroid || Platform.isIOS) {
     await MobileAds.instance.initialize();
+    await AdService.init(); // Preload ads
   }
   
   if (PreferencesService.getIsImmersiveMode()) {

@@ -1066,6 +1066,12 @@ abstract class AppLocalizations {
   /// **'Loading ad...'**
   String get loadingAd;
 
+  /// No description provided for @adReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Ad ready!'**
+  String get adReady;
+
   /// No description provided for @debugProMode.
   ///
   /// In en, this message translates to:

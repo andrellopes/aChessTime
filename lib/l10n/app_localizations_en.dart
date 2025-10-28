@@ -504,6 +504,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loadingAd => 'Loading ad...';
 
   @override
+  String get adReady => 'Ad ready!';
+
+  @override
   String get debugProMode => 'Debug Pro Mode';
 
   @override

@@ -202,6 +202,7 @@
   "agreementBetweenPlayers": "Accord entre joueurs",
   "continueGame": "Continuer la partie",
   "loadingAd": "Chargement de la pub...",
+  "adReady": "Pub prête !",
   "debugProMode": "Mode Debug Pro",
   "debugProModeSubtitle": "Activer Pro pour les tests",
   "resumeGame": "Reprendre la partie",

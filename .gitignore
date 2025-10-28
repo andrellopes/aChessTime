@@ -44,6 +44,7 @@ lib/firebase_options.dart
 *.cer
 *.crt
 *.key
+secrets.json
 
 # Logs temporários
 **/*.log

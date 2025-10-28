@@ -507,6 +507,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get loadingAd => 'Chargement de la pub...';
 
   @override
+  String get adReady => 'Pub prête !';
+
+  @override
   String get debugProMode => 'Mode Debug Pro';
 
   @override

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../utils/ad_config.dart';
+import '../services/ad_service.dart';
+import '../l10n/app_localizations.dart';
 
 class NativeAdWidget extends StatefulWidget {
   const NativeAdWidget({super.key});
@@ -26,6 +28,19 @@ class _NativeAdWidgetState extends State<NativeAdWidget> {
   }
 
   void _loadAd() {
+    // First try to use preloaded ad
+    final preloadedAd = AdService.getPreloadedNativeAd();
+    if (preloadedAd != null) {
+      if (mounted) {
+        setState(() {
+          _nativeAd = preloadedAd;
+          _nativeAdIsLoaded = true;
+        });
+      }
+      return;
+    }
+
+    // If no preloaded ad, load a new one
     _nativeAd = NativeAd(
       adUnitId: _adUnitId,
       listener: NativeAdListener(
@@ -97,12 +112,6 @@ class _NativeAdWidgetState extends State<NativeAdWidget> {
     if (!AdConfig.isAdSupportedPlatform) {
       return const SizedBox.shrink();
     }
-    
-    if (!_nativeAdIsLoaded || _nativeAd == null) {
-      // Returns empty space when ad is not loaded
-      // Avoids showing blank space or unnecessary loading
-      return const SizedBox.shrink();
-    }
 
     return Container(
       alignment: Alignment.center,
@@ -116,7 +125,19 @@ class _NativeAdWidgetState extends State<NativeAdWidget> {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
-        child: AdWidget(ad: _nativeAd!),
+        child: _nativeAdIsLoaded && _nativeAd != null
+          ? AdWidget(ad: _nativeAd!)
+          : Container(
+              alignment: Alignment.center,
+              child: Text(
+                AdService.hasPreloadedAd ? AppLocalizations.of(context)!.adReady : AppLocalizations.of(context)!.loadingAd,
+                style: TextStyle(
+                  color: Colors.grey[500],
+                  fontSize: 12,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+            ),
       ),
     );
   }

@@ -3,7 +3,9 @@ import 'package:provider/provider.dart';
 import '../controllers/game_controller.dart';
 import '../widgets/chess_preset_selector.dart';
 import '../services/chess_theme_manager.dart';
+import '../services/purchase_service.dart';
 import '../l10n/app_localizations.dart';
+import 'native_ad_widget.dart';
 
 class CenterControls extends StatelessWidget {
   const CenterControls({super.key});
@@ -401,7 +403,7 @@ class CenterControls extends StatelessWidget {
               },
             ),
             
-            const Divider(height: 20),
+            const Divider(height: 12),
             
             _buildMenuOption(
               icon: Icons.play_arrow,
@@ -421,6 +423,21 @@ class CenterControls extends StatelessWidget {
                 game.resetGame();
               },
               color: Colors.orange,
+            ),
+            
+            const SizedBox(height: 8),
+            
+            // AdMob Native Ad - Apenas para usuários não-pro
+            Consumer<PurchaseService>(
+              builder: (context, purchaseService, child) {
+                if (purchaseService.isProVersion) {
+                  return const SizedBox.shrink();
+                }
+                return SizedBox(
+                  height: 80,
+                  child: const NativeAdWidget(),
+                );
+              },
             ),
           ],
         ),
@@ -495,7 +512,7 @@ class CenterControls extends StatelessWidget {
               },
             ),
             
-            const Divider(height: 20),
+            const Divider(height: 12),
             
             _buildMenuOption(
               icon: Icons.play_arrow,
@@ -516,6 +533,21 @@ class CenterControls extends StatelessWidget {
               },
               color: Colors.orange,
             ),
+            
+            const SizedBox(height: 8),
+            
+            // AdMob Native Ad - Apenas para usuários não-pro
+            Consumer<PurchaseService>(
+              builder: (context, purchaseService, child) {
+                if (purchaseService.isProVersion) {
+                  return const SizedBox.shrink();
+                }
+                return SizedBox(
+                  height: 80,
+                  child: const NativeAdWidget(),
+                );
+              },
+            ),
           ],
         ),
       ),
@@ -530,9 +562,9 @@ class CenterControls extends StatelessWidget {
     required Color color,
   }) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 4),
+      margin: const EdgeInsets.only(bottom: 2),
       child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
         leading: Container(
           padding: const EdgeInsets.all(6),
           decoration: BoxDecoration(

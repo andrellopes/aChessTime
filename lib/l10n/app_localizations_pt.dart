@@ -507,6 +507,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get loadingAd => 'Carregando anúncio...';
 
   @override
+  String get adReady => 'Anúncio pronto!';
+
+  @override
   String get debugProMode => 'Modo Debug Pro';
 
   @override

@@ -202,6 +202,7 @@
   "agreementBetweenPlayers": "Vereinbarung zwischen Spielern",
   "continueGame": "Spiel fortsetzen",
   "loadingAd": "Anzeige laden...",
+  "adReady": "Anzeige bereit!",
   "debugProMode": "Debug Pro-Modus",
   "debugProModeSubtitle": "Pro für Tests aktivieren",
   "resumeGame": "Spiel fortsetzen",
