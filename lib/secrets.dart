@@ -20,11 +20,11 @@ class Secrets {
     _initialized = true;
 
     // Default to Google test IDs
-    _admobAppIdAndroid = 'ca-app-pub-3940256099942544~3347511713';
+    _admobAppIdAndroid = 'ca-app-pub-2940158495601484~6238811494';
     _admobAppIdIos = 'ca-app-pub-3940256099942544~1458002511';
     _androidNativeAdUnitId = 'ca-app-pub-3940256099942544/2247696110';
     _iosNativeAdUnitId = 'ca-app-pub-3940256099942544/3986624511';
-    _androidBannerAdUnitId = 'ca-app-pub-3940256099942544/6300978111';
+    _androidBannerAdUnitId = 'ca-app-pub-2940158495601484/2541804401';
     _iosBannerAdUnitId = 'ca-app-pub-3940256099942544/2934735716';
 
     // Try to load from secrets.json as asset (bundled in app)

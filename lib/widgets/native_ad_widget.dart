@@ -116,29 +116,25 @@ class _NativeAdWidgetState extends State<NativeAdWidget> {
     return Container(
       alignment: Alignment.center,
       width: double.infinity,
-      height: 80,
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
         color: Colors.grey[50],
         border: Border.all(color: Colors.grey[300]!, width: 0.5),
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
-        child: _nativeAdIsLoaded && _nativeAd != null
-          ? AdWidget(ad: _nativeAd!)
-          : Container(
-              alignment: Alignment.center,
-              child: Text(
-                AdService.hasPreloadedAd ? AppLocalizations.of(context)!.adReady : AppLocalizations.of(context)!.loadingAd,
-                style: TextStyle(
-                  color: Colors.grey[500],
-                  fontSize: 12,
-                  fontStyle: FontStyle.italic,
-                ),
+      child: _nativeAdIsLoaded && _nativeAd != null
+        ? AdWidget(ad: _nativeAd!)
+        : Container(
+            alignment: Alignment.center,
+            height: 80,
+            child: Text(
+              AdService.hasPreloadedAd ? AppLocalizations.of(context)!.adReady : AppLocalizations.of(context)!.loadingAd,
+              style: TextStyle(
+                color: Colors.grey[500],
+                fontSize: 12,
+                fontStyle: FontStyle.italic,
               ),
             ),
-      ),
+          ),
     );
   }
 }

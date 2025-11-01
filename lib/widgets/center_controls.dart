@@ -5,7 +5,7 @@ import '../widgets/chess_preset_selector.dart';
 import '../services/chess_theme_manager.dart';
 import '../services/purchase_service.dart';
 import '../l10n/app_localizations.dart';
-import 'native_ad_widget.dart';
+import 'banner_ad_widget.dart';
 
 class CenterControls extends StatelessWidget {
   const CenterControls({super.key});
@@ -427,15 +427,15 @@ class CenterControls extends StatelessWidget {
             
             const SizedBox(height: 8),
             
-            // AdMob Native Ad - Apenas para usuários não-pro
+            // AdMob Banner - Apenas para usuários não-pro
             Consumer<PurchaseService>(
-              builder: (context, purchaseService, child) {
+              builder: (context, purchaseService, _) {
                 if (purchaseService.isProVersion) {
                   return const SizedBox.shrink();
                 }
                 return SizedBox(
-                  height: 80,
-                  child: const NativeAdWidget(),
+                  height: 70,
+                  child: const BannerAdWidget(),
                 );
               },
             ),
@@ -536,15 +536,15 @@ class CenterControls extends StatelessWidget {
             
             const SizedBox(height: 8),
             
-            // AdMob Native Ad - Apenas para usuários não-pro
+            // AdMob Banner - Apenas para usuários não-pro
             Consumer<PurchaseService>(
-              builder: (context, purchaseService, child) {
+              builder: (context, purchaseService, _) {
                 if (purchaseService.isProVersion) {
                   return const SizedBox.shrink();
                 }
                 return SizedBox(
-                  height: 80,
-                  child: const NativeAdWidget(),
+                  height: 70,
+                  child: const BannerAdWidget(),
                 );
               },
             ),

@@ -96,10 +96,9 @@ class _BannerAdWidgetState extends State<BannerAdWidget> {
       return Container(
         width: double.infinity,
         height: 50,
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        margin: const EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(
           color: Colors.grey[100],
-          borderRadius: BorderRadius.circular(8),
           border: Border.all(color: Colors.grey[300]!, width: 0.5),
         ),
         child: Center(
@@ -117,15 +116,13 @@ class _BannerAdWidgetState extends State<BannerAdWidget> {
     return Container(
       alignment: Alignment.center,
       width: double.infinity,
-      height: 50,
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      height: 50, // Fixed height
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
         color: Colors.grey[50],
         border: Border.all(color: Colors.grey[300]!, width: 0.5),
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
+      child: ClipRect(
         child: AdWidget(ad: _bannerAd!),
       ),
     );
