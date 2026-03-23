@@ -6,6 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import '../models/game_result.dart';
 import '../l10n/app_localizations.dart';
+import 'app_review_service.dart';
 
 class StatisticsService {
   static const String _statisticsKey = 'game_statistics';
@@ -34,6 +35,9 @@ class StatisticsService {
     // Save back
     final jsonList = results.map((result) => result.toJson()).toList();
     await prefs.setString(_statisticsKey, json.encode(jsonList));
+
+    // Try to request a review if a milestone (3, 10, 25) was reached
+    AppReviewService.checkAndRequestReview();
   }
   
   // Fetch all results

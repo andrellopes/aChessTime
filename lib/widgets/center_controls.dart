@@ -428,17 +428,7 @@ class CenterControls extends StatelessWidget {
             const SizedBox(height: 8),
             
             // AdMob Banner - Apenas para usuários não-pro
-            Consumer<PurchaseService>(
-              builder: (context, purchaseService, _) {
-                if (purchaseService.isProVersion) {
-                  return const SizedBox.shrink();
-                }
-                return SizedBox(
-                  height: 70,
-                  child: const BannerAdWidget(),
-                );
-              },
-            ),
+            _buildAdBanner(),
           ],
         ),
       ),
@@ -590,6 +580,20 @@ class CenterControls extends StatelessWidget {
         ),
         dense: true,
       ),
+    );
+  }
+
+  Widget _buildAdBanner() {
+    return Consumer<PurchaseService>(
+      builder: (context, purchaseService, _) {
+        if (purchaseService.isProVersion) {
+          return const SizedBox.shrink();
+        }
+        return const SizedBox(
+          height: 70,
+          child: BannerAdWidget(),
+        );
+      },
     );
   }
 }

@@ -12,7 +12,6 @@ import 'services/chess_theme_manager.dart';
 import 'services/purchase_service.dart';
 import 'services/language_service.dart';
 import 'services/chess_preset_service.dart';
-import 'services/ad_service.dart';
 import 'secrets.dart';
 
 void main() async {
@@ -38,9 +37,8 @@ void main() async {
   final chessThemeManager = ChessThemeManager();
   chessThemeManager.setPurchaseService(purchaseService);
   
-  if (Platform.isAndroid || Platform.isIOS) {
+  if (Platform.isAndroid) {
     await MobileAds.instance.initialize();
-    await AdService.init(); // Preload ads
   }
   
   if (PreferencesService.getIsImmersiveMode()) {

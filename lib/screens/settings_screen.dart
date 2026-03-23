@@ -373,17 +373,7 @@ class SettingsScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Consumer<PurchaseService>(
-                    builder: (context, purchaseService, child) {
-                      debugPrint('SettingsScreen: isProVersion = ${purchaseService.isProVersion}');
-                      if (purchaseService.isProVersion) {
-                        debugPrint('SettingsScreen: Pro user, no ads');
-                        return const SizedBox.shrink();
-                      }
-                      debugPrint('SettingsScreen: Adding BannerAdWidget');
-                      return const BannerAdWidget();
-                    },
-                  ),
+                  _buildAdBanner(),
                 ],
               )
             : SafeArea(
@@ -698,21 +688,22 @@ class SettingsScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Consumer<PurchaseService>(
-                      builder: (context, purchaseService, child) {
-                        debugPrint('SettingsScreen: isProVersion = ${purchaseService.isProVersion}');
-                        if (purchaseService.isProVersion) {
-                          debugPrint('SettingsScreen: Pro user, no ads');
-                          return const SizedBox.shrink();
-                        }
-                        debugPrint('SettingsScreen: Adding BannerAdWidget');
-                        return const BannerAdWidget();
-                      },
-                    ),
+                    _buildAdBanner(),
                   ],
                 ),
               ),
         );
+      },
+    );
+  }
+
+  Widget _buildAdBanner() {
+    return Consumer<PurchaseService>(
+      builder: (context, purchaseService, child) {
+        if (purchaseService.isProVersion) {
+          return const SizedBox.shrink();
+        }
+        return const BannerAdWidget();
       },
     );
   }
