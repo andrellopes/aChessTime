@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../l10n/app_localizations.dart';
+import '../services/purchase_service.dart';
+import 'banner_ad_widget.dart';
 
 class GameEndDialog extends StatelessWidget {
   final String? resultType;
@@ -23,7 +26,11 @@ class GameEndDialog extends StatelessWidget {
     
     return Dialog(
       backgroundColor: Colors.transparent,
-      child: Container(
+      insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
         padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -137,6 +144,33 @@ class GameEndDialog extends StatelessWidget {
             ),
           ],
         ),
+      ),
+          // Elegantly Separated Ad Banner space below the popup
+          const SizedBox(height: 16),
+          Consumer<PurchaseService>(
+            builder: (context, purchaseService, child) {
+              if (purchaseService.isProVersion) {
+                return const SizedBox.shrink();
+              }
+              return Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 10,
+                      spreadRadius: 2,
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: const BannerAdWidget(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
