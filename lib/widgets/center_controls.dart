@@ -276,42 +276,46 @@ class CenterControls extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      builder: (context) => Container(
-        constraints: BoxConstraints(
-          maxHeight: maxHeight,
-        ),
-        padding: const EdgeInsets.all(20),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    l10n.timeControls,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+      useSafeArea: true,
+      builder: (context) => SafeArea(
+        top: false,
+        child: Container(
+          constraints: BoxConstraints(
+            maxHeight: maxHeight,
+          ),
+          padding: const EdgeInsets.all(20),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      l10n.timeControls,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    icon: const Icon(Icons.close),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              ChessPresetSelector(
-                onPresetSelected: (preset) {
-                  // Apply preset settings to GameController
-                  game.updateTimePreset('custom', preset.initialTime);
-                  game.updateIncrement(preset.increment, 'custom');
-                  Navigator.pop(context);
-                },
-              ),
-            ],
+                    IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(Icons.close),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                ChessPresetSelector(
+                  onPresetSelected: (preset) {
+                    // Apply preset settings to GameController
+                    game.updateTimePreset('custom', preset.initialTime);
+                    game.updateIncrement(preset.increment, 'custom');
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -343,93 +347,97 @@ class CenterControls extends StatelessWidget {
       context: context,
       isDismissible: false,
       enableDrag: false,
+      useSafeArea: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (context) => Container(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // Title
-            Text(
-              l10n.menu,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+      builder: (context) => SafeArea(
+        top: false,
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Title
+              Text(
+                l10n.menu,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            const SizedBox(height: 12),
-            
-            // End options
-            Consumer<ChessThemeManager>(
-              builder: (context, themeManager, child) {
-                final currentTheme = themeManager.currentTheme;
-                return Column(
-                  children: [
-                    _buildMenuOption(
-                      icon: Icons.flag,
-                      title: l10n.whiteVictory,
-                      onTap: () {
-                        Navigator.pop(context);
-                        final winner = game.settings.isPlayer1White ? Player.player1 : Player.player2;
-                        game.endGameManually(winner, 'manual_white');
-                      },
-                      color: currentTheme.whitePlayerColor,
-                    ),
-                    
-                    _buildMenuOption(
-                      icon: Icons.flag,
-                      title: l10n.blackVictory,
-                      onTap: () {
-                        Navigator.pop(context);
-                        final winner = game.settings.isPlayer1White ? Player.player2 : Player.player1;
-                        game.endGameManually(winner, 'manual_black');
-                      },
-                      color: currentTheme.blackPlayerColor,
-                    ),
-                    
-                    _buildMenuOption(
-                      icon: Icons.handshake,
-                      title: l10n.drawGame,
-                      onTap: () {
-                        Navigator.pop(context);
-                        game.endGameDraw();
-                      },
-                      color: Colors.grey[600]!,
-                    ),
-                  ],
-                );
-              },
-            ),
-            
-            const Divider(height: 12),
-            
-            _buildMenuOption(
-              icon: Icons.play_arrow,
-              title: l10n.continueGame,
-              onTap: () {
-                Navigator.pop(context);
-                game.startPauseGame();
-              },
-              color: Colors.green,
-            ),
-            
-            _buildMenuOption(
-              icon: Icons.refresh,
-              title: l10n.resetTooltip,
-              onTap: () {
-                Navigator.pop(context);
-                game.resetGame();
-              },
-              color: Colors.orange,
-            ),
-            
-            const SizedBox(height: 8),
-            
-            // AdMob Banner - Apenas para usuários não-pro
-            _buildAdBanner(),
-          ],
+              const SizedBox(height: 12),
+              
+              // End options
+              Consumer<ChessThemeManager>(
+                builder: (context, themeManager, child) {
+                  final currentTheme = themeManager.currentTheme;
+                  return Column(
+                    children: [
+                      _buildMenuOption(
+                        icon: Icons.flag,
+                        title: l10n.whiteVictory,
+                        onTap: () {
+                          Navigator.pop(context);
+                          final winner = game.settings.isPlayer1White ? Player.player1 : Player.player2;
+                          game.endGameManually(winner, 'manual_white');
+                        },
+                        color: currentTheme.whitePlayerColor,
+                      ),
+                      
+                      _buildMenuOption(
+                        icon: Icons.flag,
+                        title: l10n.blackVictory,
+                        onTap: () {
+                          Navigator.pop(context);
+                          final winner = game.settings.isPlayer1White ? Player.player2 : Player.player1;
+                          game.endGameManually(winner, 'manual_black');
+                        },
+                        color: currentTheme.blackPlayerColor,
+                      ),
+                      
+                      _buildMenuOption(
+                        icon: Icons.handshake,
+                        title: l10n.drawGame,
+                        onTap: () {
+                          Navigator.pop(context);
+                          game.endGameDraw();
+                        },
+                        color: Colors.grey[600]!,
+                      ),
+                    ],
+                  );
+                },
+              ),
+              
+              const Divider(height: 12),
+              
+              _buildMenuOption(
+                icon: Icons.play_arrow,
+                title: l10n.continueGame,
+                onTap: () {
+                  Navigator.pop(context);
+                  game.startPauseGame();
+                },
+                color: Colors.green,
+              ),
+              
+              _buildMenuOption(
+                icon: Icons.refresh,
+                title: l10n.resetTooltip,
+                onTap: () {
+                  Navigator.pop(context);
+                  game.resetGame();
+                },
+                color: Colors.orange,
+              ),
+              
+              const SizedBox(height: 8),
+              
+              // AdMob Banner - Apenas para usuários não-pro
+              _buildAdBanner(),
+            ],
+          ),
         ),
       ),
     );
@@ -442,103 +450,107 @@ class CenterControls extends StatelessWidget {
       context: context,
       isDismissible: false,
       enableDrag: false,
+      useSafeArea: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (context) => Container(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // Title
-            Text(
-              l10n.menu,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+      builder: (context) => SafeArea(
+        top: false,
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Title
+              Text(
+                l10n.menu,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            const SizedBox(height: 12),
-            
-            // End options
-            Consumer<ChessThemeManager>(
-              builder: (context, themeManager, child) {
-                final currentTheme = themeManager.currentTheme;
-                return Column(
-                  children: [
-                    _buildMenuOption(
-                      icon: Icons.flag,
-                      title: l10n.whiteVictory,
-                      onTap: () {
-                        Navigator.pop(context);
-                        final winner = game.settings.isPlayer1White ? Player.player1 : Player.player2;
-                        game.endGameManually(winner, 'manual_white');
-                      },
-                      color: currentTheme.whitePlayerColor,
-                    ),
-                    
-                    _buildMenuOption(
-                      icon: Icons.flag,
-                      title: l10n.blackVictory,
-                      onTap: () {
-                        Navigator.pop(context);
-                        final winner = game.settings.isPlayer1White ? Player.player2 : Player.player1;
-                        game.endGameManually(winner, 'manual_black');
-                      },
-                      color: currentTheme.blackPlayerColor,
-                    ),
-                    
-                    _buildMenuOption(
-                      icon: Icons.handshake,
-                      title: l10n.drawGame,
-                      onTap: () {
-                        Navigator.pop(context);
-                        game.endGameDraw();
-                      },
-                      color: Colors.grey[600]!,
-                    ),
-                  ],
-                );
-              },
-            ),
-            
-            const Divider(height: 12),
-            
-            _buildMenuOption(
-              icon: Icons.play_arrow,
-              title: l10n.continueGame,
-              onTap: () {
-                Navigator.pop(context);
-                game.startPauseGame();
-              },
-              color: Colors.green,
-            ),
-            
-            _buildMenuOption(
-              icon: Icons.refresh,
-              title: l10n.resetTooltip,
-              onTap: () {
-                Navigator.pop(context);
-                game.resetGame();
-              },
-              color: Colors.orange,
-            ),
-            
-            const SizedBox(height: 8),
-            
-            // AdMob Banner - Apenas para usuários não-pro
-            Consumer<PurchaseService>(
-              builder: (context, purchaseService, _) {
-                if (purchaseService.isProVersion) {
-                  return const SizedBox.shrink();
-                }
-                return SizedBox(
-                  height: 70,
-                  child: const BannerAdWidget(),
-                );
-              },
-            ),
-          ],
+              const SizedBox(height: 12),
+              
+              // End options
+              Consumer<ChessThemeManager>(
+                builder: (context, themeManager, child) {
+                  final currentTheme = themeManager.currentTheme;
+                  return Column(
+                    children: [
+                      _buildMenuOption(
+                        icon: Icons.flag,
+                        title: l10n.whiteVictory,
+                        onTap: () {
+                          Navigator.pop(context);
+                          final winner = game.settings.isPlayer1White ? Player.player1 : Player.player2;
+                          game.endGameManually(winner, 'manual_white');
+                        },
+                        color: currentTheme.whitePlayerColor,
+                      ),
+                      
+                      _buildMenuOption(
+                        icon: Icons.flag,
+                        title: l10n.blackVictory,
+                        onTap: () {
+                          Navigator.pop(context);
+                          final winner = game.settings.isPlayer1White ? Player.player2 : Player.player1;
+                          game.endGameManually(winner, 'manual_black');
+                        },
+                        color: currentTheme.blackPlayerColor,
+                      ),
+                      
+                      _buildMenuOption(
+                        icon: Icons.handshake,
+                        title: l10n.drawGame,
+                        onTap: () {
+                          Navigator.pop(context);
+                          game.endGameDraw();
+                        },
+                        color: Colors.grey[600]!,
+                      ),
+                    ],
+                  );
+                },
+              ),
+              
+              const Divider(height: 12),
+              
+              _buildMenuOption(
+                icon: Icons.play_arrow,
+                title: l10n.continueGame,
+                onTap: () {
+                  Navigator.pop(context);
+                  game.startPauseGame();
+                },
+                color: Colors.green,
+              ),
+              
+              _buildMenuOption(
+                icon: Icons.refresh,
+                title: l10n.resetTooltip,
+                onTap: () {
+                  Navigator.pop(context);
+                  game.resetGame();
+                },
+                color: Colors.orange,
+              ),
+              
+              const SizedBox(height: 8),
+              
+              // AdMob Banner - Apenas para usuários não-pro
+              Consumer<PurchaseService>(
+                builder: (context, purchaseService, _) {
+                  if (purchaseService.isProVersion) {
+                    return const SizedBox.shrink();
+                  }
+                  return SizedBox(
+                    height: 70,
+                    child: const BannerAdWidget(),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

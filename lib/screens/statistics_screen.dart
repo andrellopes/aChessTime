@@ -117,26 +117,29 @@ class _StatisticsScreenState extends State<StatisticsScreen> with SingleTickerPr
       body: Consumer<PurchaseService>(
         builder: (context, purchaseService, child) {
           debugPrint('StatisticsScreen: isProVersion = ${purchaseService.isProVersion}');
-          return Column(
-            children: [
-              Expanded(
-                child: _isLoading
-                    ? const Center(child: CircularProgressIndicator())
-                    : _summary == null
-                        ? Center(child: Text(l10n.errorLoadingStatistics))
-                        : TabBarView(
-                            controller: _tabController,
-                            children: [
-                              _buildSummaryTab(),
-                              _buildHistoryTab(),
-                            ],
-                          ),
-              ),
-              // Fixed banner at the bottom (only for non-Pro users)
-              if (!purchaseService.isProVersion) ...[
-                const BannerAdWidget(),
+          return SafeArea(
+            top: false,
+            child: Column(
+              children: [
+                Expanded(
+                  child: _isLoading
+                      ? const Center(child: CircularProgressIndicator())
+                      : _summary == null
+                          ? Center(child: Text(l10n.errorLoadingStatistics))
+                          : TabBarView(
+                              controller: _tabController,
+                              children: [
+                                _buildSummaryTab(),
+                                _buildHistoryTab(),
+                              ],
+                            ),
+                ),
+                // Fixed banner at the bottom (only for non-Pro users)
+                if (!purchaseService.isProVersion) ...[
+                  const BannerAdWidget(),
+                ],
               ],
-            ],
+            ),
           );
         },
       ),

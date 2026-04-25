@@ -377,6 +377,7 @@ class SettingsScreen extends StatelessWidget {
                 ],
               )
             : SafeArea(
+                top: false,
                 child: Column(
                   children: [
                     Expanded(

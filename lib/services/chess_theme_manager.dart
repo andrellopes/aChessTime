@@ -8,7 +8,8 @@ class ChessThemeManager extends ChangeNotifier {
   static final ChessThemeManager _instance = ChessThemeManager._internal();
   factory ChessThemeManager() => _instance;
 
-  static const String _themeIndexKey = 'chess_theme_preset_index';
+  static const String _themeIndexKey = 'theme_index';
+  static const String _legacyThemeIndexKey = 'chess_theme_preset_index';
   static const String _customBackgroundKey = 'chess_custom_background';
   static const String _customSurfaceKey = 'chess_custom_surface';
   static const String _customPrimaryKey = 'chess_custom_primary';
@@ -133,7 +134,13 @@ class ChessThemeManager extends ChangeNotifier {
   }
   
   Future<void> _loadSettings(SharedPreferences prefs) async {
-    _currentThemeIndex = prefs.getInt(_themeIndexKey) ?? 0;
+    final savedThemeIndex = prefs.getInt(_themeIndexKey);
+    final legacyThemeIndex = prefs.getInt(_legacyThemeIndexKey);
+    _currentThemeIndex = savedThemeIndex ?? legacyThemeIndex ?? 0;
+    if (savedThemeIndex == null && legacyThemeIndex != null) {
+      await prefs.setInt(_themeIndexKey, legacyThemeIndex);
+      await prefs.remove(_legacyThemeIndexKey);
+    }
     
     _customBackground = Color(prefs.getInt(_customBackgroundKey) ?? _customBackground.value);
     _customSurface = Color(prefs.getInt(_customSurfaceKey) ?? _customSurface.value);
