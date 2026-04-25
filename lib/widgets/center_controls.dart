@@ -340,219 +340,215 @@ class CenterControls extends StatelessWidget {
     _showResetMenu(context, game);
   }
 
+  double _bottomSheetExtraInset(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final extraInset = mediaQuery.viewPadding.bottom - mediaQuery.padding.bottom;
+    return extraInset > 0 ? extraInset : 0;
+  }
+
   void _showPauseMenu(BuildContext context, GameController game) {
     final l10n = AppLocalizations.of(context)!;
-    
     showModalBottomSheet(
       context: context,
       isDismissible: false,
       enableDrag: false,
+      isScrollControlled: true,
       useSafeArea: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (context) => SafeArea(
-        top: false,
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Title
-              Text(
-                l10n.menu,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
+      builder: (context) {
+        final bottomInset = _bottomSheetExtraInset(context);
+        return SafeArea(
+          top: false,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(16, 16, 16, 16 + bottomInset),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    l10n.menu,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Consumer<ChessThemeManager>(
+                    builder: (context, themeManager, child) {
+                      final currentTheme = themeManager.currentTheme;
+                      return Column(
+                        children: [
+                          _buildMenuOption(
+                            icon: Icons.flag,
+                            title: l10n.whiteVictory,
+                            onTap: () {
+                              Navigator.pop(context);
+                              final winner = game.settings.isPlayer1White ? Player.player1 : Player.player2;
+                              game.endGameManually(winner, 'manual_white');
+                            },
+                            color: currentTheme.whitePlayerColor,
+                          ),
+                          _buildMenuOption(
+                            icon: Icons.flag,
+                            title: l10n.blackVictory,
+                            onTap: () {
+                              Navigator.pop(context);
+                              final winner = game.settings.isPlayer1White ? Player.player2 : Player.player1;
+                              game.endGameManually(winner, 'manual_black');
+                            },
+                            color: currentTheme.blackPlayerColor,
+                          ),
+                          _buildMenuOption(
+                            icon: Icons.handshake,
+                            title: l10n.drawGame,
+                            onTap: () {
+                              Navigator.pop(context);
+                              game.endGameDraw();
+                            },
+                            color: Colors.grey[600]!,
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                  const Divider(height: 12),
+                  _buildMenuOption(
+                    icon: Icons.play_arrow,
+                    title: l10n.continueGame,
+                    onTap: () {
+                      Navigator.pop(context);
+                      game.startPauseGame();
+                    },
+                    color: Colors.green,
+                  ),
+                  _buildMenuOption(
+                    icon: Icons.refresh,
+                    title: l10n.resetTooltip,
+                    onTap: () {
+                      Navigator.pop(context);
+                      game.resetGame();
+                    },
+                    color: Colors.orange,
+                  ),
+                  const SizedBox(height: 8),
+                  _buildAdBanner(),
+                ],
               ),
-              const SizedBox(height: 12),
-              
-              // End options
-              Consumer<ChessThemeManager>(
-                builder: (context, themeManager, child) {
-                  final currentTheme = themeManager.currentTheme;
-                  return Column(
-                    children: [
-                      _buildMenuOption(
-                        icon: Icons.flag,
-                        title: l10n.whiteVictory,
-                        onTap: () {
-                          Navigator.pop(context);
-                          final winner = game.settings.isPlayer1White ? Player.player1 : Player.player2;
-                          game.endGameManually(winner, 'manual_white');
-                        },
-                        color: currentTheme.whitePlayerColor,
-                      ),
-                      
-                      _buildMenuOption(
-                        icon: Icons.flag,
-                        title: l10n.blackVictory,
-                        onTap: () {
-                          Navigator.pop(context);
-                          final winner = game.settings.isPlayer1White ? Player.player2 : Player.player1;
-                          game.endGameManually(winner, 'manual_black');
-                        },
-                        color: currentTheme.blackPlayerColor,
-                      ),
-                      
-                      _buildMenuOption(
-                        icon: Icons.handshake,
-                        title: l10n.drawGame,
-                        onTap: () {
-                          Navigator.pop(context);
-                          game.endGameDraw();
-                        },
-                        color: Colors.grey[600]!,
-                      ),
-                    ],
-                  );
-                },
-              ),
-              
-              const Divider(height: 12),
-              
-              _buildMenuOption(
-                icon: Icons.play_arrow,
-                title: l10n.continueGame,
-                onTap: () {
-                  Navigator.pop(context);
-                  game.startPauseGame();
-                },
-                color: Colors.green,
-              ),
-              
-              _buildMenuOption(
-                icon: Icons.refresh,
-                title: l10n.resetTooltip,
-                onTap: () {
-                  Navigator.pop(context);
-                  game.resetGame();
-                },
-                color: Colors.orange,
-              ),
-              
-              const SizedBox(height: 8),
-              
-              // AdMob Banner - Apenas para usuários não-pro
-              _buildAdBanner(),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
   void _showResetMenu(BuildContext context, GameController game) {
     final l10n = AppLocalizations.of(context)!;
-    
     showModalBottomSheet(
       context: context,
       isDismissible: false,
       enableDrag: false,
+      isScrollControlled: true,
       useSafeArea: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (context) => SafeArea(
-        top: false,
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Title
-              Text(
-                l10n.menu,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
+      builder: (context) {
+        final bottomInset = _bottomSheetExtraInset(context);
+        return SafeArea(
+          top: false,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(20, 20, 20, 20 + bottomInset),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    l10n.menu,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Consumer<ChessThemeManager>(
+                    builder: (context, themeManager, child) {
+                      final currentTheme = themeManager.currentTheme;
+                      return Column(
+                        children: [
+                          _buildMenuOption(
+                            icon: Icons.flag,
+                            title: l10n.whiteVictory,
+                            onTap: () {
+                              Navigator.pop(context);
+                              final winner = game.settings.isPlayer1White ? Player.player1 : Player.player2;
+                              game.endGameManually(winner, 'manual_white');
+                            },
+                            color: currentTheme.whitePlayerColor,
+                          ),
+
+                          _buildMenuOption(
+                            icon: Icons.flag,
+                            title: l10n.blackVictory,
+                            onTap: () {
+                              Navigator.pop(context);
+                              final winner = game.settings.isPlayer1White ? Player.player2 : Player.player1;
+                              game.endGameManually(winner, 'manual_black');
+                            },
+                            color: currentTheme.blackPlayerColor,
+                          ),
+
+                          _buildMenuOption(
+                            icon: Icons.handshake,
+                            title: l10n.drawGame,
+                            onTap: () {
+                              Navigator.pop(context);
+                              game.endGameDraw();
+                            },
+                            color: Colors.grey[600]!,
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                  const Divider(height: 12),
+                  _buildMenuOption(
+                    icon: Icons.play_arrow,
+                    title: l10n.continueGame,
+                    onTap: () {
+                      Navigator.pop(context);
+                      game.startPauseGame();
+                    },
+                    color: Colors.green,
+                  ),
+                  _buildMenuOption(
+                    icon: Icons.refresh,
+                    title: l10n.resetTooltip,
+                    onTap: () {
+                      Navigator.pop(context);
+                      game.resetGame();
+                    },
+                    color: Colors.orange,
+                  ),
+                  const SizedBox(height: 8),
+                  Consumer<PurchaseService>(
+                    builder: (context, purchaseService, _) {
+                      if (purchaseService.isProVersion) {
+                        return const SizedBox.shrink();
+                      }
+                      return SizedBox(
+                        height: 70,
+                        child: const BannerAdWidget(),
+                      );
+                    },
+                  ),
+                ],
               ),
-              const SizedBox(height: 12),
-              
-              // End options
-              Consumer<ChessThemeManager>(
-                builder: (context, themeManager, child) {
-                  final currentTheme = themeManager.currentTheme;
-                  return Column(
-                    children: [
-                      _buildMenuOption(
-                        icon: Icons.flag,
-                        title: l10n.whiteVictory,
-                        onTap: () {
-                          Navigator.pop(context);
-                          final winner = game.settings.isPlayer1White ? Player.player1 : Player.player2;
-                          game.endGameManually(winner, 'manual_white');
-                        },
-                        color: currentTheme.whitePlayerColor,
-                      ),
-                      
-                      _buildMenuOption(
-                        icon: Icons.flag,
-                        title: l10n.blackVictory,
-                        onTap: () {
-                          Navigator.pop(context);
-                          final winner = game.settings.isPlayer1White ? Player.player2 : Player.player1;
-                          game.endGameManually(winner, 'manual_black');
-                        },
-                        color: currentTheme.blackPlayerColor,
-                      ),
-                      
-                      _buildMenuOption(
-                        icon: Icons.handshake,
-                        title: l10n.drawGame,
-                        onTap: () {
-                          Navigator.pop(context);
-                          game.endGameDraw();
-                        },
-                        color: Colors.grey[600]!,
-                      ),
-                    ],
-                  );
-                },
-              ),
-              
-              const Divider(height: 12),
-              
-              _buildMenuOption(
-                icon: Icons.play_arrow,
-                title: l10n.continueGame,
-                onTap: () {
-                  Navigator.pop(context);
-                  game.startPauseGame();
-                },
-                color: Colors.green,
-              ),
-              
-              _buildMenuOption(
-                icon: Icons.refresh,
-                title: l10n.resetTooltip,
-                onTap: () {
-                  Navigator.pop(context);
-                  game.resetGame();
-                },
-                color: Colors.orange,
-              ),
-              
-              const SizedBox(height: 8),
-              
-              // AdMob Banner - Apenas para usuários não-pro
-              Consumer<PurchaseService>(
-                builder: (context, purchaseService, _) {
-                  if (purchaseService.isProVersion) {
-                    return const SizedBox.shrink();
-                  }
-                  return SizedBox(
-                    height: 70,
-                    child: const BannerAdWidget(),
-                  );
-                },
-              ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
