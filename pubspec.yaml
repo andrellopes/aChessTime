@@ -1,7 +1,7 @@
 name: a_chess_time
 description: "A modern and intuitive chess timer app with customizable time controls, themes, and multilingual support."
 publish_to: 'none'
-version: 2.2.0+25
+version: 2.2.1+26
 environment:
   sdk: ^3.7.0
 dependencies:
@@ -38,7 +38,7 @@ flutter:
     - secrets.json
 flutter_icons:
   android: true
-  ios: true
+  ios: false
   image_path: "assets/icon.png"
   adaptive_icon_background: null
   adaptive_icon_foreground: "assets/icon.png"
