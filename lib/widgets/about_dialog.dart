@@ -58,7 +58,7 @@ void showAppAboutDialog(BuildContext context) {
                   buildContactButton(Icons.code, 'GitHub',
                     () => _launchURL('https://github.com/allc-dev/aChessTime')),
                   buildContactButton(Icons.email_outlined, 'Email',
-                      () => _launchURL('mailto:allc.dev@hotmail.com')),
+                      () => _launchURL('mailto:allc.dev@outlook.com')),
                   buildContactButton(Icons.chat_bubble_outline, 'WhatsApp',
                       () => _launchURL('https://wa.me/5512988543055')),
                 ],
@@ -83,7 +83,7 @@ void showAppAboutDialog(BuildContext context) {
           if (isBrazil)
             ElevatedButton.icon(
               onPressed: () {
-                const pixKey = 'allc.dev@hotmail.com';
+                const pixKey = 'allc.pix@outlook.com';
                 Clipboard.setData(const ClipboardData(text: pixKey));
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
