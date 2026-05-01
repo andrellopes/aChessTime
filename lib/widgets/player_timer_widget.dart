@@ -82,29 +82,32 @@ class PlayerTimerWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: 80,
                   alignment: Alignment.center,
-                  child: AnimatedDefaultTextStyle(
-                    duration: const Duration(milliseconds: 200),
-                    style: TextStyle(
-                      fontSize: gameController.settings.fontSize * 1.2,
-                      fontWeight: FontWeight.w900,
-                      color: themeManager.getTimerColor(isActive, isLowTime, isVeryLowTime),
-                      fontFamily: 'monospace',
-                      letterSpacing: 2.0,
-                      shadows: [
-                        Shadow(
-                          color: Colors.black.withOpacity(0.7),
-                          offset: const Offset(0, 2),
-                          blurRadius: 6,
-                        ),
-                      ],
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: AnimatedDefaultTextStyle(
+                      duration: const Duration(milliseconds: 200),
+                      style: TextStyle(
+                        fontSize: gameController.settings.fontSize * 1.2,
+                        fontWeight: FontWeight.w900,
+                        color: themeManager.getTimerColor(isActive, isLowTime, isVeryLowTime),
+                        fontFamily: 'monospace',
+                        height: 1.0,
+                        letterSpacing: 2.0,
+                        shadows: [
+                          Shadow(
+                            color: Colors.black.withOpacity(0.7),
+                            offset: const Offset(0, 2),
+                            blurRadius: 6,
+                          ),
+                        ],
+                      ),
+                      child: Text(timeText),
                     ),
-                    child: Text(timeText),
                   ),
                 ),
                 
-                const SizedBox(height: 8), // Reduced from 16 to 8 since timer has fixed height
+                const SizedBox(height: 30), // Increased even more to lower the labels
                 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
