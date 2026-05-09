@@ -23,7 +23,7 @@ class ChessThemeManager extends ChangeNotifier {
   static const String _customWarningColorKey = 'chess_custom_warning_color';
   static const String _customCriticalColorKey = 'chess_custom_critical_color';
   
-  int _currentThemeIndex = 0;
+  int _currentThemeIndex = 1;
   late ChessThemePreset _currentTheme;
   bool _isPremium = false; // Default: not premium
   PurchaseService? _purchaseService;
@@ -136,7 +136,7 @@ class ChessThemeManager extends ChangeNotifier {
   Future<void> _loadSettings(SharedPreferences prefs) async {
     final savedThemeIndex = prefs.getInt(_themeIndexKey);
     final legacyThemeIndex = prefs.getInt(_legacyThemeIndexKey);
-    _currentThemeIndex = savedThemeIndex ?? legacyThemeIndex ?? 0;
+    _currentThemeIndex = savedThemeIndex ?? legacyThemeIndex ?? 1;
     if (savedThemeIndex == null && legacyThemeIndex != null) {
       await prefs.setInt(_themeIndexKey, legacyThemeIndex);
       await prefs.remove(_legacyThemeIndexKey);

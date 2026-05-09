@@ -4,6 +4,7 @@ import '../controllers/game_controller.dart';
 import '../widgets/center_controls.dart';
 import '../widgets/player_timer_widget.dart';
 import '../widgets/game_end_dialog.dart';
+import '../widgets/fide_standard_dialog.dart';
 import '../utils/time_utils.dart';
 
 class GameScreen extends StatefulWidget {
@@ -15,6 +16,7 @@ class GameScreen extends StatefulWidget {
 
 class _GameScreenState extends State<GameScreen> {
   bool _victoryDialogShown = false;
+  bool _fideDialogShown = false;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +34,14 @@ class _GameScreenState extends State<GameScreen> {
         // Reset of the flag when a new game starts
         if (game.gameState != GameState.finished && _victoryDialogShown) {
           _victoryDialogShown = false;
+        }
+
+        // Show FIDE Standard selection dialog if not yet defined
+        if (game.settings.addIncrementAtStart == null && !_fideDialogShown) {
+          _fideDialogShown = true;
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            FideStandardDialog.show(context);
+          });
         }
 
         return Scaffold(

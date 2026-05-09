@@ -287,5 +287,15 @@
   "modeNone": "None",
   "handicap": "Handicap",
   "differentTimesPerPlayer": "Different times per player",
-  "fieldRequired": "Field required"
+  "fieldRequired": "Required field",
+  "fideStandardTitle": "Tournament Standard",
+  "fideStandardFideMode": "FISCHER FIDE MODE",
+  "fideStandardDescription": "According to official FIDE rules, the increment is added to the starting time before the first move.\n\nHow do you prefer the app to work?",
+  "fideStandardProfessional": "Professional (FIDE)",
+  "fideStandardProfessionalSub": "Clock starts with increment added",
+  "fideStandardClassic": "Classic (Original)",
+  "fideStandardClassicSub": "Clock starts with base time only",
+  "fideStandardSettingsNote": "You can change this later in Settings.",
+  "fideStandardSettingTitle": "FIDE Fischer Standard",
+  "fideStandardSettingSubtitle": "Add increment before the first move"
 }

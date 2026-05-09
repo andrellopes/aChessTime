@@ -294,5 +294,15 @@
   "modeNone": "Keiner",
   "handicap": "Handicap",
   "differentTimesPerPlayer": "Unterschiedliche Zeiten pro Spieler",
-  "fieldRequired": "Pflichtfeld"
+  "fieldRequired": "Pflichtfeld",
+  "fideStandardTitle": "Turnierstandard",
+  "fideStandardFideMode": "FISCHER FIDE MODUS",
+  "fideStandardDescription": "Nach den offiziellen FIDE-Regeln wird das Inkrement vor dem ersten Zug zur Startzeit addiert.\n\nWie soll die App funktionieren?",
+  "fideStandardProfessional": "Profi (FIDE)",
+  "fideStandardProfessionalSub": "Uhr startet mit Inkrement",
+  "fideStandardClassic": "Klassisch (Original)",
+  "fideStandardClassicSub": "Uhr startet ohne Inkrement",
+  "fideStandardSettingsNote": "Sie können dies später in den Einstellungen ändern.",
+  "fideStandardSettingTitle": "FIDE Fischer Standard",
+  "fideStandardSettingSubtitle": "Inkrement vor dem ersten Zug addieren"
 }

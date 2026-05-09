@@ -108,7 +108,13 @@ class SettingsScreen extends StatelessWidget {
             value: game.settings.isVibrateEnabled,
             onChanged: (_) => game.toggleVibration(),
           ),
-
+          _divider(),
+          _switchTile(
+            title: l10n.fideStandardSettingTitle,
+            subtitle: l10n.fideStandardSettingSubtitle,
+            value: game.settings.addIncrementAtStart ?? false,
+            onChanged: (val) => game.setFideStandard(val),
+          ),
         ]),
         _section(l10n.appearance, [
           const ThemeSelectorWidget(),

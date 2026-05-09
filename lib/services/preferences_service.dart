@@ -15,6 +15,7 @@ class PreferencesService {
   static const String _player2InitialTimeKey = 'player2_initial_time_minutes';
   static const String _timeModeKey = 'time_mode';
   static const String _timePeriodsKey = 'time_periods';
+  static const String _addIncrementAtStartKey = 'add_increment_at_start';
   
   static double getFontSize() {
     return _prefs?.getDouble(_fontSizeKey) ?? 60.0;
@@ -25,7 +26,7 @@ class PreferencesService {
   }
 
   static int getThemeIndex() {
-    return _prefs?.getInt(_themeIndexKey) ?? 0;
+    return _prefs?.getInt(_themeIndexKey) ?? 1;
   }
 
   static Future<void> setThemeIndex(int value) async {
@@ -87,6 +88,10 @@ class PreferencesService {
     return _prefs?.getBool(_isImmersiveModeKey) ?? false;
   }
 
+  static bool? getAddIncrementAtStart() {
+    return _prefs?.getBool(_addIncrementAtStartKey);
+  }
+
   // Setters
   static Future<void> setInitialTimeMinutes(int minutes) async {
     await _prefs?.setInt(_initialTimeKey, minutes);
@@ -138,6 +143,10 @@ class PreferencesService {
 
   static Future<void> setIsImmersiveMode(bool value) async {
     await _prefs?.setBool(_isImmersiveModeKey, value);
+  }
+
+  static Future<void> setAddIncrementAtStart(bool value) async {
+    await _prefs?.setBool(_addIncrementAtStartKey, value);
   }
 
   // Clear all preferences

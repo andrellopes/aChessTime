@@ -287,5 +287,15 @@
   "modeNone": "Aucun",
   "handicap": "Handicap",
   "differentTimesPerPlayer": "Temps différents par joueur",
-  "fieldRequired": "Champ obligatoire"
+  "fieldRequired": "Champ obligatoire",
+  "fideStandardTitle": "Standard de Tournoi",
+  "fideStandardFideMode": "MODE FISCHER FIDE",
+  "fideStandardDescription": "Selon les règles officielles de la FIDE, l'incrément est ajouté au temps initial avant le premier coup.\n\nComment préférez-vous que l'application fonctionne?",
+  "fideStandardProfessional": "Professionnel (FIDE)",
+  "fideStandardProfessionalSub": "L'horloge démarre avec l'incrément",
+  "fideStandardClassic": "Classique (Original)",
+  "fideStandardClassicSub": "L'horloge démarre sans l'incrément",
+  "fideStandardSettingsNote": "Vous pourrez modifier cela plus tard dans les Paramètres.",
+  "fideStandardSettingTitle": "Standard Fischer FIDE",
+  "fideStandardSettingSubtitle": "Ajouter l'incrément avant le premier coup"
 }

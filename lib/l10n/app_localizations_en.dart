@@ -679,5 +679,38 @@ class AppLocalizationsEn extends AppLocalizations {
   String get differentTimesPerPlayer => 'Different times per player';
 
   @override
-  String get fieldRequired => 'Field required';
+  String get fieldRequired => 'Required field';
+
+  @override
+  String get fideStandardTitle => 'Tournament Standard';
+
+  @override
+  String get fideStandardFideMode => 'FISCHER FIDE MODE';
+
+  @override
+  String get fideStandardDescription =>
+      'According to official FIDE rules, the increment is added to the starting time before the first move.\n\nHow do you prefer the app to work?';
+
+  @override
+  String get fideStandardProfessional => 'Professional (FIDE)';
+
+  @override
+  String get fideStandardProfessionalSub => 'Clock starts with increment added';
+
+  @override
+  String get fideStandardClassic => 'Classic (Original)';
+
+  @override
+  String get fideStandardClassicSub => 'Clock starts with base time only';
+
+  @override
+  String get fideStandardSettingsNote =>
+      'You can change this later in Settings.';
+
+  @override
+  String get fideStandardSettingTitle => 'FIDE Fischer Standard';
+
+  @override
+  String get fideStandardSettingSubtitle =>
+      'Add increment before the first move';
 }

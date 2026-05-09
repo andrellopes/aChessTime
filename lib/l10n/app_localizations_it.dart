@@ -684,4 +684,38 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get fieldRequired => 'Campo obbligatorio';
+
+  @override
+  String get fideStandardTitle => 'Standard di Torneo';
+
+  @override
+  String get fideStandardFideMode => 'MODALITÀ FISCHER FIDE';
+
+  @override
+  String get fideStandardDescription =>
+      'Secondo le regole ufficiali FIDE, l\'incremento viene aggiunto al tempo iniziale prima della prima mossa.\n\nCome preferisci che funzioni l\'app?';
+
+  @override
+  String get fideStandardProfessional => 'Professionale (FIDE)';
+
+  @override
+  String get fideStandardProfessionalSub =>
+      'L\'orologio parte con l\'incremento';
+
+  @override
+  String get fideStandardClassic => 'Classico (Original)';
+
+  @override
+  String get fideStandardClassicSub => 'L\'orologio parte senza incremento';
+
+  @override
+  String get fideStandardSettingsNote =>
+      'Puoi cambiarlo in seguito nelle Impostazioni.';
+
+  @override
+  String get fideStandardSettingTitle => 'Standard Fischer FIDE';
+
+  @override
+  String get fideStandardSettingSubtitle =>
+      'Aggiungi incremento prima della prima mossa';
 }

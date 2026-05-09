@@ -688,4 +688,38 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get fieldRequired => 'Champ obligatoire';
+
+  @override
+  String get fideStandardTitle => 'Standard de Tournoi';
+
+  @override
+  String get fideStandardFideMode => 'MODE FISCHER FIDE';
+
+  @override
+  String get fideStandardDescription =>
+      'Selon les règles officielles de la FIDE, l\'incrément est ajouté au temps initial avant le premier coup.\n\nComment préférez-vous que l\'application fonctionne?';
+
+  @override
+  String get fideStandardProfessional => 'Professionnel (FIDE)';
+
+  @override
+  String get fideStandardProfessionalSub =>
+      'L\'horloge démarre avec l\'incrément';
+
+  @override
+  String get fideStandardClassic => 'Classique (Original)';
+
+  @override
+  String get fideStandardClassicSub => 'L\'horloge démarre sans l\'incrément';
+
+  @override
+  String get fideStandardSettingsNote =>
+      'Vous pourrez modifier cela plus tard dans les Paramètres.';
+
+  @override
+  String get fideStandardSettingTitle => 'Standard Fischer FIDE';
+
+  @override
+  String get fideStandardSettingSubtitle =>
+      'Ajouter l\'incrément avant le premier coup';
 }

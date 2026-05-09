@@ -1393,8 +1393,68 @@ abstract class AppLocalizations {
   /// No description provided for @fieldRequired.
   ///
   /// In en, this message translates to:
-  /// **'Field required'**
+  /// **'Required field'**
   String get fieldRequired;
+
+  /// No description provided for @fideStandardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tournament Standard'**
+  String get fideStandardTitle;
+
+  /// No description provided for @fideStandardFideMode.
+  ///
+  /// In en, this message translates to:
+  /// **'FISCHER FIDE MODE'**
+  String get fideStandardFideMode;
+
+  /// No description provided for @fideStandardDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'According to official FIDE rules, the increment is added to the starting time before the first move.\n\nHow do you prefer the app to work?'**
+  String get fideStandardDescription;
+
+  /// No description provided for @fideStandardProfessional.
+  ///
+  /// In en, this message translates to:
+  /// **'Professional (FIDE)'**
+  String get fideStandardProfessional;
+
+  /// No description provided for @fideStandardProfessionalSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Clock starts with increment added'**
+  String get fideStandardProfessionalSub;
+
+  /// No description provided for @fideStandardClassic.
+  ///
+  /// In en, this message translates to:
+  /// **'Classic (Original)'**
+  String get fideStandardClassic;
+
+  /// No description provided for @fideStandardClassicSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Clock starts with base time only'**
+  String get fideStandardClassicSub;
+
+  /// No description provided for @fideStandardSettingsNote.
+  ///
+  /// In en, this message translates to:
+  /// **'You can change this later in Settings.'**
+  String get fideStandardSettingsNote;
+
+  /// No description provided for @fideStandardSettingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'FIDE Fischer Standard'**
+  String get fideStandardSettingTitle;
+
+  /// No description provided for @fideStandardSettingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add increment before the first move'**
+  String get fideStandardSettingSubtitle;
 }
 
 class _AppLocalizationsDelegate

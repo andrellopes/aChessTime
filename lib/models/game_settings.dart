@@ -35,6 +35,7 @@ class GameSettings {
   final double fontSize;
   final int themeIndex;
   final bool isImmersiveMode;
+  final bool? addIncrementAtStart;
 
   GameSettings({
     required this.initialTime,
@@ -49,8 +50,9 @@ class GameSettings {
     this.incrementPreset = "2s",
     this.isPlayer1White = true,
     this.fontSize = 100.0,
-    this.themeIndex = 0,
+    this.themeIndex = 1,
     this.isImmersiveMode = false,
+    this.addIncrementAtStart,
   });
 
   // Constructor that loads from preferences
@@ -68,7 +70,8 @@ class GameSettings {
         isVibrateEnabled = PreferencesService.getIsVibrateEnabled(),
         fontSize = PreferencesService.getFontSize(),
         themeIndex = PreferencesService.getThemeIndex(),
-        isImmersiveMode = PreferencesService.getIsImmersiveMode();
+        isImmersiveMode = PreferencesService.getIsImmersiveMode(),
+        addIncrementAtStart = PreferencesService.getAddIncrementAtStart();
 
   GameSettings copyWith({
     Duration? initialTime,
@@ -85,6 +88,7 @@ class GameSettings {
     double? fontSize,
     int? themeIndex,
     bool? isImmersiveMode,
+    bool? addIncrementAtStart,
   }) {
     return GameSettings(
       initialTime: initialTime ?? this.initialTime,
@@ -101,6 +105,7 @@ class GameSettings {
       fontSize: fontSize ?? this.fontSize,
       themeIndex: themeIndex ?? this.themeIndex,
       isImmersiveMode: isImmersiveMode ?? this.isImmersiveMode,
+      addIncrementAtStart: addIncrementAtStart ?? this.addIncrementAtStart,
     );
   }
 

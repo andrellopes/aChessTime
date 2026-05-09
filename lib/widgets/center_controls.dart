@@ -16,9 +16,60 @@ class CenterControls extends StatelessWidget {
 
     return Consumer<GameController>(
       builder: (context, game, child) {
+        if (!isLandscape) {
+          // Portrait: layout original, sem mudanças
+          return Container(
+            height: 95,
+            decoration: BoxDecoration(
+              color: Colors.grey[900]!.withOpacity(0.95),
+              borderRadius: BorderRadius.circular(50),
+              border: Border.all(
+                color: Colors.grey[700]!.withOpacity(0.5),
+                width: 1.5,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.4),
+                  blurRadius: 10,
+                  spreadRadius: 1,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _buildMainControls(context, game, false, null),
+                if (game.gameState == GameState.finished)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: _buildGameInfo(context, game),
+                  ),
+              ],
+            ),
+          );
+        }
+
+        // Landscape: pill responsivo à altura disponível
+        final mq = MediaQuery.of(context);
+        // Altura disponível descontando safe area e margens verticais da pill (6 * 2 = 12)
+        final availableHeight = mq.size.height - mq.padding.top - mq.padding.bottom - 12;
+
+        // Tamanhos dinâmicos: calculamos um fator de escala baseado na altura
+        // Referência: 5 botões (52+74+52+52+52) + 4 gaps (12*4) + padding vertical (8*2) = 394
+        const double referenceHeight = 394.0;
+        final double scale = (availableHeight / referenceHeight).clamp(0.6, 1.0);
+
+        final double btnSize    = (52.0 * scale).floorToDouble();
+        final double playSize   = (74.0 * scale).floorToDouble();
+        final double gapSize    = (12.0 * scale).floorToDouble();
+        final double vPadding   = (8.0  * scale).floorToDouble();
+        final double pillWidth  = (87.0 * scale).clamp(72.0, 95.0);
+
         return Container(
-          height: isLandscape ? null : 95,
-          width: isLandscape ? 95 : null,
+          width: pillWidth,
           decoration: BoxDecoration(
             color: Colors.grey[900]!.withOpacity(0.95),
             borderRadius: BorderRadius.circular(50),
@@ -35,71 +86,113 @@ class CenterControls extends StatelessWidget {
               ),
             ],
           ),
-          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          padding: isLandscape 
-              ? const EdgeInsets.symmetric(vertical: 8, horizontal: 4)
-              : const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-          child: isLandscape
-            ? Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _buildMainControls(context, game, isLandscape),
-                  if (game.gameState == GameState.finished)
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8),
-                      child: RotatedBox(
-                        quarterTurns: 3,
-                        child: _buildGameInfo(context, game),
-                      ),
-                    ),
-                ],
-              )
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildMainControls(context, game, isLandscape),
-                  if (game.gameState == GameState.finished)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: _buildGameInfo(context, game),
-                    ),
-                ],
-              ),
+          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+          padding: EdgeInsets.symmetric(vertical: vPadding, horizontal: 4),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _buildMainControls(context, game, true, _PillSizes(
+                btnSize: btnSize,
+                playSize: playSize,
+                gapSize: gapSize,
+              )),
+              if (game.gameState == GameState.finished)
+                Padding(
+                  padding: const EdgeInsets.only(left: 8),
+                  child: RotatedBox(
+                    quarterTurns: 3,
+                    child: _buildGameInfo(context, game),
+                  ),
+                ),
+            ],
+          ),
         );
       },
     );
   }
 
-  Widget _buildMainControls(BuildContext context, GameController game, bool isLandscape) {
+  Widget _buildMainControls(
+    BuildContext context,
+    GameController game,
+    bool isLandscape,
+    _PillSizes? sizes,
+  ) {
     final l10n = AppLocalizations.of(context)!;
-    
-    final children = [
-      // Preset settings
-      _buildPresetsButton(context, game),
 
-      if (isLandscape) const SizedBox(height: 12) else const SizedBox(width: 0),
+    if (!isLandscape) {
+      // Portrait: tamanhos fixos originais em Row
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _buildPresetsButton(context, game),
+          const SizedBox(width: 0),
+          _buildControlButton(icon: Icons.gavel, onPressed: () => _showArbiterMenu(context, game), tooltip: 'Árbitro', color: Colors.cyan),
+          const SizedBox(width: 0),
+          _buildPlayButton(context, game, 74, 36),
+          const SizedBox(width: 0),
+          _buildControlButton(icon: Icons.swap_vert, onPressed: () => game.swapPlayers(), tooltip: l10n.swapTooltip, color: Colors.blue),
+          const SizedBox(width: 0),
+          _buildControlButton(icon: Icons.settings, onPressed: () => Navigator.pushNamed(context, '/settings'), tooltip: l10n.settingsTooltip, color: Colors.grey[400]!),
+        ],
+      );
+    }
 
-      // Arbiter Mode Button
-      _buildControlButton(
-        icon: Icons.gavel,
-        onPressed: () => _showArbiterMenu(context, game),
-        tooltip: 'Árbitro',
-        color: Colors.cyan,
-      ),
+    // Landscape: tamanhos escalonados
+    final s = sizes!;
+    final gap = SizedBox(height: s.gapSize);
+    final iconScale = (s.btnSize / 52.0).clamp(0.6, 1.0);
+    final playIconSize = (36.0 * iconScale).floorToDouble();
 
-      if (isLandscape) const SizedBox(height: 12) else const SizedBox(width: 0),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _buildPresetsButton(context, game, size: s.btnSize),
+        gap,
+        _buildControlButton(
+          icon: Icons.gavel,
+          onPressed: () => _showArbiterMenu(context, game),
+          tooltip: 'Árbitro',
+          color: Colors.cyan,
+          size: s.btnSize,
+          iconSize: 20 * iconScale,
+        ),
+        gap,
+        _buildPlayButton(context, game, s.playSize, playIconSize),
+        gap,
+        _buildControlButton(
+          icon: Icons.swap_vert,
+          onPressed: () => game.swapPlayers(),
+          tooltip: l10n.swapTooltip,
+          color: Colors.blue,
+          size: s.btnSize,
+          iconSize: 20 * iconScale,
+        ),
+        gap,
+        _buildControlButton(
+          icon: Icons.settings,
+          onPressed: () => Navigator.pushNamed(context, '/settings'),
+          tooltip: l10n.settingsTooltip,
+          color: Colors.grey[400]!,
+          size: s.btnSize,
+          iconSize: 20 * iconScale,
+        ),
+      ],
+    );
+  }
 
-      // Play/Pause button (larger)
-      Container(
-        width: 74,
-        height: 74,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: game.gameState == GameState.running 
+  /// Botão Play/Pause com tamanho configurável
+  Widget _buildPlayButton(BuildContext context, GameController game, double size, double iconSize) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: game.gameState == GameState.running
               ? [
                   Colors.amber.withOpacity(0.4),
                   Colors.amber.withOpacity(0.2),
@@ -110,75 +203,34 @@ class CenterControls extends StatelessWidget {
                   Colors.green.withOpacity(0.2),
                   Colors.teal.withOpacity(0.3),
                 ],
-          ),
-          border: Border.all(
-            color: game.gameState == GameState.running 
-              ? Colors.amber
-              : Colors.green,
-            width: 2,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: (game.gameState == GameState.running 
-                ? Colors.amber 
-                : Colors.green).withOpacity(0.3),
-              blurRadius: 8,
-              spreadRadius: 1,
-              offset: const Offset(0, 2),
-            ),
-          ],
         ),
-        child: GestureDetector(
-          onTap: () => _handlePlayPause(context, game),
-          child: Container(
-            color: Colors.transparent,
-            child: Center(
-              child: Icon(
-                game.gameState == GameState.running 
-                  ? Icons.stop_rounded 
-                  : Icons.play_arrow_rounded,
-                size: 36,
-                color: game.gameState == GameState.running 
-                  ? Colors.amber
-                  : Colors.green,
-              ),
+        border: Border.all(
+          color: game.gameState == GameState.running ? Colors.amber : Colors.green,
+          width: 2,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: (game.gameState == GameState.running ? Colors.amber : Colors.green).withOpacity(0.3),
+            blurRadius: 8,
+            spreadRadius: 1,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: GestureDetector(
+        onTap: () => _handlePlayPause(context, game),
+        child: Container(
+          color: Colors.transparent,
+          child: Center(
+            child: Icon(
+              game.gameState == GameState.running ? Icons.stop_rounded : Icons.play_arrow_rounded,
+              size: iconSize,
+              color: game.gameState == GameState.running ? Colors.amber : Colors.green,
             ),
           ),
         ),
       ),
-
-      if (isLandscape) const SizedBox(height: 12) else const SizedBox(width: 0),
-
-      // Swap players button
-      _buildControlButton(
-        icon: Icons.swap_vert,
-        onPressed: () => game.swapPlayers(),
-        tooltip: l10n.swapTooltip,
-        color: Colors.blue,
-      ),
-
-      if (isLandscape) const SizedBox(height: 12) else const SizedBox(width: 0),
-
-      // Menu/Settings button
-      _buildControlButton(
-        icon: Icons.settings,
-        onPressed: () => Navigator.pushNamed(context, '/settings'),
-        tooltip: l10n.settingsTooltip,
-        color: Colors.grey[400]!,
-      ),
-    ];
-
-    if (isLandscape) {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: children,
-      );
-    } else {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: children,
-      );
-    }
+    );
   }
 
   Widget _buildGameInfo(BuildContext context, GameController game) {
@@ -209,12 +261,13 @@ class CenterControls extends StatelessWidget {
     );
   }
 
-  Widget _buildPresetsButton(BuildContext context, GameController game) {
+  Widget _buildPresetsButton(BuildContext context, GameController game, {double size = 52}) {
+    final textScale = (size / 52.0).clamp(0.7, 1.0);
     return GestureDetector(
       onTap: () => _showPresetSelector(context, game),
       child: Container(
-        width: 52,
-        height: 52,
+        width: size,
+        height: size,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           gradient: LinearGradient(
@@ -239,17 +292,17 @@ class CenterControls extends StatelessWidget {
           children: [
             Text(
               "${game.settings.initialTime.inMinutes}'",
-              style: const TextStyle(
+              style: TextStyle(
                 color: Colors.white,
-                fontSize: 11,
+                fontSize: 11 * textScale,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
               "+${game.settings.increment.inSeconds}",
-              style: const TextStyle(
+              style: TextStyle(
                 color: Colors.cyanAccent,
-                fontSize: 9,
+                fontSize: 9 * textScale,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -264,10 +317,12 @@ class CenterControls extends StatelessWidget {
     required VoidCallback onPressed,
     required String tooltip,
     required Color color,
+    double size = 52,
+    double iconSize = 20,
   }) {
     return Container(
-      width: 52,
-      height: 52,
+      width: size,
+      height: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         gradient: LinearGradient(
@@ -289,7 +344,7 @@ class CenterControls extends StatelessWidget {
       ),
       child: IconButton(
         onPressed: onPressed,
-        icon: Icon(icon, color: color, size: 20),
+        icon: Icon(icon, color: color, size: iconSize),
         tooltip: tooltip,
         padding: EdgeInsets.zero,
         constraints: const BoxConstraints(),
@@ -708,4 +763,17 @@ class CenterControls extends StatelessWidget {
       },
     );
   }
+}
+
+/// Dados de tamanho responsivo para a pill no modo landscape
+class _PillSizes {
+  final double btnSize;
+  final double playSize;
+  final double gapSize;
+
+  const _PillSizes({
+    required this.btnSize,
+    required this.playSize,
+    required this.gapSize,
+  });
 }

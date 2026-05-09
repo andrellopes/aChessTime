@@ -294,5 +294,15 @@
   "modeNone": "Nessuno",
   "handicap": "Handicap",
   "differentTimesPerPlayer": "Tempi diversi per giocatore",
-  "fieldRequired": "Campo obbligatorio"
+  "fieldRequired": "Campo obbligatorio",
+  "fideStandardTitle": "Standard di Torneo",
+  "fideStandardFideMode": "MODALITÀ FISCHER FIDE",
+  "fideStandardDescription": "Secondo le regole ufficiali FIDE, l'incremento viene aggiunto al tempo iniziale prima della prima mossa.\n\nCome preferisci che funzioni l'app?",
+  "fideStandardProfessional": "Professionale (FIDE)",
+  "fideStandardProfessionalSub": "L'orologio parte con l'incremento",
+  "fideStandardClassic": "Classico (Original)",
+  "fideStandardClassicSub": "L'orologio parte senza incremento",
+  "fideStandardSettingsNote": "Puoi cambiarlo in seguito nelle Impostazioni.",
+  "fideStandardSettingTitle": "Standard Fischer FIDE",
+  "fideStandardSettingSubtitle": "Aggiungi incremento prima della prima mossa"
 }

@@ -208,7 +208,7 @@ class GameController extends ChangeNotifier {
     
     // FIDE Standard: In Fischer mode, the increment for the first move 
     // is added to the initial time before the game starts.
-    if (_settings.timeMode == TimeMode.fischer) {
+    if (_settings.timeMode == TimeMode.fischer && (_settings.addIncrementAtStart ?? false)) {
       _player1Time += _settings.increment;
       _player2Time += _settings.increment;
     }
@@ -328,6 +328,13 @@ class GameController extends ChangeNotifier {
     _settings = _settings.copyWith(isDarkMode: !_settings.isDarkMode);
     notifyListeners();
     PreferencesService.setIsDarkMode(_settings.isDarkMode);
+  }
+
+  void setFideStandard(bool enabled) {
+    _settings = _settings.copyWith(addIncrementAtStart: enabled);
+    PreferencesService.setAddIncrementAtStart(enabled);
+    resetGame();
+    notifyListeners();
   }
 
   void updateSettings(GameSettings newSettings) {

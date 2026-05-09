@@ -336,67 +336,6 @@ class _ChessPresetSelectorState extends State<ChessPresetSelector> {
                     ),
                     const SizedBox(height: 12),
 
-                    // Seção: Incremento
-                    _buildSliderSection(
-                      context: context,
-                      themeManager: themeManager,
-                      icon: Icons.add_circle_outline,
-                      iconColor: themeManager.accentColor,
-                      label: l10n.increment,
-                      valueLabel: incrementSeconds == 0 ? l10n.modeNone : '+$incrementSeconds ${l10n.secondsShort}',
-                      badgeColor: themeManager.secondaryColor,
-                      sliderValue: incrementSeconds.toDouble(),
-                      sliderMin: 0,
-                      sliderMax: 60,
-                      divisions: 60,
-                      onChanged: (v) => setDialogState(() => incrementSeconds = v.toInt()),
-                    ),
-                    const SizedBox(height: 16),
-
-                    // Modo de Delay — chips horizontais
-                    Text(l10n.timeMode, style: TextStyle(color: themeManager.textSecondaryColor, fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 0.8)),
-                    const SizedBox(height: 8),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: TimeMode.values.map((mode) {
-                          final labels = {
-                            TimeMode.fischer: l10n.modeFischer,
-                            TimeMode.bronstein: l10n.modeBronstein,
-                            TimeMode.usDelay: l10n.modeUSDelay,
-                            TimeMode.none: l10n.modeNone,
-                          };
-                          final isSelected = timeMode == mode;
-                          return Padding(
-                            padding: const EdgeInsets.only(right: 8),
-                            child: GestureDetector(
-                              onTap: () => setDialogState(() => timeMode = mode),
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                                decoration: BoxDecoration(
-                                  color: isSelected ? themeManager.primaryColor.withOpacity(0.25) : themeManager.surfaceColor,
-                                  borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(
-                                    color: isSelected ? themeManager.primaryColor : themeManager.textSecondaryColor.withOpacity(0.3),
-                                    width: isSelected ? 1.5 : 1,
-                                  ),
-                                ),
-                                child: Text(
-                                  labels[mode]!,
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                                    color: isSelected ? themeManager.primaryColor : themeManager.textSecondaryColor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-
                     // Handicap toggle
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
@@ -444,6 +383,69 @@ class _ChessPresetSelectorState extends State<ChessPresetSelector> {
                         onChanged: (v) => setDialogState(() => player2InitialMinutes = v.toInt()),
                       ),
                     ],
+                    const SizedBox(height: 16),
+
+                    // Modo de Delay — chips horizontais
+                    Text(l10n.timeMode, style: TextStyle(color: themeManager.textSecondaryColor, fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 0.8)),
+                    const SizedBox(height: 8),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: TimeMode.values.map((mode) {
+                          final labels = {
+                            TimeMode.fischer: l10n.modeFischer,
+                            TimeMode.bronstein: l10n.modeBronstein,
+                            TimeMode.usDelay: l10n.modeUSDelay,
+                            TimeMode.none: l10n.modeNone,
+                          };
+                          final isSelected = timeMode == mode;
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 8),
+                            child: GestureDetector(
+                              onTap: () => setDialogState(() => timeMode = mode),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                                decoration: BoxDecoration(
+                                  color: isSelected ? themeManager.primaryColor.withOpacity(0.25) : themeManager.surfaceColor,
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                    color: isSelected ? themeManager.primaryColor : themeManager.textSecondaryColor.withOpacity(0.3),
+                                    width: isSelected ? 1.5 : 1,
+                                  ),
+                                ),
+                                child: Text(
+                                  labels[mode]!,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                                    color: isSelected ? themeManager.primaryColor : themeManager.textSecondaryColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+
+                    // Seção: Incremento (Visível apenas se modo não for Nenhum)
+                    if (timeMode != TimeMode.none) ...[
+                      _buildSliderSection(
+                        context: context,
+                        themeManager: themeManager,
+                        icon: Icons.add_circle_outline,
+                        iconColor: themeManager.accentColor,
+                        label: l10n.increment,
+                        valueLabel: incrementSeconds == 0 ? l10n.modeNone : '+$incrementSeconds ${l10n.secondsShort}',
+                        badgeColor: themeManager.secondaryColor,
+                        sliderValue: incrementSeconds.toDouble(),
+                        sliderMin: 0,
+                        sliderMax: 60,
+                        divisions: 60,
+                        onChanged: (v) => setDialogState(() => incrementSeconds = v.toInt()),
+                      ),
+                    ],
                     const SizedBox(height: 24),
 
                     // Botões de ação
@@ -470,7 +472,7 @@ class _ChessPresetSelectorState extends State<ChessPresetSelector> {
                                 customName: name,
                                 initialTime: Duration(minutes: initialMinutes),
                                 player2InitialTime: isHandicap ? Duration(minutes: player2InitialMinutes) : null,
-                                increment: Duration(seconds: incrementSeconds),
+                                increment: timeMode == TimeMode.none ? Duration.zero : Duration(seconds: incrementSeconds),
                                 timeMode: timeMode,
                               );
                               await presetService.saveCustomPreset(preset);
