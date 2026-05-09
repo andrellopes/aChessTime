@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../l10n/app_localizations.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart';
+import 'package:provider/provider.dart';
+import '../l10n/app_localizations.dart';
+import '../services/purchase_service.dart';
 
 void showAppAboutDialog(BuildContext context) {
   final l10n = AppLocalizations.of(context)!;
@@ -72,6 +75,22 @@ void showAppAboutDialog(BuildContext context) {
                   color: theme.textTheme.bodyMedium?.color,
                 ),
               ),
+              if (kDebugMode) ...[
+                const Divider(),
+                Consumer<PurchaseService>(
+                  builder: (context, purchaseService, child) {
+                    return SwitchListTile(
+                      title: Text(l10n.debugProMode, style: const TextStyle(fontSize: 14)),
+                      subtitle: Text(l10n.debugProModeSubtitle, style: const TextStyle(fontSize: 12)),
+                      value: purchaseService.isProVersion,
+                      onChanged: (value) {
+                        purchaseService.setDebugPro(value);
+                      },
+                      contentPadding: EdgeInsets.zero,
+                    );
+                  },
+                ),
+              ],
             ],
           ),
         ),

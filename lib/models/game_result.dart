@@ -9,7 +9,9 @@ class GameResult {
   final int whiteMoves;
   final int blackMoves;
   final Duration initialTime;
+  final Duration? player2InitialTime;
   final Duration increment;
+  final String timeMode;
 
   GameResult({
     required this.id,
@@ -22,7 +24,9 @@ class GameResult {
     required this.whiteMoves,
     required this.blackMoves,
     required this.initialTime,
+    this.player2InitialTime,
     required this.increment,
+    required this.timeMode,
   });
 
   Map<String, dynamic> toJson() {
@@ -37,7 +41,9 @@ class GameResult {
       'whiteMoves': whiteMoves,
       'blackMoves': blackMoves,
       'initialTime': initialTime.inMilliseconds,
+      'player2InitialTime': player2InitialTime?.inMilliseconds,
       'increment': increment.inMilliseconds,
+      'timeMode': timeMode,
     };
   }
 
@@ -53,7 +59,11 @@ class GameResult {
       whiteMoves: json['whiteMoves'],
       blackMoves: json['blackMoves'],
       initialTime: Duration(milliseconds: json['initialTime']),
+      player2InitialTime: json['player2InitialTime'] != null 
+          ? Duration(milliseconds: json['player2InitialTime']) 
+          : null,
       increment: Duration(milliseconds: json['increment']),
+      timeMode: json['timeMode'] ?? 'TimeMode.fischer',
     );
   }
 

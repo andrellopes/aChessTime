@@ -12,6 +12,9 @@ class PreferencesService {
   static const String _fontSizeKey = 'font_size';
   static const String _themeIndexKey = 'theme_index';
   static const String _isImmersiveModeKey = 'is_immersive_mode';
+  static const String _player2InitialTimeKey = 'player2_initial_time_minutes';
+  static const String _timeModeKey = 'time_mode';
+  static const String _timePeriodsKey = 'time_periods';
   
   static double getFontSize() {
     return _prefs?.getDouble(_fontSizeKey) ?? 60.0;
@@ -40,8 +43,20 @@ class PreferencesService {
     return _prefs?.getInt(_initialTimeKey) ?? 5;
   }
 
+  static int? getPlayer2InitialTimeMinutes() {
+    return _prefs?.getInt(_player2InitialTimeKey);
+  }
+
   static int getIncrementSeconds() {
     return _prefs?.getInt(_incrementKey) ?? 3;
+  }
+
+  static String getTimeMode() {
+    return _prefs?.getString(_timeModeKey) ?? 'TimeMode.fischer';
+  }
+
+  static List<String> getTimePeriods() {
+    return _prefs?.getStringList(_timePeriodsKey) ?? [];
   }
 
   static String getTimePreset() {
@@ -77,8 +92,24 @@ class PreferencesService {
     await _prefs?.setInt(_initialTimeKey, minutes);
   }
 
+  static Future<void> setPlayer2InitialTimeMinutes(int? minutes) async {
+    if (minutes == null) {
+      await _prefs?.remove(_player2InitialTimeKey);
+    } else {
+      await _prefs?.setInt(_player2InitialTimeKey, minutes);
+    }
+  }
+
   static Future<void> setIncrementSeconds(int seconds) async {
     await _prefs?.setInt(_incrementKey, seconds);
+  }
+
+  static Future<void> setTimeMode(String mode) async {
+    await _prefs?.setString(_timeModeKey, mode);
+  }
+
+  static Future<void> setTimePeriods(List<String> periods) async {
+    await _prefs?.setStringList(_timePeriodsKey, periods);
   }
 
   static Future<void> setTimePreset(String preset) async {

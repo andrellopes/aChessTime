@@ -12,143 +12,173 @@ class CenterControls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
+
     return Consumer<GameController>(
       builder: (context, game, child) {
         return Container(
-          height: 160,
+          height: isLandscape ? null : 95,
+          width: isLandscape ? 95 : null,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Colors.grey[900]!.withOpacity(0.95),
-                Colors.grey[850]!.withOpacity(0.9),
-                Colors.grey[900]!.withOpacity(0.98),
-              ],
-            ),
-            borderRadius: BorderRadius.circular(16),
+            color: Colors.grey[900]!.withOpacity(0.95),
+            borderRadius: BorderRadius.circular(50),
             border: Border.all(
-              color: Colors.grey[600]!.withOpacity(0.3),
+              color: Colors.grey[700]!.withOpacity(0.5),
               width: 1.5,
             ),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.4),
-                blurRadius: 12,
-                spreadRadius: 2,
+                blurRadius: 10,
+                spreadRadius: 1,
                 offset: const Offset(0, 4),
               ),
             ],
           ),
-          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          padding: const EdgeInsets.symmetric(vertical: 4),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Main row with controls - always centered
-              _buildMainControls(context, game),
-              
-              // Bottom row with game information (only when finished)
-              if (game.gameState == GameState.finished)
-                Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: _buildGameInfo(context, game),
-                ),
-            ],
-          ),
+          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          padding: isLandscape 
+              ? const EdgeInsets.symmetric(vertical: 8, horizontal: 4)
+              : const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+          child: isLandscape
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _buildMainControls(context, game, isLandscape),
+                  if (game.gameState == GameState.finished)
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: RotatedBox(
+                        quarterTurns: 3,
+                        child: _buildGameInfo(context, game),
+                      ),
+                    ),
+                ],
+              )
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildMainControls(context, game, isLandscape),
+                  if (game.gameState == GameState.finished)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: _buildGameInfo(context, game),
+                    ),
+                ],
+              ),
         );
       },
     );
   }
 
-  Widget _buildMainControls(BuildContext context, GameController game) {
+  Widget _buildMainControls(BuildContext context, GameController game, bool isLandscape) {
     final l10n = AppLocalizations.of(context)!;
     
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        // Preset settings
-        _buildPresetsButton(context, game),
+    final children = [
+      // Preset settings
+      _buildPresetsButton(context, game),
 
-        // Reset button with menu
-        _buildControlButton(
-          icon: Icons.refresh,
-          onPressed: () => _handleReset(context, game),
-          tooltip: l10n.resetTooltip,
-          color: Colors.orange,
+      if (isLandscape) const SizedBox(height: 12) else const SizedBox(width: 0),
+
+      // Arbiter Mode Button
+      _buildControlButton(
+        icon: Icons.gavel,
+        onPressed: () => _showArbiterMenu(context, game),
+        tooltip: 'Árbitro',
+        color: Colors.cyan,
+      ),
+
+      if (isLandscape) const SizedBox(height: 12) else const SizedBox(width: 0),
+
+      // Play/Pause button (larger)
+      Container(
+        width: 74,
+        height: 74,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: game.gameState == GameState.running 
+              ? [
+                  Colors.amber.withOpacity(0.4),
+                  Colors.amber.withOpacity(0.2),
+                  Colors.orange.withOpacity(0.3),
+                ]
+              : [
+                  Colors.green.withOpacity(0.4),
+                  Colors.green.withOpacity(0.2),
+                  Colors.teal.withOpacity(0.3),
+                ],
+          ),
+          border: Border.all(
+            color: game.gameState == GameState.running 
+              ? Colors.amber
+              : Colors.green,
+            width: 2,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: (game.gameState == GameState.running 
+                ? Colors.amber 
+                : Colors.green).withOpacity(0.3),
+              blurRadius: 8,
+              spreadRadius: 1,
+              offset: const Offset(0, 2),
+            ),
+          ],
         ),
-
-        // Play/Pause button (larger)
-        Container(
-          width: 70,
-          height: 70,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: game.gameState == GameState.running 
-                ? [
-                    Colors.amber.withOpacity(0.4),
-                    Colors.amber.withOpacity(0.2),
-                    Colors.orange.withOpacity(0.3),
-                  ]
-                : [
-                    Colors.green.withOpacity(0.4),
-                    Colors.green.withOpacity(0.2),
-                    Colors.teal.withOpacity(0.3),
-                  ],
-            ),
-            border: Border.all(
-              color: game.gameState == GameState.running 
-                ? Colors.amber
-                : Colors.green,
-              width: 2,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: (game.gameState == GameState.running 
-                  ? Colors.amber 
-                  : Colors.green).withOpacity(0.3),
-                blurRadius: 8,
-                spreadRadius: 1,
-                offset: const Offset(0, 2),
+        child: GestureDetector(
+          onTap: () => _handlePlayPause(context, game),
+          child: Container(
+            color: Colors.transparent,
+            child: Center(
+              child: Icon(
+                game.gameState == GameState.running 
+                  ? Icons.stop_rounded 
+                  : Icons.play_arrow_rounded,
+                size: 36,
+                color: game.gameState == GameState.running 
+                  ? Colors.amber
+                  : Colors.green,
               ),
-            ],
-          ),
-          child: IconButton(
-            onPressed: () => _handlePlayPause(context, game),
-            icon: Icon(
-              game.gameState == GameState.running 
-                ? Icons.pause 
-                : Icons.play_arrow,
-              size: 32,
-              color: game.gameState == GameState.running 
-                ? Colors.amber
-                : Colors.green,
             ),
-            padding: EdgeInsets.zero,
-            constraints: const BoxConstraints(),
           ),
         ),
+      ),
 
-        // Invert colors button
-        _buildControlButton(
-          icon: Icons.swap_vert,
-          onPressed: game.swapPlayers,
-          tooltip: l10n.swapTooltip,
-          color: Colors.blue,
-        ),
+      if (isLandscape) const SizedBox(height: 12) else const SizedBox(width: 0),
 
-        // Menu/Settings button
-        _buildControlButton(
-          icon: Icons.more_vert,
-          onPressed: () => Navigator.pushNamed(context, '/settings'),
-          tooltip: l10n.settingsTooltip,
-          color: Colors.purple,
-        ),
-      ],
-    );
+      // Swap players button
+      _buildControlButton(
+        icon: Icons.swap_vert,
+        onPressed: () => game.swapPlayers(),
+        tooltip: l10n.swapTooltip,
+        color: Colors.blue,
+      ),
+
+      if (isLandscape) const SizedBox(height: 12) else const SizedBox(width: 0),
+
+      // Menu/Settings button
+      _buildControlButton(
+        icon: Icons.settings,
+        onPressed: () => Navigator.pushNamed(context, '/settings'),
+        tooltip: l10n.settingsTooltip,
+        color: Colors.grey[400]!,
+      ),
+    ];
+
+    if (isLandscape) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: children,
+      );
+    } else {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: children,
+      );
+    }
   }
 
   Widget _buildGameInfo(BuildContext context, GameController game) {
@@ -183,8 +213,8 @@ class CenterControls extends StatelessWidget {
     return GestureDetector(
       onTap: () => _showPresetSelector(context, game),
       child: Container(
-        width: 45,
-        height: 45,
+        width: 52,
+        height: 52,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           gradient: LinearGradient(
@@ -208,20 +238,19 @@ class CenterControls extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              game.settings.timePreset == "custom" 
-                ? "${game.settings.initialTime.inMinutes}'"
-                : game.settings.timePreset.replaceAll('min', "'"),
+              "${game.settings.initialTime.inMinutes}'",
               style: const TextStyle(
                 color: Colors.white,
-                fontSize: 9,
+                fontSize: 11,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
               "+${game.settings.increment.inSeconds}",
               style: const TextStyle(
-                color: Colors.white70,
-                fontSize: 8,
+                color: Colors.cyanAccent,
+                fontSize: 9,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ],
@@ -237,8 +266,8 @@ class CenterControls extends StatelessWidget {
     required Color color,
   }) {
     return Container(
-      width: 60,
-      height: 60,
+      width: 52,
+      height: 52,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         gradient: LinearGradient(
@@ -308,9 +337,16 @@ class CenterControls extends StatelessWidget {
                 const SizedBox(height: 10),
                 ChessPresetSelector(
                   onPresetSelected: (preset) {
-                    // Apply preset settings to GameController
-                    game.updateTimePreset('custom', preset.initialTime);
-                    game.updateIncrement(preset.increment, 'custom');
+                    // Apply preset settings to GameController in a single call
+                    game.updateTimePreset(
+                      preset.isCustom ? 'custom' : preset.id, 
+                      preset.initialTime,
+                      time2: preset.player2InitialTime,
+                      increment: preset.increment,
+                      incrementPreset: preset.isCustom ? 'custom' : preset.id,
+                      mode: preset.timeMode,
+                      periods: preset.timePeriods,
+                    );
                     Navigator.pop(context);
                   },
                 ),
@@ -333,18 +369,184 @@ class CenterControls extends StatelessWidget {
     }
   }
 
-  void _handleReset(BuildContext context, GameController game) {
-    if (game.gameState == GameState.running) {
-      game.pauseGame();
-    }
-    _showResetMenu(context, game);
-  }
-
   double _bottomSheetExtraInset(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final extraInset = mediaQuery.viewPadding.bottom - mediaQuery.padding.bottom;
     return extraInset > 0 ? extraInset : 0;
   }
+
+  void _showArbiterMenu(BuildContext context, GameController game) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      useSafeArea: true,
+      backgroundColor: Colors.grey[900],
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (context) {
+        final bottomInset = _bottomSheetExtraInset(context);
+        final l10n = AppLocalizations.of(context)!;
+        return Consumer<ChessThemeManager>(
+          builder: (context, themeManager, child) {
+            return StatefulBuilder(
+              builder: (context, setState) {
+                return SafeArea(
+                  top: false,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(20, 16, 20, 20 + bottomInset),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          width: 40, height: 4,
+                          decoration: BoxDecoration(
+                            color: Colors.grey[600],
+                            borderRadius: BorderRadius.circular(2),
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: themeManager.accentColor.withOpacity(0.15),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Icon(Icons.gavel, color: themeManager.accentColor, size: 20),
+                            ),
+                            const SizedBox(width: 12),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(l10n.arbiterMode, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: themeManager.textPrimaryColor)),
+                                Text(l10n.penaltyBonusTime, style: TextStyle(fontSize: 12, color: themeManager.textSecondaryColor)),
+                              ],
+                            ),
+                            const Spacer(),
+                            IconButton(
+                              onPressed: () => Navigator.pop(context),
+                              icon: Icon(Icons.close, color: themeManager.textSecondaryColor),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 20),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(child: _buildArbiterColumn(context, game, Player.player1, setState, l10n, themeManager)),
+                            const SizedBox(width: 12),
+                            Expanded(child: _buildArbiterColumn(context, game, Player.player2, setState, l10n, themeManager)),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          l10n.tapPlayerButtonToApply,
+                          style: TextStyle(fontSize: 11, color: themeManager.textSecondaryColor),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Widget _buildArbiterColumn(BuildContext context, GameController game, Player player, StateSetter setState, AppLocalizations l10n, ChessThemeManager themeManager) {
+    final isWhite = player == Player.player1 ? game.settings.isPlayer1White : !game.settings.isPlayer1White;
+    final playerColor = isWhite ? themeManager.textPrimaryColor : themeManager.textSecondaryColor;
+    final label = isWhite ? '\u2654  ${l10n.whitePlayer}' : '\u265a  ${l10n.blackPlayer}';
+    final bgColor = themeManager.surfaceColor;
+    final borderColor = playerColor.withOpacity(0.3);
+
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: bgColor,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: borderColor, width: 1),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(label, style: TextStyle(color: playerColor, fontWeight: FontWeight.bold, fontSize: 14), textAlign: TextAlign.center),
+          const SizedBox(height: 10),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 3),
+            decoration: BoxDecoration(
+              color: themeManager.criticalColor.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(6),
+            ),
+            child: Text(l10n.penalty, style: TextStyle(color: themeManager.criticalColor, fontSize: 9, fontWeight: FontWeight.bold, letterSpacing: 1.2), textAlign: TextAlign.center),
+          ),
+          const SizedBox(height: 8),
+          _arbiterChip(label: '\u2212 2 ${l10n.minutesShort}', delta: const Duration(minutes: -2), color: themeManager.criticalColor, game: game, player: player, setState: setState),
+          const SizedBox(height: 6),
+          _arbiterChip(label: '\u2212 1 ${l10n.minutesShort}', delta: const Duration(minutes: -1), color: themeManager.criticalColor, game: game, player: player, setState: setState),
+          const SizedBox(height: 12),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 3),
+            decoration: BoxDecoration(
+              color: themeManager.activeTimerColor.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(6),
+            ),
+            child: Text(l10n.bonus, style: TextStyle(color: themeManager.activeTimerColor, fontSize: 9, fontWeight: FontWeight.bold, letterSpacing: 1.2), textAlign: TextAlign.center),
+          ),
+          const SizedBox(height: 8),
+          _arbiterChip(label: '+ 1 ${l10n.minutesShort}', delta: const Duration(minutes: 1), color: themeManager.activeTimerColor, game: game, player: player, setState: setState),
+          const SizedBox(height: 6),
+          _arbiterChip(label: '+ 2 ${l10n.minutesShort}', delta: const Duration(minutes: 2), color: themeManager.activeTimerColor, game: game, player: player, setState: setState),
+          const SizedBox(height: 10),
+          Divider(height: 1, color: themeManager.textSecondaryColor.withOpacity(0.2)),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              Expanded(child: _arbiterSmallChip(label: '\u221230${l10n.secondsShort}', delta: const Duration(seconds: -30), color: themeManager.warningColor, game: game, player: player, setState: setState)),
+              const SizedBox(width: 6),
+              Expanded(child: _arbiterSmallChip(label: '+30${l10n.secondsShort}', delta: const Duration(seconds: 30), color: themeManager.accentColor, game: game, player: player, setState: setState)),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _arbiterChip({required String label, required Duration delta, required Color color, required GameController game, required Player player, required StateSetter setState}) {
+    return GestureDetector(
+      onTap: () { game.adjustTime(player, delta); setState(() {}); },
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+          color: color.withOpacity(0.15),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: color.withOpacity(0.5), width: 1),
+        ),
+        child: Text(label, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 15), textAlign: TextAlign.center),
+      ),
+    );
+  }
+
+  Widget _arbiterSmallChip({required String label, required Duration delta, required Color color, required GameController game, required Player player, required StateSetter setState}) {
+    return GestureDetector(
+      onTap: () { game.adjustTime(player, delta); setState(() {}); },
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        decoration: BoxDecoration(
+          color: color.withOpacity(0.12),
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: color.withOpacity(0.4), width: 1),
+        ),
+        child: Text(label, style: TextStyle(color: color, fontWeight: FontWeight.w600, fontSize: 12), textAlign: TextAlign.center),
+      ),
+    );
+  }
+
 
   void _showPauseMenu(BuildContext context, GameController game) {
     final l10n = AppLocalizations.of(context)!;
@@ -415,6 +617,15 @@ class CenterControls extends StatelessWidget {
                   ),
                   const Divider(height: 12),
                   _buildMenuOption(
+                    icon: Icons.swap_vert,
+                    title: l10n.swapTooltip,
+                    onTap: () {
+                      Navigator.pop(context);
+                      game.swapPlayers();
+                    },
+                    color: Colors.blue,
+                  ),
+                  _buildMenuOption(
                     icon: Icons.play_arrow,
                     title: l10n.continueGame,
                     onTap: () {
@@ -443,114 +654,7 @@ class CenterControls extends StatelessWidget {
     );
   }
 
-  void _showResetMenu(BuildContext context, GameController game) {
-    final l10n = AppLocalizations.of(context)!;
-    showModalBottomSheet(
-      context: context,
-      isDismissible: false,
-      enableDrag: false,
-      isScrollControlled: true,
-      useSafeArea: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (context) {
-        final bottomInset = _bottomSheetExtraInset(context);
-        return SafeArea(
-          top: false,
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(20, 20, 20, 20 + bottomInset),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    l10n.menu,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  Consumer<ChessThemeManager>(
-                    builder: (context, themeManager, child) {
-                      final currentTheme = themeManager.currentTheme;
-                      return Column(
-                        children: [
-                          _buildMenuOption(
-                            icon: Icons.flag,
-                            title: l10n.whiteVictory,
-                            onTap: () {
-                              Navigator.pop(context);
-                              final winner = game.settings.isPlayer1White ? Player.player1 : Player.player2;
-                              game.endGameManually(winner, 'manual_white');
-                            },
-                            color: currentTheme.whitePlayerColor,
-                          ),
-
-                          _buildMenuOption(
-                            icon: Icons.flag,
-                            title: l10n.blackVictory,
-                            onTap: () {
-                              Navigator.pop(context);
-                              final winner = game.settings.isPlayer1White ? Player.player2 : Player.player1;
-                              game.endGameManually(winner, 'manual_black');
-                            },
-                            color: currentTheme.blackPlayerColor,
-                          ),
-
-                          _buildMenuOption(
-                            icon: Icons.handshake,
-                            title: l10n.drawGame,
-                            onTap: () {
-                              Navigator.pop(context);
-                              game.endGameDraw();
-                            },
-                            color: Colors.grey[600]!,
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                  const Divider(height: 12),
-                  _buildMenuOption(
-                    icon: Icons.play_arrow,
-                    title: l10n.continueGame,
-                    onTap: () {
-                      Navigator.pop(context);
-                      game.startPauseGame();
-                    },
-                    color: Colors.green,
-                  ),
-                  _buildMenuOption(
-                    icon: Icons.refresh,
-                    title: l10n.resetTooltip,
-                    onTap: () {
-                      Navigator.pop(context);
-                      game.resetGame();
-                    },
-                    color: Colors.orange,
-                  ),
-                  const SizedBox(height: 8),
-                  Consumer<PurchaseService>(
-                    builder: (context, purchaseService, _) {
-                      if (purchaseService.isProVersion) {
-                        return const SizedBox.shrink();
-                      }
-                      return SizedBox(
-                        height: 70,
-                        child: const BannerAdWidget(),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
+  // O método _handleReset e _showResetMenu foram removidos pois eram duplicatas exatas do Pause Menu.
 
   Widget _buildMenuOption({
     required IconData icon,

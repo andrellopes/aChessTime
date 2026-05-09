@@ -165,9 +165,11 @@ class StatisticsService {
         final whiteMoves = result.whiteMoves;
         final blackMoves = result.blackMoves;
         final initialTime = result.initialTime.inSeconds;
+        final player2InitialTime = result.player2InitialTime?.inSeconds ?? '';
         final increment = result.increment.inSeconds;
+        final timeMode = result.timeMode;
 
-        return '$dateTime,$resultType,$winner,$gameDuration,$whiteTimeRemaining,$blackTimeRemaining,$whiteMoves,$blackMoves,$initialTime,$increment';
+        return '$dateTime,$resultType,$winner,$gameDuration,$whiteTimeRemaining,$blackTimeRemaining,$whiteMoves,$blackMoves,$initialTime,$player2InitialTime,$increment,$timeMode';
       }).join('\n');
 
       final csvContent = csvHeader + csvData;

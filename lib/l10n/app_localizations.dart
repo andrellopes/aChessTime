@@ -1255,7 +1255,7 @@ abstract class AppLocalizations {
   /// No description provided for @csvHeader.
   ///
   /// In en, this message translates to:
-  /// **'Date/Time,Result Type,Winner,Game Duration,White Time Remaining,Black Time Remaining,White Moves,Black Moves,Initial Time,Increment'**
+  /// **'Date/Time,Result Type,Winner,Game Duration,White Time Remaining,Black Time Remaining,White Moves,Black Moves,Initial Time,Initial Time Black (Handicap),Increment,Time Mode'**
   String get csvHeader;
 
   /// No description provided for @backupShareTitle.
@@ -1317,6 +1317,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Invalid backup file: required field \"{field}\" not found'**
   String backupRequiredFieldMissing(String field);
+
+  /// No description provided for @arbiterMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Arbiter Mode'**
+  String get arbiterMode;
+
+  /// No description provided for @penaltyBonusTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Time Penalty / Bonus'**
+  String get penaltyBonusTime;
+
+  /// No description provided for @tapPlayerButtonToApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap player button to apply'**
+  String get tapPlayerButtonToApply;
+
+  /// No description provided for @penalty.
+  ///
+  /// In en, this message translates to:
+  /// **'PENALTY'**
+  String get penalty;
+
+  /// No description provided for @bonus.
+  ///
+  /// In en, this message translates to:
+  /// **'BONUS'**
+  String get bonus;
+
+  /// No description provided for @timeMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Time Mode'**
+  String get timeMode;
+
+  /// No description provided for @modeFischer.
+  ///
+  /// In en, this message translates to:
+  /// **'Fischer'**
+  String get modeFischer;
+
+  /// No description provided for @modeBronstein.
+  ///
+  /// In en, this message translates to:
+  /// **'Bronstein'**
+  String get modeBronstein;
+
+  /// No description provided for @modeUSDelay.
+  ///
+  /// In en, this message translates to:
+  /// **'US Delay'**
+  String get modeUSDelay;
+
+  /// No description provided for @modeNone.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get modeNone;
+
+  /// No description provided for @handicap.
+  ///
+  /// In en, this message translates to:
+  /// **'Handicap'**
+  String get handicap;
+
+  /// No description provided for @differentTimesPerPlayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Different times per player'**
+  String get differentTimesPerPlayer;
+
+  /// No description provided for @fieldRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Field required'**
+  String get fieldRequired;
 }
 
 class _AppLocalizationsDelegate

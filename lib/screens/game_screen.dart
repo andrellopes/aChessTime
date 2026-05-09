@@ -18,6 +18,8 @@ class _GameScreenState extends State<GameScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
+
     return Consumer<GameController>(
       builder: (context, game, child) {
         if (game.gameState == GameState.finished && !_victoryDialogShown) {
@@ -35,73 +37,81 @@ class _GameScreenState extends State<GameScreen> {
         return Scaffold(
           backgroundColor: Colors.black,
           body: game.settings.isImmersiveMode 
-            ? Column(
-                children: [
-                  Expanded(
-                    flex: 4,
-                    child: PlayerTimerWidget(
-                      timeText: TimeUtils.formatDuration(game.player2Time),
-                      player: Player.player2,
-                      isActive: game.activePlayer == Player.player2 && 
-                               game.gameState == GameState.running,
-                      isRotated: true,
-                      onTap: () => game.switchPlayer(Player.player2),
-                      gameController: game,
-                    ),
-                  ),
-                  
-                  const CenterControls(),
-                  
-                  Expanded(
-                    flex: 4,
-                    child: PlayerTimerWidget(
-                      timeText: TimeUtils.formatDuration(game.player1Time),
-                      player: Player.player1,
-                      isActive: game.activePlayer == Player.player1 && 
-                               game.gameState == GameState.running,
-                      isRotated: false,
-                      onTap: () => game.switchPlayer(Player.player1),
-                      gameController: game,
-                    ),
-                  ),
-                ],
-              )
+            ? _buildGameLayout(game, isLandscape)
             : SafeArea(
-                child: Column(
-                  children: [
-                    Expanded(
-                      flex: 4,
-                      child: PlayerTimerWidget(
-                        timeText: TimeUtils.formatDuration(game.player2Time),
-                        player: Player.player2,
-                        isActive: game.activePlayer == Player.player2 && 
-                                 game.gameState == GameState.running,
-                        isRotated: true,
-                        onTap: () => game.switchPlayer(Player.player2),
-                        gameController: game,
-                      ),
-                    ),
-                    
-                    const CenterControls(),
-                    
-                    Expanded(
-                      flex: 4,
-                      child: PlayerTimerWidget(
-                        timeText: TimeUtils.formatDuration(game.player1Time),
-                        player: Player.player1,
-                        isActive: game.activePlayer == Player.player1 && 
-                                 game.gameState == GameState.running,
-                        isRotated: false,
-                        onTap: () => game.switchPlayer(Player.player1),
-                        gameController: game,
-                      ),
-                    ),
-                  ],
-                ),
+                child: _buildGameLayout(game, isLandscape),
               ),
         );
       },
     );
+  }
+
+  Widget _buildGameLayout(GameController game, bool isLandscape) {
+    if (isLandscape) {
+      return Row(
+        children: [
+          Expanded(
+            flex: 4,
+            child: PlayerTimerWidget(
+              timeText: TimeUtils.formatDuration(game.player2Time),
+              player: Player.player2,
+              isActive: game.activePlayer == Player.player2 && 
+                       game.gameState == GameState.running,
+              isRotated: true, // Relógio invertido conforme pedido
+              onTap: () => game.switchPlayer(Player.player2),
+              gameController: game,
+            ),
+          ),
+          
+          const CenterControls(),
+          
+          Expanded(
+            flex: 4,
+            child: PlayerTimerWidget(
+              timeText: TimeUtils.formatDuration(game.player1Time),
+              player: Player.player1,
+              isActive: game.activePlayer == Player.player1 && 
+                       game.gameState == GameState.running,
+              isRotated: false, // Nenhum relógio invertido no modo paisagem
+              onTap: () => game.switchPlayer(Player.player1),
+              gameController: game,
+            ),
+          ),
+        ],
+      );
+    } else {
+      return Column(
+        children: [
+          Expanded(
+            flex: 4,
+            child: PlayerTimerWidget(
+              timeText: TimeUtils.formatDuration(game.player2Time),
+              player: Player.player2,
+              isActive: game.activePlayer == Player.player2 && 
+                       game.gameState == GameState.running,
+              isRotated: true,
+              onTap: () => game.switchPlayer(Player.player2),
+              gameController: game,
+            ),
+          ),
+          
+          const CenterControls(),
+          
+          Expanded(
+            flex: 4,
+            child: PlayerTimerWidget(
+              timeText: TimeUtils.formatDuration(game.player1Time),
+              player: Player.player1,
+              isActive: game.activePlayer == Player.player1 && 
+                       game.gameState == GameState.running,
+              isRotated: false,
+              onTap: () => game.switchPlayer(Player.player1),
+              gameController: game,
+            ),
+          ),
+        ],
+      );
+    }
   }
 
   void _showGameEndDialog(BuildContext context, GameController game) {

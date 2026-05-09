@@ -1,8 +1,13 @@
+import 'game_settings.dart';
+
 class ChessTimePreset {
   final String id;
   final String nameKey;
   final Duration initialTime;
+  final Duration? player2InitialTime;
   final Duration increment;
+  final TimeMode timeMode;
+  final List<TimePeriod>? timePeriods;
   final String icon;
   final bool isCustom;
   final String? customName;
@@ -11,7 +16,10 @@ class ChessTimePreset {
     required this.id,
     required this.nameKey,
     required this.initialTime,
+    this.player2InitialTime,
     required this.increment,
+    this.timeMode = TimeMode.fischer,
+    this.timePeriods,
     required this.icon,
     this.isCustom = false,
     this.customName,
@@ -21,7 +29,10 @@ class ChessTimePreset {
   ChessTimePreset.custom({
     required this.id,
     required this.initialTime,
+    this.player2InitialTime,
     required this.increment,
+    this.timeMode = TimeMode.fischer,
+    this.timePeriods,
     required this.customName,
   }) : nameKey = 'custom',
        icon = 'tune',
@@ -31,7 +42,10 @@ class ChessTimePreset {
     'id': id,
     'nameKey': nameKey,
     'initialTime': initialTime.inMinutes,
+    'player2InitialTime': player2InitialTime?.inMinutes,
     'increment': increment.inSeconds,
+    'timeMode': timeMode.toString(),
+    'timePeriods': timePeriods?.map((e) => e.toJson()).toList(),
     'icon': icon,
     'isCustom': isCustom,
     'customName': customName,
@@ -41,7 +55,10 @@ class ChessTimePreset {
     id: json['id'],
     nameKey: json['nameKey'],
     initialTime: Duration(minutes: json['initialTime']),
+    player2InitialTime: json['player2InitialTime'] != null ? Duration(minutes: json['player2InitialTime']) : null,
     increment: Duration(seconds: json['increment']),
+    timeMode: json['timeMode'] != null ? TimeMode.values.firstWhere((e) => e.toString() == json['timeMode'], orElse: () => TimeMode.fischer) : TimeMode.fischer,
+    timePeriods: json['timePeriods'] != null ? (json['timePeriods'] as List).map((e) => TimePeriod.fromJson(e)).toList() : null,
     icon: json['icon'],
     isCustom: json['isCustom'] ?? false,
     customName: json['customName'],

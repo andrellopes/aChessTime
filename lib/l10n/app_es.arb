@@ -240,7 +240,7 @@
     }
   },
   "restoreBackupConfirmMessage": "Esta acción reemplazará todos los datos actuales. ¿Desea continuar?",
-  "csvHeader": "Fecha/Hora,Tipo de Resultado,Ganador,Duración del Juego,Tiempo Restante Blanco,Tiempo Restante Negro,Jugadas Blanco,Jugadas Negro,Tiempo Inicial,Incremento",
+  "csvHeader": "Fecha/Hora,Tipo de Resultado,Ganador,Duración del Juego,Tiempo Restante Blanco,Tiempo Restante Negro,Jugadas Blanco,Jugadas Negro,Tiempo Inicial,Tiempo Inicial Negro (Hándicap),Incremento,Modo de Tiempo",
   "backupShareTitle": "Copia de Seguridad de ChessTime",
   "backupShareSubject": "Copia de seguridad de configuraciones y estadísticas de ChessTime",
   "backupNoFileSelected": "Ningún archivo seleccionado",
@@ -274,5 +274,18 @@
         "type": "String"
       }
     }
-  }
+  },
+  "arbiterMode": "Modo Árbitro",
+  "penaltyBonusTime": "Penalización / Bonificación de tiempo",
+  "tapPlayerButtonToApply": "Toca el botón del jugador para aplicar",
+  "penalty": "PENALIZACIÓN",
+  "bonus": "BONIFICACIÓN",
+  "timeMode": "Modo de Tiempo",
+  "modeFischer": "Fischer",
+  "modeBronstein": "Bronstein",
+  "modeUSDelay": "Retraso US",
+  "modeNone": "Ninguno",
+  "handicap": "Hándicap",
+  "differentTimesPerPlayer": "Diferentes tiempos por jugador",
+  "fieldRequired": "Campo obligatorio"
 }

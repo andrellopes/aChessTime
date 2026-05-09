@@ -1,8 +1,31 @@
+import 'dart:convert';
 import '../services/preferences_service.dart';
+
+enum TimeMode { fischer, usDelay, bronstein, none }
+
+class TimePeriod {
+  final Duration extraTime;
+  final int triggerMoveCount;
+
+  TimePeriod({required this.extraTime, required this.triggerMoveCount});
+
+  Map<String, dynamic> toJson() => {
+    'extraTime': extraTime.inMinutes,
+    'triggerMoveCount': triggerMoveCount,
+  };
+
+  factory TimePeriod.fromJson(Map<String, dynamic> json) => TimePeriod(
+    extraTime: Duration(minutes: json['extraTime'] as int),
+    triggerMoveCount: json['triggerMoveCount'] as int,
+  );
+}
 
 class GameSettings {
   final Duration initialTime;
+  final Duration? player2InitialTime;
   final Duration increment;
+  final TimeMode timeMode;
+  final List<TimePeriod>? timePeriods;
   final bool isDarkMode;
   final bool isVibrateEnabled;
   final bool isSoundEnabled;
@@ -15,7 +38,10 @@ class GameSettings {
 
   GameSettings({
     required this.initialTime,
+    this.player2InitialTime,
     required this.increment,
+    this.timeMode = TimeMode.fischer,
+    this.timePeriods,
     this.isDarkMode = true,
     this.isVibrateEnabled = true,
     this.isSoundEnabled = true,
@@ -30,7 +56,10 @@ class GameSettings {
   // Constructor that loads from preferences
   GameSettings.fromPreferences()
       : initialTime = Duration(minutes: PreferencesService.getInitialTimeMinutes()),
+        player2InitialTime = PreferencesService.getPlayer2InitialTimeMinutes() != null ? Duration(minutes: PreferencesService.getPlayer2InitialTimeMinutes()!) : null,
         increment = Duration(seconds: PreferencesService.getIncrementSeconds()),
+        timeMode = TimeMode.values.firstWhere((e) => e.toString() == PreferencesService.getTimeMode(), orElse: () => TimeMode.fischer),
+        timePeriods = PreferencesService.getTimePeriods().map((jsonStr) => TimePeriod.fromJson(jsonDecode(jsonStr))).toList(),
         timePreset = PreferencesService.getTimePreset(),
         incrementPreset = PreferencesService.getIncrementPreset(),
         isPlayer1White = PreferencesService.getIsPlayer1White(),
@@ -43,7 +72,10 @@ class GameSettings {
 
   GameSettings copyWith({
     Duration? initialTime,
+    Duration? player2InitialTime,
     Duration? increment,
+    TimeMode? timeMode,
+    List<TimePeriod>? timePeriods,
     bool? isDarkMode,
     bool? isVibrateEnabled,
     bool? isSoundEnabled,
@@ -56,7 +88,10 @@ class GameSettings {
   }) {
     return GameSettings(
       initialTime: initialTime ?? this.initialTime,
+      player2InitialTime: player2InitialTime ?? this.player2InitialTime,
       increment: increment ?? this.increment,
+      timeMode: timeMode ?? this.timeMode,
+      timePeriods: timePeriods ?? this.timePeriods,
       isDarkMode: isDarkMode ?? this.isDarkMode,
       isVibrateEnabled: isVibrateEnabled ?? this.isVibrateEnabled,
       isSoundEnabled: isSoundEnabled ?? this.isSoundEnabled,

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../l10n/app_localizations.dart';
@@ -40,6 +41,8 @@ class GameController extends ChangeNotifier {
   int _blackMoves = 0;
   DateTime? _gameStartTime;
   String? _lastResultType;
+  Duration _currentDelayRemaining = Duration.zero;
+  Duration _turnConsumedTime = Duration.zero;
 
   Duration get player1Time => _player1Time;
   Duration get player2Time => _player2Time;
@@ -68,34 +71,41 @@ class GameController extends ChangeNotifier {
   void _tick(Timer timer) {
     if (_gameState != GameState.running) return;
 
+    if (_settings.timeMode == TimeMode.usDelay && _currentDelayRemaining.inMilliseconds > 0) {
+      _currentDelayRemaining -= const Duration(milliseconds: 100);
+      notifyListeners();
+      return;
+    }
+
+    if (_settings.timeMode == TimeMode.bronstein) {
+      _turnConsumedTime += const Duration(milliseconds: 100);
+    }
+
     if (_activePlayer == Player.player1) {
       if (_player1Time.inMilliseconds > 0) {
         _player1Time -= const Duration(milliseconds: 100);
       } else {
-        _gameState = GameState.finished;
-        _timer?.cancel();
-        WakelockService().disable();
-        if (_settings.isSoundEnabled) {
-          SoundService().playVictory();
-        }
-        _lastResultType = 'timeout_white';
-        _saveGameResult(Player.player2, 'timeout_white');
+        _handleTimeout(Player.player2, 'timeout_white');
       }
     } else {
       if (_player2Time.inMilliseconds > 0) {
         _player2Time -= const Duration(milliseconds: 100);
       } else {
-        _gameState = GameState.finished;
-        _timer?.cancel();
-        WakelockService().disable();
-        if (_settings.isSoundEnabled) {
-          SoundService().playVictory();
-        }
-        _lastResultType = 'timeout_black';
-        _saveGameResult(Player.player1, 'timeout_black');
+        _handleTimeout(Player.player1, 'timeout_black');
       }
     }
     notifyListeners();
+  }
+
+  void _handleTimeout(Player winner, String resultType) {
+    _gameState = GameState.finished;
+    _timer?.cancel();
+    WakelockService().disable();
+    if (_settings.isSoundEnabled) {
+      SoundService().playVictory();
+    }
+    _lastResultType = resultType;
+    _saveGameResult(winner, resultType);
   }
 
   void startPauseGame() {
@@ -139,48 +149,133 @@ class GameController extends ChangeNotifier {
       VibrationService().lightVibration();
     }
 
+    // Apply increment based on mode
+    Duration incrementToAdd = Duration.zero;
+    if (_settings.timeMode == TimeMode.fischer) {
+      incrementToAdd = _settings.increment;
+    } else if (_settings.timeMode == TimeMode.bronstein) {
+      int consumedMs = _turnConsumedTime.inMilliseconds;
+      int maxIncrementMs = _settings.increment.inMilliseconds;
+      incrementToAdd = Duration(milliseconds: consumedMs < maxIncrementMs ? consumedMs : maxIncrementMs);
+    }
+
     if (_activePlayer == Player.player1) {
-      _player1Time += _settings.increment;
+      _player1Time += incrementToAdd;
       _activePlayer = Player.player2;
       if (_settings.isPlayer1White) {
         _whiteMoves++;
+        _checkTimePeriods(Player.player1, _whiteMoves);
       } else {
         _blackMoves++;
+        _checkTimePeriods(Player.player1, _blackMoves);
       }
     } else {
-      _player2Time += _settings.increment;
+      _player2Time += incrementToAdd;
       _activePlayer = Player.player1;
       if (_settings.isPlayer1White) {
         _blackMoves++;
+        _checkTimePeriods(Player.player2, _blackMoves);
       } else {
         _whiteMoves++;
+        _checkTimePeriods(Player.player2, _whiteMoves);
       }
     }
+
+    // Reset delay logic for the new active player
+    _currentDelayRemaining = _settings.increment;
+    _turnConsumedTime = Duration.zero;
+
     notifyListeners();
+  }
+
+  void _checkTimePeriods(Player player, int moves) {
+    if (_settings.timePeriods == null) return;
+    for (var period in _settings.timePeriods!) {
+      if (moves == period.triggerMoveCount) {
+        if (player == Player.player1) {
+          _player1Time += period.extraTime;
+        } else {
+          _player2Time += period.extraTime;
+        }
+      }
+    }
   }
 
   void resetGame() {
     _timer?.cancel();
     _player1Time = _settings.initialTime;
-    _player2Time = _settings.initialTime;
+    _player2Time = _settings.player2InitialTime ?? _settings.initialTime;
+    
+    // FIDE Standard: In Fischer mode, the increment for the first move 
+    // is added to the initial time before the game starts.
+    if (_settings.timeMode == TimeMode.fischer) {
+      _player1Time += _settings.increment;
+      _player2Time += _settings.increment;
+    }
+    
     _activePlayer = null;
     _gameState = GameState.initial;
     _whiteMoves = 0;
     _blackMoves = 0;
     _gameStartTime = null;
     _lastResultType = null;
+    _currentDelayRemaining = _settings.increment;
+    _turnConsumedTime = Duration.zero;
     WakelockService().disable();
     notifyListeners();
   }
 
-  void updateTimePreset(String preset, Duration time) {
-    _settings = _settings.copyWith(
-      timePreset: preset,
+  void adjustTime(Player player, Duration delta) {
+    if (player == Player.player1) {
+      _player1Time += delta;
+      if (_player1Time.isNegative) _player1Time = Duration.zero;
+    } else {
+      _player2Time += delta;
+      if (_player2Time.isNegative) _player2Time = Duration.zero;
+    }
+    notifyListeners();
+  }
+
+  void updateTimePreset(String preset, Duration time, {
+    Duration? time2, 
+    Duration? increment,
+    String? incrementPreset,
+    TimeMode? mode, 
+    List<TimePeriod>? periods
+  }) {
+    // We create a new settings object instead of using copyWith because copyWith
+    // doesn't allow setting player2InitialTime back to null if it's already set.
+    _settings = GameSettings(
       initialTime: time,
+      player2InitialTime: time2, // This will correctly be null if not provided
+      increment: increment ?? _settings.increment,
+      timeMode: mode ?? _settings.timeMode,
+      timePeriods: periods ?? _settings.timePeriods,
+      isDarkMode: _settings.isDarkMode,
+      isVibrateEnabled: _settings.isVibrateEnabled,
+      isSoundEnabled: _settings.isSoundEnabled,
+      timePreset: preset,
+      incrementPreset: incrementPreset ?? _settings.incrementPreset,
+      isPlayer1White: _settings.isPlayer1White,
+      fontSize: _settings.fontSize,
+      themeIndex: _settings.themeIndex,
+      isImmersiveMode: _settings.isImmersiveMode,
     );
+    
     resetGame();
     PreferencesService.setTimePreset(preset);
     PreferencesService.setInitialTimeMinutes(time.inMinutes);
+    PreferencesService.setPlayer2InitialTimeMinutes(time2?.inMinutes);
+    if (increment != null) {
+      PreferencesService.setIncrementSeconds(increment.inSeconds);
+    }
+    if (incrementPreset != null) {
+      PreferencesService.setIncrementPreset(incrementPreset);
+    }
+    if (mode != null) PreferencesService.setTimeMode(mode.toString());
+    if (periods != null) {
+      PreferencesService.setTimePeriods(periods.map((e) => jsonEncode(e.toJson())).toList());
+    }
   }
 
   void updateIncrement(Duration increment, [String? preset]) {
@@ -239,9 +334,14 @@ class GameController extends ChangeNotifier {
     _settings = newSettings;
     resetGame();
     PreferencesService.setInitialTimeMinutes(_settings.initialTime.inMinutes);
+    PreferencesService.setPlayer2InitialTimeMinutes(_settings.player2InitialTime?.inMinutes);
     PreferencesService.setIncrementSeconds(_settings.increment.inSeconds);
     PreferencesService.setTimePreset(_settings.timePreset);
     PreferencesService.setIncrementPreset(_settings.incrementPreset);
+    PreferencesService.setTimeMode(_settings.timeMode.toString());
+    if (_settings.timePeriods != null) {
+      PreferencesService.setTimePeriods(_settings.timePeriods!.map((e) => jsonEncode(e.toJson())).toList());
+    }
     PreferencesService.setIsPlayer1White(_settings.isPlayer1White);
     PreferencesService.setIsSoundEnabled(_settings.isSoundEnabled);
     PreferencesService.setIsVibrateEnabled(_settings.isVibrateEnabled);
@@ -353,7 +453,9 @@ class GameController extends ChangeNotifier {
       whiteMoves: _whiteMoves,
       blackMoves: _blackMoves,
       initialTime: _settings.initialTime,
+      player2InitialTime: _settings.player2InitialTime,
       increment: _settings.increment,
+      timeMode: _settings.timeMode.toString(),
     );
     
     try {

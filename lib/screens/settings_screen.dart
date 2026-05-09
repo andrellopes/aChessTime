@@ -22,707 +22,249 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    
+
     return Consumer<GameController>(
-      builder: (context, game, child) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Consumer<PurchaseService>(
-              builder: (context, purchaseService, child) => Row(
-                children: [
-                  Expanded(
-                    child: Text(l10n.settingsTitle),
-                  ),
-                  if (purchaseService.isProVersion)
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                          size: 20,
-                        ),
-                        const SizedBox(width: 4),
-                        const Text(
-                          'PRO',
-                          style: TextStyle(
-                            color: Colors.amber,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
+      builder: (context, game, _) => Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.close),
+            onPressed: () => Navigator.pop(context),
+          ),
+          title: Row(
+            children: [
+              Expanded(child: Text(l10n.settingsTitle)),
+              Consumer<PurchaseService>(
+                builder: (_, ps, __) => ps.isProVersion
+                    ? const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.star, color: Colors.amber, size: 20),
+                          SizedBox(width: 4),
+                          Text(
+                            'PRO',
+                            style: TextStyle(
+                              color: Colors.amber,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                ],
+                        ],
+                      )
+                    : const SizedBox.shrink(),
               ),
-            ),
-            leading: IconButton(
-              icon: const Icon(Icons.close),
-              onPressed: () => Navigator.pop(context),
+            ],
+          ),
+        ),
+        body: SafeArea(
+          top: !game.settings.isImmersiveMode,
+          child: Column(
+            children: [
+              Expanded(child: _buildList(context, game, l10n)),
+              _buildAdBanner(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  // ── Main list ──────────────────────────────────────────────────────────────
+
+  Widget _buildList(BuildContext context, GameController game, AppLocalizations l10n) {
+    return ListView(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      children: [
+        _buildProBanner(context, l10n),
+        _section(l10n.timeControls, [
+          ChessPresetSelector(
+            onPresetSelected: (preset) {
+              game.updateTimePreset(
+                'custom', 
+                preset.initialTime,
+                increment: preset.increment,
+                incrementPreset: 'custom',
+              );
+            },
+          ),
+        ]),
+        _section(l10n.gameSettings, [
+          _switchTile(
+            title: '${l10n.player1} = ${l10n.whitePlayer}',
+            subtitle: l10n.player1StartsAsWhite,
+            value: game.settings.isPlayer1White,
+            onChanged: (_) => game.swapPlayers(),
+          ),
+          _divider(),
+          _switchTile(
+            title: l10n.sounds,
+            subtitle: l10n.soundsSubtitle,
+            value: game.settings.isSoundEnabled,
+            onChanged: (_) => game.toggleSound(),
+          ),
+          _divider(),
+          _switchTile(
+            title: l10n.vibration,
+            subtitle: l10n.vibrationSubtitle,
+            value: game.settings.isVibrateEnabled,
+            onChanged: (_) => game.toggleVibration(),
+          ),
+
+        ]),
+        _section(l10n.appearance, [
+          const ThemeSelectorWidget(),
+          _divider(),
+          _buildLanguageSelector(context, l10n),
+          _divider(),
+          _switchTile(
+            title: l10n.immersiveMode,
+            subtitle: l10n.immersiveModeSubtitle,
+            value: game.settings.isImmersiveMode,
+            onChanged: (_) => game.toggleImmersiveMode(),
+          ),
+          _divider(),
+          ListTile(
+            title: Text(l10n.fontSizeTitle),
+            subtitle: Text(l10n.fontSizeSubtitle),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            trailing: Text(
+              '${game.settings.fontSize.toInt()}',
+              style: const TextStyle(fontWeight: FontWeight.w500),
             ),
           ),
-          body: game.settings.isImmersiveMode
-            ? Column(
-                children: [
-                  Expanded(
-                    child: ListView(
-                      padding: const EdgeInsets.all(16),
-                      children: [
-                        Consumer<PurchaseService>(
-                          builder: (context, purchaseService, child) {
-                            if (purchaseService.isProVersion) {
-                              return const SizedBox.shrink();
-                            }
-                            return Container(
-                              margin: const EdgeInsets.only(bottom: 16),
-                              child: Material(
-                                borderRadius: BorderRadius.circular(12),
-                                elevation: 3,
-                                child: InkWell(
-                                  borderRadius: BorderRadius.circular(12),
-                                  onTap: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) => const ProUpgradeDialog(),
-                                    );
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.all(16),
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Colors.purple.shade600,
-                                          Colors.indigo.shade600,
-                                        ],
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                      ),
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.workspace_premium_rounded,
-                                          color: Colors.white,
-                                          size: 24,
-                                        ),
-                                        const SizedBox(width: 12),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                l10n.upgradeToProTitle,
-                                                style: const TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 2),
-                                              Text(
-                                                l10n.unlockPremiumThemes,
-                                                style: const TextStyle(
-                                                  color: Colors.white70,
-                                                  fontSize: 12,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        const Icon(
-                                          Icons.arrow_forward_ios,
-                                          color: Colors.white70,
-                                          size: 16,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                        _expansionSection(l10n.timeControls, [
-                          ChessPresetSelector(
-                            onPresetSelected: (preset) {
-                              // Apply the preset settings to GameController
-                              game.updateTimePreset('custom', preset.initialTime);
-                              game.updateIncrement(preset.increment, 'custom');
-                            },
-                          ),
-                        ]),
-                        _expansionSection(l10n.gameSettings, [
-                          SwitchListTile(
-                            title: Text('${l10n.player1} = ${l10n.whitePlayer}'),
-                            subtitle: Text(l10n.player1StartsAsWhite),
-                            value: game.settings.isPlayer1White,
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                            onChanged: (value) {
-                              game.swapPlayers();
-                            },
-                          ),
-                          _divider(),
-                          SwitchListTile(
-                            title: Text(l10n.sounds),
-                            subtitle: Text(l10n.soundsSubtitle),
-                            value: game.settings.isSoundEnabled,
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                            onChanged: (value) {
-                              game.toggleSound();
-                            },
-                          ),
-                          _divider(),
-                          SwitchListTile(
-                            title: Text(l10n.vibration),
-                            subtitle: Text(l10n.vibrationSubtitle),
-                            value: game.settings.isVibrateEnabled,
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                            onChanged: (value) {
-                              game.toggleVibration();
-                            },
-                          ),
-                          if (kDebugMode) ...[
-                            _divider(),
-                            Consumer<PurchaseService>(
-                              builder: (context, purchaseService, child) => SwitchListTile(
-                                title: Text(l10n.debugProMode),
-                                subtitle: Text(l10n.debugProModeSubtitle),
-                                value: purchaseService.isProVersion,
-                                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                                onChanged: (value) {
-                                  purchaseService.setDebugPro(value);
-                                },
+          Slider(
+            min: 24,
+            max: 130,
+            divisions: 53,
+            value: game.settings.fontSize,
+            label: '${game.settings.fontSize.toInt()}',
+            onChanged: game.updateFontSize,
+          ),
+        ]),
+        _section(l10n.statistics, [
+          _simpleTile(
+            icon: Icons.analytics,
+            iconColor: Colors.green,
+            title: l10n.viewStatistics,
+            subtitle: l10n.statisticsSubtitle,
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const StatisticsScreen()),
+            ),
+          ),
+        ]),
+        _section(l10n.backup, [
+          _proTile(
+            icon: Icons.backup,
+            iconColor: Colors.blue,
+            title: l10n.createBackup,
+            subtitle: l10n.createBackupSubtitle,
+            onTap: () => _createBackup(context),
+          ),
+          _divider(),
+          _proTile(
+            icon: Icons.restore,
+            iconColor: Colors.orange,
+            title: l10n.restoreBackup,
+            subtitle: l10n.restoreBackupSubtitle,
+            onTap: () => _restoreBackup(context),
+          ),
+          _divider(),
+          _proTile(
+            icon: Icons.file_download,
+            iconColor: Colors.green,
+            title: l10n.exportStatistics,
+            subtitle: l10n.exportStatisticsSubtitle,
+            onTap: () => _exportStatisticsToCSV(context),
+          ),
+        ]),
+        _section(l10n.help, [
+          _simpleTile(
+            icon: Icons.info_outline,
+            iconColor: Colors.blue,
+            title: l10n.aboutApp,
+            onTap: () => showAppAboutDialog(context),
+          ),
+          _divider(),
+          _simpleTile(
+            icon: Icons.star,
+            iconColor: Colors.amber,
+            title: l10n.evaluateInPlayStore,
+            onTap: _openPlayStore,
+          ),
+        ]),
+      ],
+    );
+  }
+
+  // ── PRO upgrade banner ─────────────────────────────────────────────────────
+
+  Widget _buildProBanner(BuildContext context, AppLocalizations l10n) {
+    return Consumer<PurchaseService>(
+      builder: (context, ps, _) {
+        if (ps.isProVersion) return const SizedBox.shrink();
+        return Container(
+          margin: const EdgeInsets.only(bottom: 16),
+          child: Material(
+            borderRadius: BorderRadius.circular(12),
+            elevation: 3,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(12),
+              onTap: () => showDialog(
+                context: context,
+                builder: (_) => const ProUpgradeDialog(),
+              ),
+              child: Ink(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Colors.purple.shade600, Colors.indigo.shade600],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.workspace_premium_rounded, color: Colors.white, size: 24),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              l10n.upgradeToProTitle,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ],
-                        ]),
-                        _expansionSection(l10n.appearance, [
-                          const ThemeSelectorWidget(),
-                          _divider(),
-                          _buildLanguageSelector(context, l10n),
-                          _divider(),
-                          SwitchListTile(
-                            title: Text(l10n.immersiveMode),
-                            subtitle: Text(l10n.immersiveModeSubtitle),
-                            value: game.settings.isImmersiveMode,
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                            onChanged: (value) {
-                              game.toggleImmersiveMode();
-                            },
-                          ),
-                          _divider(),
-                          ListTile(
-                            title: Text(l10n.fontSizeTitle),
-                            subtitle: Text(l10n.fontSizeSubtitle),
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                            trailing: Text('${game.settings.fontSize.toInt()}'),
-                          ),
-                          Slider(
-                            min: 24,
-                            max: 130,
-                            divisions: 53,
-                            value: game.settings.fontSize,
-                            label: '${game.settings.fontSize.toInt()}',
-                            onChanged: (value) {
-                              game.updateFontSize(value);
-                            },
-                          ),
-                        ]),
-                        _expansionSection(l10n.statistics, [
-                          ListTile(
-                            leading: const Icon(Icons.analytics, color: Colors.green),
-                            title: Text(l10n.viewStatistics),
-                            subtitle: Text(l10n.statisticsSubtitle),
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => const StatisticsScreen(),
-                                ),
-                              );
-                            },
-                          ),
-                        ]),
-                        _expansionSection(l10n.backup, [
-                          Consumer<PurchaseService>(
-                            builder: (context, purchaseService, child) => ListTile(
-                              leading: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  const Icon(Icons.backup, color: Colors.blue),
-                                  if (!purchaseService.isProVersion) ...[
-                                    const SizedBox(width: 8),
-                                    Icon(
-                                      Icons.lock,
-                                      color: Colors.amber.shade600,
-                                      size: 16,
-                                    ),
-                                  ],
-                                ],
-                              ),
-                              title: Row(
-                                children: [
-                                  Expanded(child: Text(l10n.createBackup)),
-                                  if (!purchaseService.isProVersion)
-                                    Text(
-                                      'PRO',
-                                      style: TextStyle(
-                                        color: Colors.amber.shade600,
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                ],
-                              ),
-                              subtitle: Text(l10n.createBackupSubtitle),
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                              onTap: () => _createBackup(context),
-                            ),
-                          ),
-                          _divider(),
-                          Consumer<PurchaseService>(
-                            builder: (context, purchaseService, child) => ListTile(
-                              leading: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  const Icon(Icons.restore, color: Colors.orange),
-                                  if (!purchaseService.isProVersion) ...[
-                                    const SizedBox(width: 8),
-                                    Icon(
-                                      Icons.lock,
-                                      color: Colors.amber.shade600,
-                                      size: 16,
-                                    ),
-                                  ],
-                                ],
-                              ),
-                              title: Row(
-                                children: [
-                                  Expanded(child: Text(l10n.restoreBackup)),
-                                  if (!purchaseService.isProVersion)
-                                    Text(
-                                      'PRO',
-                                      style: TextStyle(
-                                        color: Colors.amber.shade600,
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                ],
-                              ),
-                              subtitle: Text(l10n.restoreBackupSubtitle),
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                              onTap: () => _restoreBackup(context),
-                            ),
-                          ),
-                          _divider(),
-                          Consumer<PurchaseService>(
-                            builder: (context, purchaseService, child) => ListTile(
-                              leading: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  const Icon(Icons.file_download, color: Colors.green),
-                                  if (!purchaseService.isProVersion) ...[
-                                    const SizedBox(width: 8),
-                                    Icon(
-                                      Icons.lock,
-                                      color: Colors.amber.shade600,
-                                      size: 16,
-                                    ),
-                                  ],
-                                ],
-                              ),
-                              title: Row(
-                                children: [
-                                  Expanded(child: Text(l10n.exportStatistics)),
-                                  if (!purchaseService.isProVersion)
-                                    Text(
-                                      'PRO',
-                                      style: TextStyle(
-                                        color: Colors.amber.shade600,
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                ],
-                              ),
-                              subtitle: Text(l10n.exportStatisticsSubtitle),
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                              onTap: () => _exportStatisticsToCSV(context),
-                            ),
-                          ),
-                        ]),
-                        _expansionSection(l10n.help, [
-                          ListTile(
-                            leading: const Icon(Icons.info_outline, color: Colors.blue),
-                            title: Text(l10n.aboutApp),
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                            onTap: () {
-                              showAppAboutDialog(context);
-                            },
-                          ),
-                          _divider(),
-                          ListTile(
-                            leading: const Icon(Icons.star, color: Colors.amber),
-                            title: Text(l10n.evaluateInPlayStore),
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                            onTap: () => _openPlayStore(),
-                          ),
-                        ]),
-                      ],
-                    ),
-                  ),
-                  _buildAdBanner(),
-                ],
-              )
-            : SafeArea(
-                top: false,
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: ListView(
-                        padding: const EdgeInsets.all(16),
-                        children: [
-                          Consumer<PurchaseService>(
-                            builder: (context, purchaseService, child) {
-                              if (purchaseService.isProVersion) {
-                                return const SizedBox.shrink();
-                              }
-                              return Container(
-                                margin: const EdgeInsets.only(bottom: 16),
-                                child: Material(
-                                  borderRadius: BorderRadius.circular(12),
-                                  elevation: 3,
-                                  child: InkWell(
-                                    borderRadius: BorderRadius.circular(12),
-                                    onTap: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (context) => const ProUpgradeDialog(),
-                                      );
-                                    },
-                                  child: Container(
-                                    padding: const EdgeInsets.all(16),
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Colors.purple.shade600,
-                                          Colors.indigo.shade600,
-                                        ],
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                      ),
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.workspace_premium_rounded,
-                                          color: Colors.white,
-                                          size: 24,
-                                        ),
-                                        const SizedBox(width: 12),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                l10n.upgradeToProTitle,
-                                                style: const TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 2),
-                                              Text(
-                                                l10n.unlockPremiumThemes,
-                                                style: const TextStyle(
-                                                  color: Colors.white70,
-                                                  fontSize: 12,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        const Icon(
-                                          Icons.arrow_forward_ios,
-                                          color: Colors.white70,
-                                          size: 16,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                          ),
-                          _expansionSection(l10n.timeControls, [
-                            ChessPresetSelector(
-                              onPresetSelected: (preset) {
-                                // Apply the preset settings to GameController
-                                game.updateTimePreset('custom', preset.initialTime);
-                                game.updateIncrement(preset.increment, 'custom');
-                              },
-                            ),
-                          ]),
-                          _expansionSection(l10n.gameSettings, [
-                            SwitchListTile(
-                              title: Text('${l10n.player1} = ${l10n.whitePlayer}'),
-                              subtitle: Text(l10n.player1StartsAsWhite),
-                              value: game.settings.isPlayer1White,
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                              onChanged: (value) {
-                                game.swapPlayers();
-                              },
-                            ),
-                            _divider(),
-                            SwitchListTile(
-                              title: Text(l10n.sounds),
-                              subtitle: Text(l10n.soundsSubtitle),
-                              value: game.settings.isSoundEnabled,
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                              onChanged: (value) {
-                                game.toggleSound();
-                              },
-                            ),
-                            _divider(),
-                            SwitchListTile(
-                              title: Text(l10n.vibration),
-                              subtitle: Text(l10n.vibrationSubtitle),
-                              value: game.settings.isVibrateEnabled,
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                              onChanged: (value) {
-                                game.toggleVibration();
-                              },
-                            ),
-                            if (kDebugMode) ...[
-                              _divider(),
-                              Consumer<PurchaseService>(
-                                builder: (context, purchaseService, child) => SwitchListTile(
-                                  title: Text(l10n.debugProMode),
-                                  subtitle: Text(l10n.debugProModeSubtitle),
-                                  value: purchaseService.isProVersion,
-                                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                                  onChanged: (value) {
-                                    purchaseService.setDebugPro(value);
-                                  },
-                                ),
-                              ),
-                            ],
-                          ]),
-                          _expansionSection(l10n.appearance, [
-                            const ThemeSelectorWidget(),
-                            _divider(),
-                            _buildLanguageSelector(context, l10n),
-                            _divider(),
-                            SwitchListTile(
-                              title: Text(l10n.immersiveMode),
-                              subtitle: Text(l10n.immersiveModeSubtitle),
-                              value: game.settings.isImmersiveMode,
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                              onChanged: (value) {
-                                game.toggleImmersiveMode();
-                              },
-                            ),
-                            _divider(),
-                            ListTile(
-                              title: Text(l10n.fontSizeTitle),
-                              subtitle: Text(l10n.fontSizeSubtitle),
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                              trailing: Text('${game.settings.fontSize.toInt()}'),
-                            ),
-                            Slider(
-                              min: 24,
-                              max: 130,
-                              divisions: 53,
-                              value: game.settings.fontSize,
-                              label: '${game.settings.fontSize.toInt()}',
-                              onChanged: (value) {
-                                game.updateFontSize(value);
-                              },
-                            ),
-                          ]),
-                          _expansionSection(l10n.statistics, [
-                            ListTile(
-                              leading: const Icon(Icons.analytics, color: Colors.green),
-                              title: Text(l10n.viewStatistics),
-                              subtitle: Text(l10n.statisticsSubtitle),
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                              onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => const StatisticsScreen(),
-                                  ),
-                                );
-                              },
-                            ),
-                          ]),
-                          _expansionSection(l10n.backup, [
-                            Consumer<PurchaseService>(
-                              builder: (context, purchaseService, child) => ListTile(
-                                leading: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    const Icon(Icons.backup, color: Colors.blue),
-                                    if (!purchaseService.isProVersion) ...[
-                                      const SizedBox(width: 8),
-                                      Icon(
-                                        Icons.lock,
-                                        color: Colors.amber.shade600,
-                                        size: 16,
-                                      ),
-                                    ],
-                                  ],
-                                ),
-                                title: Row(
-                                  children: [
-                                    Expanded(child: Text(l10n.createBackup)),
-                                    if (!purchaseService.isProVersion)
-                                      Text(
-                                        'PRO',
-                                        style: TextStyle(
-                                          color: Colors.amber.shade600,
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                                subtitle: Text(l10n.createBackupSubtitle),
-                                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                                onTap: () => _createBackup(context),
-                              ),
-                            ),
-                            _divider(),
-                            Consumer<PurchaseService>(
-                              builder: (context, purchaseService, child) => ListTile(
-                                leading: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    const Icon(Icons.restore, color: Colors.orange),
-                                    if (!purchaseService.isProVersion) ...[
-                                      const SizedBox(width: 8),
-                                      Icon(
-                                        Icons.lock,
-                                        color: Colors.amber.shade600,
-                                        size: 16,
-                                      ),
-                                    ],
-                                  ],
-                                ),
-                                title: Row(
-                                  children: [
-                                    Expanded(child: Text(l10n.restoreBackup)),
-                                    if (!purchaseService.isProVersion)
-                                      Text(
-                                        'PRO',
-                                        style: TextStyle(
-                                          color: Colors.amber.shade600,
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                                subtitle: Text(l10n.restoreBackupSubtitle),
-                                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                                onTap: () => _restoreBackup(context),
-                              ),
-                            ),
-                            _divider(),
-                            Consumer<PurchaseService>(
-                              builder: (context, purchaseService, child) => ListTile(
-                                leading: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    const Icon(Icons.file_download, color: Colors.green),
-                                    if (!purchaseService.isProVersion) ...[
-                                      const SizedBox(width: 8),
-                                      Icon(
-                                        Icons.lock,
-                                        color: Colors.amber.shade600,
-                                        size: 16,
-                                      ),
-                                    ],
-                                  ],
-                                ),
-                                title: Row(
-                                  children: [
-                                    Expanded(child: Text(l10n.exportStatistics)),
-                                    if (!purchaseService.isProVersion)
-                                      Text(
-                                        'PRO',
-                                        style: TextStyle(
-                                          color: Colors.amber.shade600,
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                                subtitle: Text(l10n.exportStatisticsSubtitle),
-                                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                                onTap: () => _exportStatisticsToCSV(context),
-                              ),
-                            ),
-                          ]),
-                          _expansionSection(l10n.help, [
-                            ListTile(
-                              leading: const Icon(Icons.info_outline, color: Colors.blue),
-                              title: Text(l10n.aboutApp),
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                              onTap: () {
-                                showAppAboutDialog(context);
-                              },
-                            ),
-                            _divider(),
-                            ListTile(
-                              leading: const Icon(Icons.star, color: Colors.amber),
-                              title: Text(l10n.evaluateInPlayStore),
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                              onTap: () => _openPlayStore(),
-                            ),
-                          ]),
-                        ],
+                        ),
                       ),
-                    ),
-                    _buildAdBanner(),
-                  ],
+                      const Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
+                    ],
+                  ),
                 ),
               ),
+            ),
+          ),
         );
       },
     );
   }
 
-  Widget _buildAdBanner() {
-    return Consumer<PurchaseService>(
-      builder: (context, purchaseService, child) {
-        if (purchaseService.isProVersion) {
-          return const SizedBox.shrink();
-        }
-        return const BannerAdWidget();
-      },
-    );
-  }
+  // ── Section card ───────────────────────────────────────────────────────────
 
-  Widget _divider() => const Divider(height: 1);
-
-  Widget _expansionSection(String title, List<Widget> children) {
+  Widget _section(String title, List<Widget> children) {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       elevation: 2,
       margin: const EdgeInsets.only(bottom: 16),
       child: ExpansionTile(
         title: Text(
-          title, 
-          style: const TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
-          ),
+          title,
+          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
         ),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         collapsedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -732,206 +274,237 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildLanguageSelector(BuildContext context, AppLocalizations l10n) {
-    return Consumer<LanguageService>(
-      builder: (context, languageService, child) {
-        return ListTile(
-          title: Text(l10n.language),
-          subtitle: Text(languageService.currentLanguageName),
-          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-          trailing: DropdownButton<String>(
-            value: languageService.currentLanguageCode,
-            underline: const SizedBox.shrink(),
-            items: LanguageService.supportedLocales.map((locale) {
-              final code = locale.languageCode;
-              final name = LanguageService.languageNames[code] ?? code;
-              final flag = languageService.getLanguageFlag(code);
-              return DropdownMenuItem<String>(
-                value: code,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(flag, style: const TextStyle(fontSize: 18)),
-                    const SizedBox(width: 8),
-                    Text(name),
-                  ],
-                ),
-              );
-            }).toList(),
-            onChanged: (String? newLanguageCode) {
-              if (newLanguageCode != null) {
-                languageService.changeLanguage(newLanguageCode);
-              }
-            },
-          ),
-        );
-      },
+  // ── Tile helpers ───────────────────────────────────────────────────────────
+
+  Widget _switchTile({
+    required String title,
+    String? subtitle,
+    required bool value,
+    required ValueChanged<bool> onChanged,
+  }) {
+    return SwitchListTile(
+      title: Text(title),
+      subtitle: subtitle != null ? Text(subtitle) : null,
+      value: value,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      onChanged: onChanged,
     );
   }
 
-  // Helper method to check if it's Pro and show upgrade if necessary
+  Widget _simpleTile({
+    required IconData icon,
+    required Color iconColor,
+    required String title,
+    String? subtitle,
+    required VoidCallback onTap,
+  }) {
+    return ListTile(
+      leading: Icon(icon, color: iconColor),
+      title: Text(title),
+      subtitle: subtitle != null ? Text(subtitle) : null,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      onTap: onTap,
+    );
+  }
+
+  /// A ListTile that shows a lock + PRO badge when the user isn't PRO.
+  Widget _proTile({
+    required IconData icon,
+    required Color iconColor,
+    required String title,
+    String? subtitle,
+    required VoidCallback onTap,
+  }) {
+    return Consumer<PurchaseService>(
+      builder: (_, ps, __) => ListTile(
+        leading: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Icon(icon, color: iconColor),
+            if (!ps.isProVersion)
+              Positioned(
+                right: -4,
+                bottom: -4,
+                child: Icon(Icons.lock, color: Colors.amber.shade600, size: 14),
+              ),
+          ],
+        ),
+        title: Row(
+          children: [
+            Expanded(child: Text(title)),
+            if (!ps.isProVersion)
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+                decoration: BoxDecoration(
+                  color: Colors.amber.shade600,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: const Text(
+                  'PRO',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 9,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+              ),
+          ],
+        ),
+        subtitle: subtitle != null ? Text(subtitle) : null,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        onTap: onTap,
+      ),
+    );
+  }
+
+  Widget _divider() => const Divider(height: 1);
+
+  // ── Language selector ──────────────────────────────────────────────────────
+
+  Widget _buildLanguageSelector(BuildContext context, AppLocalizations l10n) {
+    return Consumer<LanguageService>(
+      builder: (_, languageService, __) => ListTile(
+        title: Text(l10n.language),
+        subtitle: Text(languageService.currentLanguageName),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        trailing: DropdownButton<String>(
+          value: languageService.currentLanguageCode,
+          underline: const SizedBox.shrink(),
+          items: LanguageService.supportedLocales.map((locale) {
+            final code = locale.languageCode;
+            final name = LanguageService.languageNames[code] ?? code;
+            final flag = languageService.getLanguageFlag(code);
+            return DropdownMenuItem<String>(
+              value: code,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(flag, style: const TextStyle(fontSize: 18)),
+                  const SizedBox(width: 8),
+                  Text(name),
+                ],
+              ),
+            );
+          }).toList(),
+          onChanged: (code) {
+            if (code != null) languageService.changeLanguage(code);
+          },
+        ),
+      ),
+    );
+  }
+
+  // ── Ad banner ──────────────────────────────────────────────────────────────
+
+  Widget _buildAdBanner() {
+    return Consumer<PurchaseService>(
+      builder: (_, ps, __) => ps.isProVersion ? const SizedBox.shrink() : const BannerAdWidget(),
+    );
+  }
+
+  // ── PRO gate ───────────────────────────────────────────────────────────────
+
   bool _checkProAccess(BuildContext context) {
-    final purchaseService = Provider.of<PurchaseService>(context, listen: false);
-    if (!purchaseService.isProVersion) {
-      showDialog(
-        context: context,
-        builder: (context) => const ProUpgradeDialog(),
-      );
+    final ps = Provider.of<PurchaseService>(context, listen: false);
+    if (!ps.isProVersion) {
+      showDialog(context: context, builder: (_) => const ProUpgradeDialog());
       return false;
     }
     return true;
   }
 
+  // ── Actions ────────────────────────────────────────────────────────────────
+
   Future<void> _createBackup(BuildContext context) async {
     if (!_checkProAccess(context)) return;
-
     final l10n = AppLocalizations.of(context)!;
-
     try {
-      final presetService = Provider.of<ChessPresetService>(context, listen: false);
-      final purchaseService = Provider.of<PurchaseService>(context, listen: false);
-      final languageService = Provider.of<LanguageService>(context, listen: false);
-
       final success = await BackupService.shareBackup(
-        presetService: presetService,
-        purchaseService: purchaseService,
-        languageService: languageService,
+        presetService: Provider.of<ChessPresetService>(context, listen: false),
+        purchaseService: Provider.of<PurchaseService>(context, listen: false),
+        languageService: Provider.of<LanguageService>(context, listen: false),
         l10n: l10n,
       );
-      if (success && context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n.backupCreatedMessage),
-            backgroundColor: Colors.green,
-          ),
-        );
-      } else if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n.backupError),
-            backgroundColor: Colors.red,
-          ),
-        );
+      if (context.mounted) {
+        _showSnack(context, success ? l10n.backupCreatedMessage : l10n.backupError,
+            success ? Colors.green : Colors.red);
       }
     } catch (e) {
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('${l10n.backupError}: $e'),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
+      if (context.mounted) _showSnack(context, '${l10n.backupError}: $e', Colors.red);
     }
   }
 
   Future<void> _restoreBackup(BuildContext context) async {
     if (!_checkProAccess(context)) return;
-
     final l10n = AppLocalizations.of(context)!;
 
-    // Show confirmation dialog
     final confirmed = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
+      builder: (_) => AlertDialog(
         title: Text(l10n.restoreBackup),
         content: Text(l10n.restoreBackupConfirmMessage),
         actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: Text(l10n.cancel),
-          ),
+          TextButton(onPressed: () => Navigator.of(context).pop(false), child: Text(l10n.cancel)),
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: Text(l10n.restoreBackup),
             style: TextButton.styleFrom(foregroundColor: Colors.red),
+            child: Text(l10n.restoreBackup),
           ),
         ],
       ),
     );
-
     if (confirmed != true) return;
 
     try {
-      final presetService = Provider.of<ChessPresetService>(context, listen: false);
-      final purchaseService = Provider.of<PurchaseService>(context, listen: false);
-      final languageService = Provider.of<LanguageService>(context, listen: false);
-      final gameController = Provider.of<GameController>(context, listen: false);
-
       final result = await BackupService.restoreBackup(
-        presetService: presetService,
-        purchaseService: purchaseService,
-        languageService: languageService,
-        gameController: gameController,
+        presetService: Provider.of<ChessPresetService>(context, listen: false),
+        purchaseService: Provider.of<PurchaseService>(context, listen: false),
+        languageService: Provider.of<LanguageService>(context, listen: false),
+        gameController: Provider.of<GameController>(context, listen: false),
         l10n: l10n,
       );
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(result.message),
-            backgroundColor: result.success ? Colors.green : Colors.red,
-          ),
-        );
+        _showSnack(context, result.message, result.success ? Colors.green : Colors.red);
       }
     } catch (e) {
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('${l10n.backupRestoreError}: $e'),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
+      if (context.mounted) _showSnack(context, '${l10n.backupRestoreError}: $e', Colors.red);
     }
   }
 
   Future<void> _exportStatisticsToCSV(BuildContext context) async {
     if (!_checkProAccess(context)) return;
-
     final l10n = AppLocalizations.of(context)!;
-
     try {
       final success = await StatisticsService.shareStatisticsCSV(context);
-      if (success && context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n.exportCsvSuccess),
-            backgroundColor: Colors.green,
-          ),
-        );
-      } else if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n.exportCsvNoData),
-            backgroundColor: Colors.orange,
-          ),
+      if (context.mounted) {
+        _showSnack(
+          context,
+          success ? l10n.exportCsvSuccess : l10n.exportCsvNoData,
+          success ? Colors.green : Colors.orange,
         );
       }
     } catch (e) {
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n.exportCsvError(e.toString())),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
+      if (context.mounted) _showSnack(context, l10n.exportCsvError(e.toString()), Colors.red);
     }
   }
 
   Future<void> _openPlayStore() async {
-    final String packageName = 'dev.allc.a_chess_time';
-    final Uri playStoreUri = Uri.parse('https://play.google.com/store/apps/details?id=$packageName');
-    
+    final uri = Uri.parse('https://play.google.com/store/apps/details?id=dev.allc.a_chess_time');
     try {
-      if (await canLaunchUrl(playStoreUri)) {
-        await launchUrl(playStoreUri, mode: LaunchMode.externalApplication);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
       } else {
-        await launchUrl(playStoreUri);
+        await launchUrl(uri);
       }
     } catch (e) {
       debugPrint('Erro ao abrir Play Store: $e');
     }
   }
 
+  void _showSnack(BuildContext context, String message, Color color) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message), backgroundColor: color),
+    );
+  }
 }

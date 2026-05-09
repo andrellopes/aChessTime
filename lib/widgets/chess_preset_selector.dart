@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/chess_time_preset.dart';
+import '../models/game_settings.dart';
 import '../services/chess_preset_service.dart';
+import '../services/chess_theme_manager.dart';
 import '../l10n/app_localizations.dart';
 
 class ChessPresetSelector extends StatefulWidget {
@@ -50,7 +52,7 @@ class _ChessPresetSelectorState extends State<ChessPresetSelector> {
             ),
             const SizedBox(height: 8),
             SizedBox(
-              height: 120,
+              height: 140, // Aumentado de 120 para 140 para evitar overflow
               child: ListView.separated(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
             scrollDirection: Axis.horizontal,
@@ -92,6 +94,7 @@ class _ChessPresetSelectorState extends State<ChessPresetSelector> {
           padding: const EdgeInsets.all(12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min, // Garante que a coluna não tente ocupar espaço infinito
             children: [
               Row(
                 children: [
@@ -121,7 +124,7 @@ class _ChessPresetSelectorState extends State<ChessPresetSelector> {
                     ),
                 ],
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 6),
               Text(
                 _getPresetDisplayName(preset, l10n),
                 style: TextStyle(
@@ -131,25 +134,46 @@ class _ChessPresetSelectorState extends State<ChessPresetSelector> {
                       ? Theme.of(context).colorScheme.primary
                       : Theme.of(context).colorScheme.onSurface,
                 ),
-                maxLines: 2,
+                maxLines: 1, // Reduzido para 1 linha para economizar espaço vertical
                 overflow: TextOverflow.ellipsis,
               ),
-              const SizedBox(height: 4),
+              const Spacer(), // Empurra as informações de tempo para o fundo do card
               Text(
-                '${preset.initialTime.inMinutes}min',
+                preset.player2InitialTime != null
+                  ? '${preset.initialTime.inMinutes}m vs ${preset.player2InitialTime!.inMinutes}m'
+                  : '${preset.initialTime.inMinutes} min',
                 style: TextStyle(
                   fontSize: 11,
+                  fontWeight: FontWeight.w500,
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
               ),
-              if (preset.increment.inSeconds > 0)
-                Text(
-                  '+${preset.increment.inSeconds}s',
-                  style: TextStyle(
-                    fontSize: 10,
-                    color: Theme.of(context).colorScheme.secondary,
-                  ),
-                ),
+              const SizedBox(height: 2),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  if (preset.increment.inSeconds > 0)
+                    Text(
+                      '+${preset.increment.inSeconds}s',
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
+                    ),
+                  if (preset.timeMode != TimeMode.none)
+                    Text(
+                      preset.timeMode == TimeMode.usDelay 
+                        ? 'US DELAY' 
+                        : preset.timeMode.toString().split('.').last.toUpperCase(),
+                      style: TextStyle(
+                        fontSize: 8,
+                        color: Theme.of(context).colorScheme.primary.withOpacity(0.7),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                ],
+              ),
             ],
           ),
         ),
@@ -218,165 +242,322 @@ class _ChessPresetSelectorState extends State<ChessPresetSelector> {
     final l10n = AppLocalizations.of(context)!;
     final nameController = TextEditingController(text: initialPreset?.customName ?? '');
     int initialMinutes = initialPreset?.initialTime.inMinutes ?? 10;
+    bool isHandicap = initialPreset?.player2InitialTime != null;
+    int player2InitialMinutes = initialPreset?.player2InitialTime?.inMinutes ?? 10;
     int incrementSeconds = initialPreset?.increment.inSeconds ?? 5;
+    TimeMode timeMode = initialPreset?.timeMode ?? TimeMode.fischer;
 
-    showDialog(
+    showModalBottomSheet(
       context: context,
-      builder: (context) => StatefulBuilder(
-        builder: (context, setDialogState) => AlertDialog(
-          title: Text(initialPreset == null ? l10n.createCustomPreset : l10n.editPreset),
-          content: SingleChildScrollView(
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextField(
-                    controller: nameController,
-                    decoration: InputDecoration(
-                      labelText: l10n.presetName,
-                      border: const OutlineInputBorder(),
-                      isDense: true,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              l10n.initialTime,
-                              style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.primary,
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              child: Text(
-                                '$initialMinutes min',
-                                style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                                  color: Theme.of(context).colorScheme.onPrimary,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ],
+      isScrollControlled: true,
+      useSafeArea: true,
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (context) => Consumer<ChessThemeManager>(
+        builder: (context, themeManager, _) => StatefulBuilder(
+          builder: (context, setDialogState) {
+            final bottomInset = MediaQuery.of(context).viewInsets.bottom;
+            return Padding(
+            padding: EdgeInsets.only(bottom: bottomInset),
+            child: SafeArea(
+              top: false,
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Handle bar
+                    Center(
+                      child: Container(
+                        width: 40, height: 4,
+                        decoration: BoxDecoration(
+                          color: themeManager.textSecondaryColor.withOpacity(0.4),
+                          borderRadius: BorderRadius.circular(2),
                         ),
-                        Slider(
-                          value: initialMinutes.toDouble(),
-                          min: 1,
-                          max: 120,
-                          divisions: 119,
-                          onChanged: (value) {
-                            setDialogState(() {
-                              initialMinutes = value.toInt();
-                            });
-                          },
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+
+                    // Header
+                    Row(
+                      children: [
+                        Icon(Icons.tune, color: themeManager.primaryColor, size: 22),
+                        const SizedBox(width: 10),
+                        Text(
+                          initialPreset == null ? l10n.createCustomPreset : l10n.editPreset,
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: themeManager.textPrimaryColor),
                         ),
                       ],
                     ),
-                  ),
-                  const SizedBox(height: 12),
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              l10n.increment,
-                              style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.secondary,
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              child: Text(
-                                incrementSeconds == 0 ? 'Nenhum' : '+$incrementSeconds s',
-                                style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                                  color: Theme.of(context).colorScheme.onSecondary,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ],
+                    const SizedBox(height: 20),
+
+                    // Nome
+                    TextField(
+                      controller: nameController,
+                      onChanged: (val) => setDialogState(() {}),
+                      style: TextStyle(color: themeManager.textPrimaryColor),
+                      decoration: InputDecoration(
+                        labelText: l10n.presetName,
+                        hintText: 'Ex: Blitz Profissional',
+                        errorText: nameController.text.trim().isEmpty ? l10n.fieldRequired : null,
+                        labelStyle: TextStyle(color: themeManager.textSecondaryColor),
+                        prefixIcon: Icon(Icons.label_outline, color: themeManager.primaryColor),
+                        filled: true,
+                        fillColor: themeManager.surfaceColor,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide.none,
                         ),
-                        Slider(
-                          value: incrementSeconds.toDouble(),
-                          min: 0,
-                          max: 30,
-                          divisions: 30,
-                          onChanged: (value) {
-                            setDialogState(() {
-                              incrementSeconds = value.toInt();
-                            });
-                          },
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: themeManager.primaryColor),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+
+                    // Seção: Tempo Brancas
+                    _buildSliderSection(
+                      context: context,
+                      themeManager: themeManager,
+                      icon: Icons.timer_outlined,
+                      iconColor: themeManager.whitePlayerColor,
+                      label: '\u2654  ${l10n.whitePlayer}',
+                      valueLabel: '$initialMinutes ${l10n.minutesShort}',
+                      badgeColor: themeManager.primaryColor,
+                      sliderValue: initialMinutes.toDouble(),
+                      sliderMin: 1,
+                      sliderMax: 120,
+                      divisions: 119,
+                      onChanged: (v) => setDialogState(() => initialMinutes = v.toInt()),
+                    ),
+                    const SizedBox(height: 12),
+
+                    // Seção: Incremento
+                    _buildSliderSection(
+                      context: context,
+                      themeManager: themeManager,
+                      icon: Icons.add_circle_outline,
+                      iconColor: themeManager.accentColor,
+                      label: l10n.increment,
+                      valueLabel: incrementSeconds == 0 ? l10n.modeNone : '+$incrementSeconds ${l10n.secondsShort}',
+                      badgeColor: themeManager.secondaryColor,
+                      sliderValue: incrementSeconds.toDouble(),
+                      sliderMin: 0,
+                      sliderMax: 60,
+                      divisions: 60,
+                      onChanged: (v) => setDialogState(() => incrementSeconds = v.toInt()),
+                    ),
+                    const SizedBox(height: 16),
+
+                    // Modo de Delay — chips horizontais
+                    Text(l10n.timeMode, style: TextStyle(color: themeManager.textSecondaryColor, fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 0.8)),
+                    const SizedBox(height: 8),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: TimeMode.values.map((mode) {
+                          final labels = {
+                            TimeMode.fischer: l10n.modeFischer,
+                            TimeMode.bronstein: l10n.modeBronstein,
+                            TimeMode.usDelay: l10n.modeUSDelay,
+                            TimeMode.none: l10n.modeNone,
+                          };
+                          final isSelected = timeMode == mode;
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 8),
+                            child: GestureDetector(
+                              onTap: () => setDialogState(() => timeMode = mode),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                                decoration: BoxDecoration(
+                                  color: isSelected ? themeManager.primaryColor.withOpacity(0.25) : themeManager.surfaceColor,
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                    color: isSelected ? themeManager.primaryColor : themeManager.textSecondaryColor.withOpacity(0.3),
+                                    width: isSelected ? 1.5 : 1,
+                                  ),
+                                ),
+                                child: Text(
+                                  labels[mode]!,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                                    color: isSelected ? themeManager.primaryColor : themeManager.textSecondaryColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+
+                    // Handicap toggle
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: themeManager.surfaceColor,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(Icons.balance, color: isHandicap ? themeManager.warningColor : themeManager.textSecondaryColor, size: 20),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(l10n.handicap, style: TextStyle(color: themeManager.textPrimaryColor, fontWeight: FontWeight.bold, fontSize: 14)),
+                                Text(l10n.differentTimesPerPlayer, style: TextStyle(color: themeManager.textSecondaryColor, fontSize: 11)),
+                              ],
+                            ),
+                          ),
+                          Switch(
+                            value: isHandicap,
+                            onChanged: (val) => setDialogState(() => isHandicap = val),
+                            activeColor: themeManager.warningColor,
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    // Seção: Tempo Pretas (visível só se handicap ativo)
+                    if (isHandicap) ...[
+                      const SizedBox(height: 12),
+                      _buildSliderSection(
+                        context: context,
+                        themeManager: themeManager,
+                        icon: Icons.timer_outlined,
+                        iconColor: themeManager.textSecondaryColor,
+                        label: '\u265a  ${l10n.blackPlayer}',
+                        valueLabel: '$player2InitialMinutes ${l10n.minutesShort}',
+                        badgeColor: themeManager.secondaryColor,
+                        sliderValue: player2InitialMinutes.toDouble(),
+                        sliderMin: 1,
+                        sliderMax: 120,
+                        divisions: 119,
+                        onChanged: (v) => setDialogState(() => player2InitialMinutes = v.toInt()),
+                      ),
+                    ],
+                    const SizedBox(height: 24),
+
+                    // Botões de ação
+                    Row(
+                      children: [
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: () => Navigator.pop(context),
+                            style: OutlinedButton.styleFrom(
+                              side: BorderSide(color: themeManager.textSecondaryColor.withOpacity(0.4)),
+                              padding: const EdgeInsets.symmetric(vertical: 14),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            ),
+                            child: Text(l10n.cancel, style: TextStyle(color: themeManager.textSecondaryColor)),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: FilledButton(
+                            onPressed: nameController.text.trim().isEmpty ? null : () async {
+                              final name = nameController.text.trim();
+                              final preset = ChessTimePreset.custom(
+                                id: initialPreset?.id ?? 'custom_${DateTime.now().millisecondsSinceEpoch}',
+                                customName: name,
+                                initialTime: Duration(minutes: initialMinutes),
+                                player2InitialTime: isHandicap ? Duration(minutes: player2InitialMinutes) : null,
+                                increment: Duration(seconds: incrementSeconds),
+                                timeMode: timeMode,
+                              );
+                              await presetService.saveCustomPreset(preset);
+                              if (mounted) {
+                                Navigator.pop(context);
+                                setState(() {});
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text(initialPreset == null ? '${l10n.presetCreated}: $name' : '${l10n.presetUpdated}: $name')),
+                                );
+                              }
+                            },
+                            style: FilledButton.styleFrom(
+                              backgroundColor: themeManager.primaryColor,
+                              disabledBackgroundColor: themeManager.textSecondaryColor.withOpacity(0.1),
+                              disabledForegroundColor: themeManager.textSecondaryColor.withOpacity(0.3),
+                              padding: const EdgeInsets.symmetric(vertical: 14),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            ),
+                            child: Text(initialPreset == null ? l10n.create : l10n.save),
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text(l10n.cancel),
-            ),
-            FilledButton(
-              onPressed: () async {
-                final name = nameController.text.trim();
-                if (name.isEmpty) return;
-
-                final preset = ChessTimePreset.custom(
-                  id: initialPreset?.id ?? 'custom_${DateTime.now().millisecondsSinceEpoch}',
-                  customName: name,
-                  initialTime: Duration(minutes: initialMinutes),
-                  increment: Duration(seconds: incrementSeconds),
-                );
-
-                await presetService.saveCustomPreset(preset);
-                
-                if (mounted) {
-                  Navigator.pop(context);
-                  setState(() {});
-                  
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(initialPreset == null 
-                          ? '${l10n.presetCreated}: $name'
-                          : '${l10n.presetUpdated}: $name'),
-                    ),
-                  );
-                }
-              },
-              child: Text(initialPreset == null ? l10n.create : l10n.save),
-            ),
-          ],
+          );
+        },
         ),
+      ),
+    );
+  }
+
+  Widget _buildSliderSection({
+    required BuildContext context,
+    required ChessThemeManager themeManager,
+    required IconData icon,
+    required Color iconColor,
+    required String label,
+    required String valueLabel,
+    required Color badgeColor,
+    required double sliderValue,
+    required double sliderMin,
+    required double sliderMax,
+    required int divisions,
+    required ValueChanged<double> onChanged,
+  }) {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(14, 12, 14, 4),
+      decoration: BoxDecoration(
+        color: themeManager.surfaceColor,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Icon(icon, color: iconColor, size: 18),
+              const SizedBox(width: 8),
+              Text(label, style: TextStyle(color: themeManager.textPrimaryColor, fontWeight: FontWeight.w600, fontSize: 13)),
+              const Spacer(),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                decoration: BoxDecoration(
+                  color: badgeColor,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Text(valueLabel, style: TextStyle(color: themeManager.textPrimaryColor, fontSize: 12, fontWeight: FontWeight.bold)),
+              ),
+            ],
+          ),
+          SliderTheme(
+            data: SliderTheme.of(context).copyWith(
+              activeTrackColor: iconColor,
+              thumbColor: iconColor,
+              inactiveTrackColor: themeManager.textSecondaryColor.withOpacity(0.2),
+            ),
+            child: Slider(
+              value: sliderValue,
+              min: sliderMin,
+              max: sliderMax,
+              divisions: divisions,
+              onChanged: onChanged,
+            ),
+          ),
+        ],
       ),
     );
   }

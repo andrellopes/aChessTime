@@ -605,7 +605,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get csvHeader =>
-      'Data/Ora,Tipo di Risultato,Vincitore,Durata della Partita,Tempo Rimasto Bianco,Tempo Rimasto Nero,Mosse Bianco,Mosse Nero,Tempo Iniziale,Incremento';
+      'Data/Ora,Tipo di Risultato,Vincitore,Durata della Partita,Tempo Rimasto Bianco,Tempo Rimasto Nero,Mosse Bianco,Mosse Nero,Tempo Iniziale,Tempo Iniziale Nero (Handicap),Incremento,Modalità di Tempo';
 
   @override
   String get backupShareTitle => 'Backup ChessTime';
@@ -644,4 +644,44 @@ class AppLocalizationsIt extends AppLocalizations {
   String backupRequiredFieldMissing(String field) {
     return 'File di backup non valido: campo obbligatorio \"$field\" non trovato';
   }
+
+  @override
+  String get arbiterMode => 'Modalità Arbitro';
+
+  @override
+  String get penaltyBonusTime => 'Penalità / Bonus di tempo';
+
+  @override
+  String get tapPlayerButtonToApply =>
+      'Tocca il pulsante del giocatore per applicare';
+
+  @override
+  String get penalty => 'PENALITÀ';
+
+  @override
+  String get bonus => 'BONUS';
+
+  @override
+  String get timeMode => 'Modalità di Tempo';
+
+  @override
+  String get modeFischer => 'Fischer';
+
+  @override
+  String get modeBronstein => 'Bronstein';
+
+  @override
+  String get modeUSDelay => 'Ritardo US';
+
+  @override
+  String get modeNone => 'Nessuno';
+
+  @override
+  String get handicap => 'Handicap';
+
+  @override
+  String get differentTimesPerPlayer => 'Tempi diversi per giocatore';
+
+  @override
+  String get fieldRequired => 'Campo obbligatorio';
 }

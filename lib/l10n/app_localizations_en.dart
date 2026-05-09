@@ -603,7 +603,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get csvHeader =>
-      'Date/Time,Result Type,Winner,Game Duration,White Time Remaining,Black Time Remaining,White Moves,Black Moves,Initial Time,Increment';
+      'Date/Time,Result Type,Winner,Game Duration,White Time Remaining,Black Time Remaining,White Moves,Black Moves,Initial Time,Initial Time Black (Handicap),Increment,Time Mode';
 
   @override
   String get backupShareTitle => 'ChessTime Backup';
@@ -641,4 +641,43 @@ class AppLocalizationsEn extends AppLocalizations {
   String backupRequiredFieldMissing(String field) {
     return 'Invalid backup file: required field \"$field\" not found';
   }
+
+  @override
+  String get arbiterMode => 'Arbiter Mode';
+
+  @override
+  String get penaltyBonusTime => 'Time Penalty / Bonus';
+
+  @override
+  String get tapPlayerButtonToApply => 'Tap player button to apply';
+
+  @override
+  String get penalty => 'PENALTY';
+
+  @override
+  String get bonus => 'BONUS';
+
+  @override
+  String get timeMode => 'Time Mode';
+
+  @override
+  String get modeFischer => 'Fischer';
+
+  @override
+  String get modeBronstein => 'Bronstein';
+
+  @override
+  String get modeUSDelay => 'US Delay';
+
+  @override
+  String get modeNone => 'None';
+
+  @override
+  String get handicap => 'Handicap';
+
+  @override
+  String get differentTimesPerPlayer => 'Different times per player';
+
+  @override
+  String get fieldRequired => 'Field required';
 }

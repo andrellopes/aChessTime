@@ -227,7 +227,10 @@ class BackupService {
   static Future<Map<String, dynamic>> _collectUserPreferences() async {
     return {
       'initialTimeMinutes': PreferencesService.getInitialTimeMinutes(),
+      'player2InitialTimeMinutes': PreferencesService.getPlayer2InitialTimeMinutes(),
       'incrementSeconds': PreferencesService.getIncrementSeconds(),
+      'timeMode': PreferencesService.getTimeMode(),
+      'timePeriods': PreferencesService.getTimePeriods(),
       'timePreset': PreferencesService.getTimePreset(),
       'incrementPreset': PreferencesService.getIncrementPreset(),
       'isPlayer1White': PreferencesService.getIsPlayer1White(),
@@ -261,8 +264,17 @@ class BackupService {
     if (preferences.containsKey('initialTimeMinutes')) {
       await PreferencesService.setInitialTimeMinutes(preferences['initialTimeMinutes']);
     }
+    if (preferences.containsKey('player2InitialTimeMinutes')) {
+      await PreferencesService.setPlayer2InitialTimeMinutes(preferences['player2InitialTimeMinutes']);
+    }
     if (preferences.containsKey('incrementSeconds')) {
       await PreferencesService.setIncrementSeconds(preferences['incrementSeconds']);
+    }
+    if (preferences.containsKey('timeMode')) {
+      await PreferencesService.setTimeMode(preferences['timeMode']);
+    }
+    if (preferences.containsKey('timePeriods')) {
+      await PreferencesService.setTimePeriods(List<String>.from(preferences['timePeriods']));
     }
     if (preferences.containsKey('timePreset')) {
       await PreferencesService.setTimePreset(preferences['timePreset']);
