@@ -8,26 +8,28 @@ class LanguageService extends ChangeNotifier {
   Locale _currentLocale = const Locale('en'); // Default English
   
   static const List<Locale> supportedLocales = [
-    Locale('en'), // English
-    Locale('pt'), // Portuguese
-    Locale('es'), // Español
     Locale('de'), // Deutsch
+    Locale('en'), // English
+    Locale('es'), // Español
     Locale('fr'), // French
-    Locale('it'), // Italiano
-    Locale('ru'), // Русский
     Locale('hi'), // हिन्दी
+    Locale('it'), // Italiano
+    Locale('pl'), // Polski
+    Locale('pt'), // Portuguese
+    Locale('ru'), // Русский
     Locale('tr'), // Türkçe
   ];
 
   static const Map<String, String> languageNames = {
-    'en': 'English',
-    'pt': 'Português',
-    'es': 'Español',
     'de': 'Deutsch',
+    'en': 'English',
+    'es': 'Español',
     'fr': 'Français',
-    'it': 'Italiano',
-    'ru': 'Русский',
     'hi': 'हिन्दी',
+    'it': 'Italiano',
+    'pl': 'Polski',
+    'pt': 'Português',
+    'ru': 'Русский',
     'tr': 'Türkçe',
   };
 
@@ -108,6 +110,8 @@ class LanguageService extends ChangeNotifier {
         return '🇫🇷';
       case 'it':
         return '🇮🇹';
+      case 'pl':
+        return '🇵🇱';
       case 'ru':
         return '🇷🇺';
       case 'hi':

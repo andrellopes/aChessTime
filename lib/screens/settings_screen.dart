@@ -374,30 +374,90 @@ class SettingsScreen extends StatelessWidget {
         title: Text(l10n.language),
         subtitle: Text(languageService.currentLanguageName),
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-        trailing: DropdownButton<String>(
-          value: languageService.currentLanguageCode,
-          underline: const SizedBox.shrink(),
-          items: LanguageService.supportedLocales.map((locale) {
-            final code = locale.languageCode;
-            final name = LanguageService.languageNames[code] ?? code;
-            final flag = languageService.getLanguageFlag(code);
-            return DropdownMenuItem<String>(
-              value: code,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(flag, style: const TextStyle(fontSize: 18)),
-                  const SizedBox(width: 8),
-                  Text(name),
-                ],
-              ),
-            );
-          }).toList(),
-          onChanged: (code) {
-            if (code != null) languageService.changeLanguage(code);
-          },
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(languageService.getLanguageFlag(languageService.currentLanguageCode),
+                style: const TextStyle(fontSize: 18)),
+            const SizedBox(width: 8),
+            const Icon(Icons.arrow_drop_down),
+          ],
         ),
+        onTap: () => _showLanguageSelector(context, l10n, languageService),
       ),
+    );
+  }
+
+  Future<void> _showLanguageSelector(
+    BuildContext context,
+    AppLocalizations l10n,
+    LanguageService languageService,
+  ) {
+    return showModalBottomSheet<void>(
+      context: context,
+      showDragHandle: true,
+      isScrollControlled: true,
+      builder: (sheetContext) {
+        final screenHeight = MediaQuery.of(sheetContext).size.height;
+        const headerHeight = 52.0;
+        const rowHeight = 44.0;
+        final desiredHeight = headerHeight + (LanguageService.supportedLocales.length * rowHeight) + 16;
+        final sheetHeight = desiredHeight.clamp(320.0, screenHeight * 0.9).toDouble();
+
+        return SafeArea(
+          child: SizedBox(
+            height: sheetHeight,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 8, 20, 4),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      l10n.language,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ),
+                const Divider(height: 1),
+                Expanded(
+                  child: ListView(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    children: LanguageService.supportedLocales.map((locale) {
+                      final code = locale.languageCode;
+                      final name = LanguageService.languageNames[code] ?? code;
+                      final flag = languageService.getLanguageFlag(code);
+                      final isSelected = code == languageService.currentLanguageCode;
+
+                      return ListTile(
+                        dense: true,
+                        visualDensity: const VisualDensity(vertical: -2),
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                        minLeadingWidth: 20,
+                        leading: Text(flag, style: const TextStyle(fontSize: 20)),
+                        title: Text(name),
+                        trailing: isSelected
+                            ? Icon(
+                                Icons.check,
+                                color: Theme.of(sheetContext).colorScheme.primary,
+                              )
+                            : null,
+                        onTap: () async {
+                          Navigator.of(sheetContext).pop();
+                          await languageService.changeLanguage(code);
+                        },
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 

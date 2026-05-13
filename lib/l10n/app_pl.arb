@@ -1,0 +1,312 @@
+{
+  "@@locale": "pl",
+  "appName": "a Chess Time",
+  "close": "Zamknij",
+  "ok": "OK",
+  "cancel": "Anuluj",
+  "save": "Zapisz",
+  "saveAndClose": "Zapisz i zamknij",
+  "settings": "Ustawienia",
+  "about": "O aplikacji",
+  "resetConfirm": "Czy na pewno chcesz zresetować partię?",
+  "confirm": "Potwierdź",
+  "tapToStart": "Dotknij, aby rozpocząć",
+  "gameOver": "Koniec partii",
+  "victory": "Zwycięstwo!",
+  "player1": "Gracz 1",
+  "player2": "Gracz 2",
+  "winner": "Zwycięzca",
+  "whitePlayer": "Białe",
+  "blackPlayer": "Czarne",
+  "turnOf": "Ruch",
+  "won": "wygrywają!",
+  "play": "Start",
+  "pause": "Pauza",
+  "reset": "Resetuj",
+  "swapColors": "Zamień kolory",
+  "quickSettings": "Szybkie ustawienia",
+  "options": "Opcje",
+  "settingsTitle": "Ustawienia",
+  "appearance": "Wygląd",
+  "language": "Język",
+  "gameSettings": "Ustawienia gry",
+  "timeControls": "Kontrola czasu",
+  "sounds": "Dźwięki",
+  "other": "Inne",
+  "help": "Pomoc",
+  "darkMode": "Tryb ciemny",
+  "darkModeSubtitle": "Interfejs w ciemnym motywie",
+  "soundsSubtitle": "Dźwięki podczas gry",
+  "vibration": "Wibracje",
+  "vibrationSubtitle": "Wibruj przy zmianie tury",
+  "player1StartsAsWhite": "Gracz 1 zaczyna białymi",
+  "initialTime": "Czas początkowy",
+  "increment": "Przyrost",
+  "timePreset": "Ustawienie czasu",
+  "timePresets": "Ustawienia czasu",
+  "custom": "Własne",
+  "menu": "Menu",
+  "immersiveMode": "Tryb immersyjny",
+  "immersiveModeSubtitle": "Ukryj paski systemowe, aby korzystać z pełnego ekranu",
+  "presetTournament": "Turniej",
+  "presetBlitz": "Blitz",
+  "presetBullet": "Bullet",
+  "presetRapid": "Rapid",
+  "presetClassical": "Klasyczna",
+  "presetLong": "Długa partia",
+  "presetBasic": "Podstawowy",
+  "createCustomPreset": "Utwórz własny preset",
+  "editPreset": "Edytuj preset",
+  "presetName": "Nazwa presetu",
+  "presetNameHint": "Np. Pro Blitz",
+  "presetCreated": "Preset został utworzony",
+  "presetUpdated": "Preset został zaktualizowany",
+  "presetDeleted": "Preset został usunięty",
+  "deletePresetConfirm": "Usuń preset",
+  "create": "Utwórz",
+  "edit": "Edytuj",
+  "delete": "Usuń",
+  "aboutTitle": "Informacje o a Chess Time",
+  "aboutContactLinks": "Kontakt i linki",
+  "contactGitHub": "GitHub",
+  "contactEmail": "E-mail",
+  "contactWhatsApp": "WhatsApp",
+  "aboutSupportMessage": "Wesprzyj rozwój tej aplikacji!",
+  "aboutSupportWithPix": "Wesprzyj przez PIX",
+  "aboutPixCopied": "Klucz PIX został skopiowany do schowka!",
+  "developedBy": "Autor: André Lopes",
+  "resetTooltip": "Zresetuj partię",
+  "swapTooltip": "Zamień kolory graczy",
+  "settingsTooltip": "Ustawienia",
+  "aboutTooltip": "O aplikacji",
+  "advancedSettings": "Ustawienia zaawansowane",
+  "evaluateInPlayStore": "Oceń w Play Store",
+  "share": "Udostępnij",
+  "aboutApp": "O aplikacji",
+  "linkCopied": "Link został skopiowany do schowka!",
+  "shareMessage": "Sprawdź ChessTime - prosty i nowoczesny zegar szachowy!",
+  "minutes": "Minuty",
+  "seconds": "Sekundy",
+  "minutesShort": "min",
+  "secondsShort": "s",
+  "minutesUnit": "{count, plural, one{# minuta} few{# minuty} many{# minut} other{# minuty}}",
+  "@minutesUnit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "secondsUnit": "{count, plural, one{# sekunda} few{# sekundy} many{# sekund} other{# sekundy}}",
+  "@secondsUnit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playerWon": "wygrywają!",
+  "moves": "Ruchy",
+  "movesCount": "{count}",
+  "@movesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "victoryMessage": "{winnerName} wygrywają!",
+  "@victoryMessage": {
+    "placeholders": {
+      "winnerName": {
+        "type": "String"
+      }
+    }
+  },
+  "fontSizeTitle": "Rozmiar czcionki zegara",
+  "fontSizeSubtitle": "Dostosuj dla lepszej czytelności",
+  "themeTitle": "Motyw",
+  "themeSubtitle": "Wybierz wygląd aplikacji",
+  "themeClassicDark": "Klasyczny ciemny",
+  "themeTraditionalBoard": "Tradycyjna szachownica",
+  "themeGreenFocus": "Zielone skupienie",
+  "themeTournamentBlue": "Turniejowy niebieski",
+  "themeRoyalGold": "Królewskie złoto",
+  "themeGrandmasterPurple": "Arcymistrzowski fiolet",
+  "themeCompetitiveRed": "Rywalizacyjna czerwień",
+  "themeDeepOcean": "Głęboki ocean",
+  "themeMysticForest": "Mistyczny las",
+  "themeElegantRose": "Elegancka róża",
+  "themePremiumSilver": "Srebrny Premium",
+  "themeAuroraBoreal": "Zorza polarna",
+  "themeCustom": "Niestandardowy",
+  "premiumThemeRequired": "Motyw premium - wymaga wersji Pro",
+  "unlockPremiumThemes": "Odblokuj motywy premium",
+  "premiumThemesDescription": "Odblokuj ekskluzywne motywy i usuń reklamy dzięki wersji Pro",
+  "proFeature1": "Dostęp do 8 ekskluzywnych motywów",
+  "proFeature2": "Motywy zoptymalizowane pod czytelność",
+  "proFeature3": "Usuń reklamy",
+  "proFeature4": "Wesprzyj rozwój aplikacji",
+  "proFeature5": "Obejmuje przyszłe aktualizacje",
+  "buyPro": "Kup wersję Pro",
+  "purchaseFor": "Kup za {price}",
+  "@purchaseFor": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "processing": "Przetwarzanie...",
+  "unavailable": "Niedostępne",
+  "restorePurchases": "Przywróć zakupy",
+  "upgradeToProTitle": "Przejdź na wersję Pro",
+  "upgradeToProSubtitle": "8 motywów premium + bez reklam",
+  "statistics": "Statystyki",
+  "statisticsTitle": "Statystyki",
+  "generalSummary": "Podsumowanie ogólne",
+  "totalGames": "Liczba partii",
+  "whiteWins": "Wygrane białych",
+  "blackWins": "Wygrane czarnych",
+  "draws": "Remisy",
+  "timeoutGames": "Przekroczenie czasu",
+  "manualGames": "Ręczne zakończenia",
+  "totalTime": "Łączny czas",
+  "averageDuration": "Średni czas partii",
+  "winRate": "Wskaźnik zwycięstw",
+  "recentGames": "Ostatnie partie",
+  "noGamesFound": "Nie znaleziono partii",
+  "clearStatistics": "Wyczyść statystyki",
+  "clearStatisticsConfirm": "Czy na pewno chcesz usunąć wszystkie statystyki? Tej operacji nie można cofnąć.",
+  "deleteStatistics": "Usuń",
+  "statisticsCleared": "Statystyki zostały wyczyszczone",
+  "errorLoadingStatistics": "Błąd podczas wczytywania statystyk",
+  "errorLoadingStatisticsWithMessage": "Błąd podczas wczytywania statystyk: {message}",
+  "@errorLoadingStatisticsWithMessage": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "today": "Dziś",
+  "yesterday": "Wczoraj",
+  "daysAgo": "{count, plural, =0{dziś} =1{# dzień temu} few{# dni temu} many{# dni temu} other{# dnia temu}}",
+  "@daysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "draw": "Remis",
+  "whiteWinsTimeout": "Białe wygrywają na czas",
+  "blackWinsTimeout": "Czarne wygrywają na czas",
+  "whiteWinsManual": "Białe wygrywają",
+  "blackWinsManual": "Czarne wygrywają",
+  "viewStatistics": "Zobacz statystyki",
+  "statisticsSubtitle": "Historia partii i szczegółowe statystyki",
+  "finishGame": "Zakończ partię",
+  "whiteVictory": "Wygrana białych",
+  "blackVictory": "Wygrana czarnych",
+  "drawGame": "Remis",
+  "agreementBetweenPlayers": "Remis za zgodą obu graczy",
+  "continueGame": "Kontynuuj grę",
+  "loadingAd": "Ładowanie reklamy...",
+  "adReady": "Reklama gotowa!",
+  "debugProMode": "Tryb debugowania Pro",
+  "debugProModeSubtitle": "Włącz Pro do testów",
+  "resumeGame": "Wznów partię",
+  "productNotFound": "Nie znaleziono produktu",
+  "purchaseError": "Błąd zakupu",
+  "paypal": "PayPal",
+  "backup": "Kopia zapasowa",
+  "backupSubtitle": "Zapisz ustawienia i statystyki",
+  "restore": "Przywróć",
+  "restoreSubtitle": "Wczytaj wcześniej utworzoną kopię zapasową",
+  "createBackup": "Utwórz kopię zapasową",
+  "backupCreated": "Kopia zapasowa została utworzona",
+  "backupError": "Błąd podczas tworzenia kopii zapasowej",
+  "restoreBackup": "Przywróć kopię zapasową",
+  "backupRestored": "Kopia zapasowa została przywrócona",
+  "restoreError": "Błąd podczas przywracania",
+  "backupFileInvalid": "Nieprawidłowy plik kopii zapasowej",
+  "backupVersionIncompatible": "Niezgodna wersja kopii zapasowej",
+  "createBackupSubtitle": "Zapisz wszystkie dane aplikacji",
+  "restoreBackupSubtitle": "Wczytaj dane z pliku kopii zapasowej",
+  "backupCreatedMessage": "Kopia zapasowa została utworzona i zapisana w folderze Pobrane",
+  "backupRestoreError": "Błąd przywracania",
+  "exportStatistics": "Eksportuj CSV",
+  "exportStatisticsSubtitle": "Zapisz dane partii do pliku CSV",
+  "exportCsvShareText": "Statystyki ChessTime",
+  "exportCsvShareSubject": "Szczegółowe statystyki partii ChessTime w formacie CSV",
+  "exportCsvSuccess": "Statystyki zostały wyeksportowane!",
+  "exportCsvNoData": "Brak statystyk do eksportu lub wystąpił błąd eksportu.",
+  "exportCsvError": "Błąd podczas eksportowania statystyk: {error}",
+  "@exportCsvError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreBackupConfirmMessage": "Ta operacja zastąpi wszystkie bieżące dane. Czy chcesz kontynuować?",
+  "csvHeader": "Data/Godzina,Typ wyniku,Zwycięzca,Czas partii,Pozostały czas białych,Pozostały czas czarnych,Ruchy białych,Ruchy czarnych,Czas początkowy,Czas początkowy czarnych (handicap),Przyrost,Tryb czasu",
+  "backupShareTitle": "Kopia zapasowa ChessTime",
+  "backupShareSubject": "Kopia zapasowa ustawień i statystyk ChessTime",
+  "backupNoFileSelected": "Nie wybrano pliku",
+  "backupInvalidFile": "Nieprawidłowy plik",
+  "backupValidationError": "Nieznany błąd walidacji",
+  "backupRestoreSuccess": "Kopia zapasowa została przywrócona",
+  "backupRestoreErrorWithMessage": "Błąd podczas przywracania kopii zapasowej: {error}",
+  "@backupRestoreErrorWithMessage": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "backupVersionNotFound": "Nieprawidłowy plik kopii zapasowej: nie znaleziono wersji",
+  "backupVersionIncompatibleWithDetails": "Wersja kopii zapasowej jest niezgodna. Oczekiwano: {expected}, znaleziono: {found}",
+  "@backupVersionIncompatibleWithDetails": {
+    "placeholders": {
+      "expected": {
+        "type": "String"
+      },
+      "found": {
+        "type": "String"
+      }
+    }
+  },
+  "backupRequiredFieldMissing": "Nieprawidłowy plik kopii zapasowej: wymagane pole \"{field}\" nie zostało znalezione",
+  "@backupRequiredFieldMissing": {
+    "placeholders": {
+      "field": {
+        "type": "String"
+      }
+    }
+  },
+  "arbiterMode": "Tryb arbitra",
+  "penaltyBonusTime": "Kara / bonus czasowy",
+  "tapPlayerButtonToApply": "Dotknij przycisku gracza, aby zastosować zmianę",
+  "penalty": "KARA",
+  "bonus": "BONUS",
+  "timeMode": "Tryb czasu",
+  "modeFischer": "Fischer",
+  "modeBronstein": "Bronstein",
+  "modeUSDelay": "Opóźnienie US",
+  "modeNone": "Brak",
+  "handicap": "Handicap",
+  "differentTimesPerPlayer": "Różny czas dla każdego gracza",
+  "fieldRequired": "To pole jest wymagane",
+  "fideStandardTitle": "Standard turniejowy",
+  "fideStandardFideMode": "TRYB FISCHERA FIDE",
+  "fideStandardDescription": "Zgodnie z oficjalnymi zasadami FIDE przyrost jest dodawany do czasu początkowego jeszcze przed pierwszym ruchem.\n\nJak ma działać aplikacja?",
+  "fideStandardProfessional": "Profesjonalny (FIDE)",
+  "fideStandardProfessionalSub": "Zegar startuje z doliczonym przyrostem",
+  "fideStandardClassic": "Klasyczny (oryginalny)",
+  "fideStandardClassicSub": "Zegar startuje tylko z czasem bazowym",
+  "fideStandardSettingsNote": "Możesz to później zmienić w Ustawieniach.",
+  "fideStandardSettingTitle": "Standard Fischera FIDE",
+  "fideStandardSettingSubtitle": "Dodaj przyrost przed pierwszym ruchem"
+}
