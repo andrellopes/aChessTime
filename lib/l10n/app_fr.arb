@@ -35,11 +35,11 @@
   "other": "Autre",
   "help": "Aide",
   "darkMode": "Mode sombre",
-  "darkModeSubtitle": "Interface thème sombre",
+  "darkModeSubtitle": "Interface en thème sombre",
   "soundsSubtitle": "Sons pendant le jeu",
   "vibration": "Vibration",
-  "vibrationSubtitle": "Vibrer lors du changement de tours",
-  "player1StartsAsWhite": "Le joueur 1 commence en blanc",
+  "vibrationSubtitle": "Vibrer à chaque changement de tour",
+  "player1StartsAsWhite": "Le joueur 1 commence avec les blancs",
   "initialTime": "Temps initial",
   "increment": "Incrément",
   "timePreset": "Préréglage de temps",
@@ -58,6 +58,7 @@
   "createCustomPreset": "Créer un préréglage personnalisé",
   "editPreset": "Modifier le préréglage",
   "presetName": "Nom du préréglage",
+  "presetNameHint": "Ex. : Blitz Pro",
   "presetCreated": "Préréglage créé",
   "presetUpdated": "Préréglage mis à jour",
   "presetDeleted": "Préréglage supprimé",
@@ -67,6 +68,9 @@
   "delete": "Supprimer",
   "aboutTitle": "À propos de a Chess Time",
   "aboutContactLinks": "Contact & Liens",
+  "contactGitHub": "GitHub",
+  "contactEmail": "E-mail",
+  "contactWhatsApp": "WhatsApp",
   "aboutSupportMessage": "Soutenez le développement de cette app !",
   "aboutSupportWithPix": "Soutenir avec PIX",
   "aboutPixCopied": "Clé PIX copiée dans le presse-papiers !",
@@ -101,7 +105,7 @@
       }
     }
   },
-  "playerWon": "gagné !",
+  "playerWon": "a gagné !",
   "moves": "Coups",
   "movesCount": "{count}",
   "@movesCount": {
@@ -111,7 +115,7 @@
       }
     }
   },
-  "victoryMessage": "{winnerName} gagné !",
+  "victoryMessage": "{winnerName} a gagné !",
   "@victoryMessage": {
     "placeholders": {
       "winnerName": {
@@ -162,11 +166,11 @@
   "statisticsTitle": "Statistiques",
   "generalSummary": "Résumé général",
   "totalGames": "Total des parties",
-  "whiteWins": "Victoires blanches",
-  "blackWins": "Victoires noires",
+  "whiteWins": "Victoires des blancs",
+  "blackWins": "Victoires des noirs",
   "draws": "Nuls",
-  "timeoutGames": "Par temps dépassé",
-  "manualGames": "Terminaisons manuelles",
+  "timeoutGames": "Au temps",
+  "manualGames": "Fins manuelles",
   "totalTime": "Temps total",
   "averageDuration": "Durée moyenne",
   "winRate": "Taux de victoire",
@@ -187,7 +191,14 @@
   },
   "today": "Aujourd'hui",
   "yesterday": "Hier",
-  "daysAgo": "jours",
+  "daysAgo": "{count, plural, =0{aujourd'hui} =1{il y a # jour} other{il y a # jours}}",
+  "@daysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "draw": "Nul",
   "whiteWinsTimeout": "Blancs gagnent (temps dépassé)",
   "blackWinsTimeout": "Noirs gagnent (temps dépassé)",
@@ -240,7 +251,7 @@
     }
   },
   "restoreBackupConfirmMessage": "Cette action remplacera toutes les données actuelles. Voulez-vous continuer ?",
-  "csvHeader": "Date/Heure,Type de Résultat,Gagnant,Durée de la Partie,Temps Restant Blanc,Temps Restant Noir,Coups Blanc,Coups Noir,Temps Initial,Temps Initial Noir (Handicap),Incrément,Mode de Temps",
+  "csvHeader": "Date/Heure,Type de Résultat,Gagnant,Durée de la Partie,Temps Restant Blanc,Temps Restant Noir,Coups Blancs,Coups Noirs,Temps Initial,Temps Initial Noir (Handicap),Incrément,Mode de Temps",
   "backupShareTitle": "Sauvegarde ChessTime",
   "backupShareSubject": "Sauvegarde des paramètres et statistiques de ChessTime",
   "backupNoFileSelected": "Aucun fichier sélectionné",

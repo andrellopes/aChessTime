@@ -9,8 +9,11 @@ import 'app_localizations_de.dart';
 import 'app_localizations_en.dart';
 import 'app_localizations_es.dart';
 import 'app_localizations_fr.dart';
+import 'app_localizations_hi.dart';
 import 'app_localizations_it.dart';
 import 'app_localizations_pt.dart';
+import 'app_localizations_ru.dart';
+import 'app_localizations_tr.dart';
 
 // ignore_for_file: type=lint
 
@@ -104,6 +107,9 @@ abstract class AppLocalizations {
     Locale('de'),
     Locale('fr'),
     Locale('it'),
+    Locale('hi'),
+    Locale('ru'),
+    Locale('tr'),
   ];
 
   /// No description provided for @appName.
@@ -454,6 +460,12 @@ abstract class AppLocalizations {
   /// **'Preset Name'**
   String get presetName;
 
+  /// No description provided for @presetNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'E.g. Pro Blitz'**
+  String get presetNameHint;
+
   /// No description provided for @presetCreated.
   ///
   /// In en, this message translates to:
@@ -507,6 +519,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Contact & Links'**
   String get aboutContactLinks;
+
+  /// No description provided for @contactGitHub.
+  ///
+  /// In en, this message translates to:
+  /// **'GitHub'**
+  String get contactGitHub;
+
+  /// No description provided for @contactEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get contactEmail;
+
+  /// No description provided for @contactWhatsApp.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp'**
+  String get contactWhatsApp;
 
   /// No description provided for @aboutSupportMessage.
   ///
@@ -979,8 +1009,8 @@ abstract class AppLocalizations {
   /// No description provided for @daysAgo.
   ///
   /// In en, this message translates to:
-  /// **'days ago'**
-  String get daysAgo;
+  /// **'{count, plural, =0{today} =1{# day ago} other{# days ago}}'**
+  String daysAgo(int count);
 
   /// No description provided for @draw.
   ///
@@ -1472,8 +1502,11 @@ class _AppLocalizationsDelegate
     'en',
     'es',
     'fr',
+    'hi',
     'it',
     'pt',
+    'ru',
+    'tr',
   ].contains(locale.languageCode);
 
   @override
@@ -1491,10 +1524,16 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsEs();
     case 'fr':
       return AppLocalizationsFr();
+    case 'hi':
+      return AppLocalizationsHi();
     case 'it':
       return AppLocalizationsIt();
     case 'pt':
       return AppLocalizationsPt();
+    case 'ru':
+      return AppLocalizationsRu();
+    case 'tr':
+      return AppLocalizationsTr();
   }
 
   throw FlutterError(

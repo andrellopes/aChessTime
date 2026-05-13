@@ -1,0 +1,312 @@
+{
+  "@@locale": "ru",
+  "appName": "a Chess Time",
+  "close": "Закрыть",
+  "ok": "ОК",
+  "cancel": "Отмена",
+  "save": "Сохранить",
+  "saveAndClose": "Сохранить и закрыть",
+  "settings": "Настройки",
+  "about": "О приложении",
+  "resetConfirm": "Вы действительно хотите сбросить партию?",
+  "confirm": "Подтвердить",
+  "tapToStart": "Нажмите, чтобы начать",
+  "gameOver": "Партия окончена",
+  "victory": "Победа!",
+  "player1": "Игрок 1",
+  "player2": "Игрок 2",
+  "winner": "Победитель",
+  "whitePlayer": "Белые",
+  "blackPlayer": "Черные",
+  "turnOf": "Ход",
+  "won": "победил!",
+  "play": "Играть",
+  "pause": "Пауза",
+  "reset": "Сброс",
+  "swapColors": "Поменять цвета",
+  "quickSettings": "Быстрые настройки",
+  "options": "Параметры",
+  "settingsTitle": "Настройки",
+  "appearance": "Внешний вид",
+  "language": "Язык",
+  "gameSettings": "Настройки партии",
+  "timeControls": "Контроль времени",
+  "sounds": "Звуки",
+  "other": "Другое",
+  "help": "Помощь",
+  "darkMode": "Темная тема",
+  "darkModeSubtitle": "Интерфейс в темной теме",
+  "soundsSubtitle": "Звуки во время игры",
+  "vibration": "Вибрация",
+  "vibrationSubtitle": "Вибрация при смене хода",
+  "player1StartsAsWhite": "Игрок 1 начинает белыми",
+  "initialTime": "Начальное время",
+  "increment": "Инкремент",
+  "timePreset": "Пресет времени",
+  "timePresets": "Пресеты времени",
+  "custom": "Пользовательский",
+  "menu": "Меню",
+  "immersiveMode": "Полноэкранный режим",
+  "immersiveModeSubtitle": "Скрыть системные панели для полного экрана",
+  "presetTournament": "Турнир",
+  "presetBlitz": "Блиц",
+  "presetBullet": "Пуля",
+  "presetRapid": "Рапид",
+  "presetClassical": "Классика",
+  "presetLong": "Длинная партия",
+  "presetBasic": "Базовый",
+  "createCustomPreset": "Создать пользовательский пресет",
+  "editPreset": "Изменить пресет",
+  "presetName": "Название пресета",
+  "presetNameHint": "Например: Pro Blitz",
+  "presetCreated": "Пресет создан",
+  "presetUpdated": "Пресет обновлен",
+  "presetDeleted": "Пресет удален",
+  "deletePresetConfirm": "Удалить пресет",
+  "create": "Создать",
+  "edit": "Изменить",
+  "delete": "Удалить",
+  "aboutTitle": "О приложении a Chess Time",
+  "aboutContactLinks": "Контакты и ссылки",
+  "contactGitHub": "GitHub",
+  "contactEmail": "Эл. почта",
+  "contactWhatsApp": "WhatsApp",
+  "aboutSupportMessage": "Поддержите развитие приложения!",
+  "aboutSupportWithPix": "Поддержать через PIX",
+  "aboutPixCopied": "Ключ PIX скопирован в буфер!",
+  "developedBy": "Разработчик: André Lopes",
+  "resetTooltip": "Сбросить партию",
+  "swapTooltip": "Поменять цвета игроков",
+  "settingsTooltip": "Настройки",
+  "aboutTooltip": "О приложении",
+  "advancedSettings": "Расширенные настройки",
+  "evaluateInPlayStore": "Оценить в Play Store",
+  "share": "Поделиться",
+  "aboutApp": "О приложении",
+  "linkCopied": "Ссылка скопирована в буфер!",
+  "shareMessage": "Попробуйте ChessTime — простой и современный шахматный таймер!",
+  "minutes": "Минуты",
+  "seconds": "Секунды",
+  "minutesShort": "мин",
+  "secondsShort": "сек",
+  "minutesUnit": "{count, plural, =1{# минута} few{# минуты} many{# минут} other{# минуты}}",
+  "@minutesUnit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "secondsUnit": "{count, plural, =1{# секунда} few{# секунды} many{# секунд} other{# секунды}}",
+  "@secondsUnit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playerWon": "победил!",
+  "moves": "Ходы",
+  "movesCount": "{count}",
+  "@movesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "victoryMessage": "{winnerName} победил!",
+  "@victoryMessage": {
+    "placeholders": {
+      "winnerName": {
+        "type": "String"
+      }
+    }
+  },
+  "fontSizeTitle": "Размер шрифта таймера",
+  "fontSizeSubtitle": "Настройте для лучшей видимости",
+  "themeTitle": "Тема",
+  "themeSubtitle": "Выберите внешний вид приложения",
+  "themeClassicDark": "Классическая тёмная",
+  "themeTraditionalBoard": "Традиционная доска",
+  "themeGreenFocus": "Зеленый фокус",
+  "themeTournamentBlue": "Турнирный синий",
+  "themeRoyalGold": "Королевское золото",
+  "themeGrandmasterPurple": "Гроссмейстерский пурпурный",
+  "themeCompetitiveRed": "Соревновательный красный",
+  "themeDeepOcean": "Глубокий океан",
+  "themeMysticForest": "Мистический лес",
+  "themeElegantRose": "Элегантная роза",
+  "themePremiumSilver": "Премиальное серебро",
+  "themeAuroraBoreal": "Северное сияние",
+  "themeCustom": "Пользовательская",
+  "premiumThemeRequired": "Премиум-тема — требуется обновление",
+  "unlockPremiumThemes": "Открыть премиум-темы",
+  "premiumThemesDescription": "Откройте эксклюзивные темы и уберите рекламу с версией Pro",
+  "proFeature1": "Доступ к 8 эксклюзивным темам",
+  "proFeature2": "Темы, оптимизированные для продуктивности",
+  "proFeature3": "Убрать рекламу",
+  "proFeature4": "Поддержка разработки приложения",
+  "proFeature5": "Будущие обновления включены",
+  "buyPro": "Купить Pro",
+  "purchaseFor": "Купить за {price}",
+  "@purchaseFor": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "processing": "Обработка...",
+  "unavailable": "Недоступно",
+  "restorePurchases": "Восстановить покупки",
+  "upgradeToProTitle": "Перейти на Pro",
+  "upgradeToProSubtitle": "8 премиум-тем + без рекламы",
+  "statistics": "Статистика",
+  "statisticsTitle": "Статистика",
+  "generalSummary": "Общий обзор",
+  "totalGames": "Всего партий",
+  "whiteWins": "Победы белых",
+  "blackWins": "Победы черных",
+  "draws": "Ничьи",
+  "timeoutGames": "По времени",
+  "manualGames": "Партии, завершенные вручную",
+  "totalTime": "Общее время",
+  "averageDuration": "Средняя длительность",
+  "winRate": "Процент побед",
+  "recentGames": "Последние партии",
+  "noGamesFound": "Партии не найдены",
+  "clearStatistics": "Очистить статистику",
+  "clearStatisticsConfirm": "Вы уверены, что хотите удалить всю статистику? Это действие нельзя отменить.",
+  "deleteStatistics": "Удалить",
+  "statisticsCleared": "Статистика успешно очищена",
+  "errorLoadingStatistics": "Ошибка загрузки статистики",
+  "errorLoadingStatisticsWithMessage": "Ошибка загрузки статистики: {message}",
+  "@errorLoadingStatisticsWithMessage": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "today": "Сегодня",
+  "yesterday": "Вчера",
+  "daysAgo": "{count, plural, =0{сегодня} one{# день назад} few{# дня назад} many{# дней назад} other{# дня назад}}",
+  "@daysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "draw": "Ничья",
+  "whiteWinsTimeout": "Белые победили (по времени)",
+  "blackWinsTimeout": "Черные победили (по времени)",
+  "whiteWinsManual": "Белые победили",
+  "blackWinsManual": "Черные победили",
+  "viewStatistics": "Посмотреть статистику",
+  "statisticsSubtitle": "История партий и подробная статистика",
+  "finishGame": "Завершить партию",
+  "whiteVictory": "Победа белых",
+  "blackVictory": "Победа черных",
+  "drawGame": "Ничья",
+  "agreementBetweenPlayers": "По соглашению сторон",
+  "continueGame": "Продолжить партию",
+  "loadingAd": "Загрузка рекламы...",
+  "adReady": "Реклама готова!",
+  "debugProMode": "Режим отладки Pro",
+  "debugProModeSubtitle": "Включить Pro для тестирования",
+  "resumeGame": "Продолжить партию",
+  "productNotFound": "Товар не найден",
+  "purchaseError": "Ошибка при покупке",
+  "paypal": "PayPal",
+  "backup": "Резервная копия",
+  "backupSubtitle": "Сохранить настройки и статистику",
+  "restore": "Восстановить",
+  "restoreSubtitle": "Загрузить ранее сохраненную копию",
+  "createBackup": "Создать резервную копию",
+  "backupCreated": "Резервная копия успешно создана",
+  "backupError": "Ошибка создания резервной копии",
+  "restoreBackup": "Восстановить резервную копию",
+  "backupRestored": "Резервная копия успешно восстановлена",
+  "restoreError": "Ошибка восстановления",
+  "backupFileInvalid": "Недопустимый файл резервной копии",
+  "backupVersionIncompatible": "Несовместимая версия резервной копии",
+  "createBackupSubtitle": "Сохранить все данные приложения",
+  "restoreBackupSubtitle": "Загрузить данные из файла резервной копии",
+  "backupCreatedMessage": "Резервная копия создана и сохранена в папке Downloads",
+  "backupRestoreError": "Ошибка восстановления",
+  "exportStatistics": "Экспорт CSV",
+  "exportStatisticsSubtitle": "Сохранить данные партий в CSV",
+  "exportCsvShareText": "Статистика ChessTime",
+  "exportCsvShareSubject": "Подробная статистика партий ChessTime в формате CSV",
+  "exportCsvSuccess": "Статистика успешно экспортирована!",
+  "exportCsvNoData": "Нет статистики для экспорта или ошибка экспорта.",
+  "exportCsvError": "Ошибка экспорта статистики: {error}",
+  "@exportCsvError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreBackupConfirmMessage": "Это действие заменит все текущие данные. Продолжить?",
+  "csvHeader": "Дата/время,Тип результата,Победитель,Длительность игры,Оставшееся время белых,Оставшееся время черных,Ходы белых,Ходы черных,Начальное время,Начальное время черных (фора),Инкремент,Режим времени",
+  "backupShareTitle": "Резервная копия ChessTime",
+  "backupShareSubject": "Резервная копия настроек и статистики ChessTime",
+  "backupNoFileSelected": "Файл не выбран",
+  "backupInvalidFile": "Недопустимый файл",
+  "backupValidationError": "Неизвестная ошибка проверки",
+  "backupRestoreSuccess": "Резервная копия успешно восстановлена",
+  "backupRestoreErrorWithMessage": "Ошибка восстановления резервной копии: {error}",
+  "@backupRestoreErrorWithMessage": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "backupVersionNotFound": "Недопустимый файл резервной копии: версия не найдена",
+  "backupVersionIncompatibleWithDetails": "Несовместимая версия резервной копии. Ожидалось: {expected}, найдено: {found}",
+  "@backupVersionIncompatibleWithDetails": {
+    "placeholders": {
+      "expected": {
+        "type": "String"
+      },
+      "found": {
+        "type": "String"
+      }
+    }
+  },
+  "backupRequiredFieldMissing": "Недопустимый файл резервной копии: обязательное поле \"{field}\" не найдено",
+  "@backupRequiredFieldMissing": {
+    "placeholders": {
+      "field": {
+        "type": "String"
+      }
+    }
+  },
+  "arbiterMode": "Режим арбитра",
+  "penaltyBonusTime": "Штраф / Бонус времени",
+  "tapPlayerButtonToApply": "Нажмите кнопку игрока для применения",
+  "penalty": "ШТРАФ",
+  "bonus": "БОНУС",
+  "timeMode": "Режим времени",
+  "modeFischer": "Fischer",
+  "modeBronstein": "Bronstein",
+  "modeUSDelay": "US Delay",
+  "modeNone": "Нет",
+  "handicap": "Фора",
+  "differentTimesPerPlayer": "Разное время для каждого игрока",
+  "fieldRequired": "Обязательное поле",
+  "fideStandardTitle": "Турнирный стандарт",
+  "fideStandardFideMode": "РЕЖИМ ФИШЕРА FIDE",
+  "fideStandardDescription": "Согласно официальным правилам FIDE, инкремент добавляется к начальному времени до первого хода.\n\nКакой вариант работы приложения вы предпочитаете?",
+  "fideStandardProfessional": "Профессиональный (FIDE)",
+  "fideStandardProfessionalSub": "Часы стартуют уже с добавленным инкрементом",
+  "fideStandardClassic": "Классический (Оригинал)",
+  "fideStandardClassicSub": "Часы стартуют только с базовым временем",
+  "fideStandardSettingsNote": "Вы можете изменить это позже в настройках.",
+  "fideStandardSettingTitle": "Стандарт Фишера FIDE",
+  "fideStandardSettingSubtitle": "Добавлять инкремент до первого хода"
+}

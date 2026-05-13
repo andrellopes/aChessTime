@@ -183,6 +183,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get presetName => 'Preset Name';
 
   @override
+  String get presetNameHint => 'E.g. Pro Blitz';
+
+  @override
   String get presetCreated => 'Preset created';
 
   @override
@@ -208,6 +211,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aboutContactLinks => 'Contact & Links';
+
+  @override
+  String get contactGitHub => 'GitHub';
+
+  @override
+  String get contactEmail => 'Email';
+
+  @override
+  String get contactWhatsApp => 'WhatsApp';
 
   @override
   String get aboutSupportMessage => 'Support the development of this app!';
@@ -459,7 +471,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get yesterday => 'Yesterday';
 
   @override
-  String get daysAgo => 'days ago';
+  String daysAgo(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '# days ago',
+      one: '# day ago',
+      zero: 'today',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get draw => 'Draw';

@@ -58,6 +58,7 @@
   "createCustomPreset": "Create Custom Preset",
   "editPreset": "Edit Preset",
   "presetName": "Preset Name",
+  "presetNameHint": "E.g. Pro Blitz",
   "presetCreated": "Preset created",
   "presetUpdated": "Preset updated",
   "presetDeleted": "Preset deleted",
@@ -67,6 +68,9 @@
   "delete": "Delete",
   "aboutTitle": "About a Chess Time",
   "aboutContactLinks": "Contact & Links",
+  "contactGitHub": "GitHub",
+  "contactEmail": "Email",
+  "contactWhatsApp": "WhatsApp",
   "aboutSupportMessage": "Support the development of this app!",
   "aboutSupportWithPix": "Support with PIX",
   "aboutPixCopied": "PIX key copied to clipboard!",
@@ -187,7 +191,14 @@
   },
   "today": "Today",
   "yesterday": "Yesterday",
-  "daysAgo": "days ago",
+  "daysAgo": "{count, plural, =0{today} =1{# day ago} other{# days ago}}",
+  "@daysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "draw": "Draw",
   "whiteWinsTimeout": "White wins (timeout)",
   "blackWinsTimeout": "Black wins (timeout)",

@@ -39,7 +39,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get confirm => 'Confirmar';
 
   @override
-  String get tapToStart => 'Toca para Empezar';
+  String get tapToStart => 'Toca para empezar';
 
   @override
   String get gameOver => 'Fin del Juego';
@@ -126,7 +126,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get vibrationSubtitle => 'Vibrar al cambiar el turno';
 
   @override
-  String get player1StartsAsWhite => 'Jugador 1 comienza como blancas';
+  String get player1StartsAsWhite => 'Jugador 1 comienza con blancas';
 
   @override
   String get initialTime => 'Tiempo Inicial';
@@ -184,6 +184,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get presetName => 'Nombre del Preajuste';
 
   @override
+  String get presetNameHint => 'Ej.: Blitz Pro';
+
+  @override
   String get presetCreated => 'Preajuste creado';
 
   @override
@@ -209,6 +212,15 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get aboutContactLinks => 'Contacto y Enlaces';
+
+  @override
+  String get contactGitHub => 'GitHub';
+
+  @override
+  String get contactEmail => 'Correo';
+
+  @override
+  String get contactWhatsApp => 'WhatsApp';
 
   @override
   String get aboutSupportMessage => '¡Apoya el desarrollo de esta app!';
@@ -244,7 +256,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get share => 'Compartir';
 
   @override
-  String get aboutApp => 'Acerca de la App';
+  String get aboutApp => 'Acerca de la app';
 
   @override
   String get linkCopied => '¡Enlace copiado al portapapeles!';
@@ -276,7 +288,7 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get playerWon => '¡ganó!';
+  String get playerWon => 'ganó!';
 
   @override
   String get moves => 'Jugadas';
@@ -288,7 +300,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String victoryMessage(String winnerName) {
-    return '$winnerName ¡ganó!';
+    return '$winnerName ganó!';
   }
 
   @override
@@ -319,7 +331,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get themeRoyalGold => 'Oro Real';
 
   @override
-  String get themeGrandmasterPurple => 'Púrpura Grandmaster';
+  String get themeGrandmasterPurple => 'Púrpura Gran Maestro';
 
   @override
   String get themeCompetitiveRed => 'Rojo Competitivo';
@@ -415,7 +427,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get timeoutGames => 'Por Tiempo';
 
   @override
-  String get manualGames => 'Finales Manuales';
+  String get manualGames => 'Finalizaciones manuales';
 
   @override
   String get totalTime => 'Tiempo Total';
@@ -460,7 +472,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get yesterday => 'Ayer';
 
   @override
-  String get daysAgo => 'días atrás';
+  String daysAgo(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'hace # días',
+      one: 'hace # día',
+      zero: 'hoy',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get draw => 'Empate';

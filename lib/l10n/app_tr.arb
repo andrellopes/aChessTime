@@ -1,0 +1,312 @@
+{
+  "@@locale": "tr",
+  "appName": "a Chess Time",
+  "close": "Kapat",
+  "ok": "Tamam",
+  "cancel": "İptal",
+  "save": "Kaydet",
+  "saveAndClose": "Kaydet ve Kapat",
+  "settings": "Ayarlar",
+  "about": "Hakkında",
+  "resetConfirm": "Oyunu gerçekten sıfırlamak istiyor musunuz?",
+  "confirm": "Onayla",
+  "tapToStart": "Başlamak için dokunun",
+  "gameOver": "Oyun Bitti",
+  "victory": "Zafer!",
+  "player1": "Oyuncu 1",
+  "player2": "Oyuncu 2",
+  "winner": "Kazanan",
+  "whitePlayer": "Beyaz",
+  "blackPlayer": "Siyah",
+  "turnOf": "Sıra",
+  "won": "kazandı!",
+  "play": "Başlat",
+  "pause": "Duraklat",
+  "reset": "Sıfırla",
+  "swapColors": "Renkleri Değiştir",
+  "quickSettings": "Hızlı Ayarlar",
+  "options": "Seçenekler",
+  "settingsTitle": "Ayarlar",
+  "appearance": "Görünüm",
+  "language": "Dil",
+  "gameSettings": "Oyun Ayarları",
+  "timeControls": "Zaman Kontrolü",
+  "sounds": "Sesler",
+  "other": "Diğer",
+  "help": "Yardım",
+  "darkMode": "Karanlık Mod",
+  "darkModeSubtitle": "Koyu tema arayüzü",
+  "soundsSubtitle": "Oyun sırasında sesler",
+  "vibration": "Titreşim",
+  "vibrationSubtitle": "Sıra değişiminde titreşim",
+  "player1StartsAsWhite": "Oyuncu 1 beyazla başlar",
+  "initialTime": "Başlangıç Süresi",
+  "increment": "Ek süre",
+  "timePreset": "Zaman Ön Ayarı",
+  "timePresets": "Zaman Ön Ayarları",
+  "custom": "Özel",
+  "menu": "Menü",
+  "immersiveMode": "Tam Ekran Modu",
+  "immersiveModeSubtitle": "Tam ekran için sistem çubuklarını gizle",
+  "presetTournament": "Turnuva",
+  "presetBlitz": "Blitz",
+  "presetBullet": "Bullet",
+  "presetRapid": "Rapid",
+  "presetClassical": "Klasik",
+  "presetLong": "Uzun Oyun",
+  "presetBasic": "Temel",
+  "createCustomPreset": "Özel Ön Ayar Oluştur",
+  "editPreset": "Ön Ayarı Düzenle",
+  "presetName": "Ön Ayar Adı",
+  "presetNameHint": "Örn.: Pro Blitz",
+  "presetCreated": "Ön ayar oluşturuldu",
+  "presetUpdated": "Ön ayar güncellendi",
+  "presetDeleted": "Ön ayar silindi",
+  "deletePresetConfirm": "Ön ayarı sil",
+  "create": "Oluştur",
+  "edit": "Düzenle",
+  "delete": "Sil",
+  "aboutTitle": "a Chess Time Hakkında",
+  "aboutContactLinks": "İletişim ve Bağlantılar",
+  "contactGitHub": "GitHub",
+  "contactEmail": "E-posta",
+  "contactWhatsApp": "WhatsApp",
+  "aboutSupportMessage": "Bu uygulamanın geliştirilmesini destekleyin!",
+  "aboutSupportWithPix": "PIX ile destekle",
+  "aboutPixCopied": "PIX anahtarı panoya kopyalandı!",
+  "developedBy": "Geliştiren: André Lopes",
+  "resetTooltip": "Oyunu sıfırla",
+  "swapTooltip": "Oyuncu renklerini değiştir",
+  "settingsTooltip": "Ayarlar",
+  "aboutTooltip": "Hakkında",
+  "advancedSettings": "Gelişmiş Ayarlar",
+  "evaluateInPlayStore": "Play Store’da Değerlendir",
+  "share": "Paylaş",
+  "aboutApp": "Uygulama Hakkında",
+  "linkCopied": "Bağlantı panoya kopyalandı!",
+  "shareMessage": "ChessTime’a göz atın - basit ve modern bir satranç saati!",
+  "minutes": "Dakika",
+  "seconds": "Saniye",
+  "minutesShort": "dk",
+  "secondsShort": "sn",
+  "minutesUnit": "{count} dakika",
+  "@minutesUnit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "secondsUnit": "{count} saniye",
+  "@secondsUnit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playerWon": "kazandı!",
+  "moves": "Hamleler",
+  "movesCount": "{count}",
+  "@movesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "victoryMessage": "{winnerName} kazandı!",
+  "@victoryMessage": {
+    "placeholders": {
+      "winnerName": {
+        "type": "String"
+      }
+    }
+  },
+  "fontSizeTitle": "Zamanlayıcı yazı boyutu",
+  "fontSizeSubtitle": "Daha iyi görünürlük için ayarlayın",
+  "themeTitle": "Tema",
+  "themeSubtitle": "Uygulama görünümünü seçin",
+  "themeClassicDark": "Klasik Koyu",
+  "themeTraditionalBoard": "Geleneksel Tahta",
+  "themeGreenFocus": "Yeşil Odak",
+  "themeTournamentBlue": "Turnuva Mavisi",
+  "themeRoyalGold": "Kraliyet Altını",
+  "themeGrandmasterPurple": "Büyükusta Moru",
+  "themeCompetitiveRed": "Rekabetçi Kırmızı",
+  "themeDeepOcean": "Derin Okyanus",
+  "themeMysticForest": "Gizemli Orman",
+  "themeElegantRose": "Zarif Gül",
+  "themePremiumSilver": "Premium Gümüş",
+  "themeAuroraBoreal": "Aurora Borealis",
+  "themeCustom": "Özel",
+  "premiumThemeRequired": "Premium Tema - Yükseltme gerekli",
+  "unlockPremiumThemes": "Premium temaların kilidini aç",
+  "premiumThemesDescription": "Pro sürümle özel temaların kilidini açın ve reklamları kaldırın",
+  "proFeature1": "8 özel temaya erişim",
+  "proFeature2": "Verimlilik için optimize edilmiş temalar",
+  "proFeature3": "Reklamları kaldır",
+  "proFeature4": "Uygulama geliştirmeyi destekle",
+  "proFeature5": "Gelecek güncellemeler dahil",
+  "buyPro": "Pro Satın Al",
+  "purchaseFor": "{price} karşılığında satın al",
+  "@purchaseFor": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "processing": "İşleniyor...",
+  "unavailable": "Kullanılamıyor",
+  "restorePurchases": "Satın Alımları Geri Yükle",
+  "upgradeToProTitle": "Pro’ya Yükselt",
+  "upgradeToProSubtitle": "8 premium tema + reklamsız",
+  "statistics": "İstatistikler",
+  "statisticsTitle": "İstatistikler",
+  "generalSummary": "Genel Özet",
+  "totalGames": "Toplam Oyun",
+  "whiteWins": "Beyaz galibiyetleri",
+  "blackWins": "Siyah galibiyetleri",
+  "draws": "Beraberlikler",
+  "timeoutGames": "Süre Bitti",
+  "manualGames": "Manuel Bitişler",
+  "totalTime": "Toplam Süre",
+  "averageDuration": "Ortalama Süre",
+  "winRate": "Kazanma Oranı",
+  "recentGames": "Son Oyunlar",
+  "noGamesFound": "Oyun bulunamadı",
+  "clearStatistics": "İstatistikleri Temizle",
+  "clearStatisticsConfirm": "Tüm istatistikleri silmek istediğinize emin misiniz? Bu işlem geri alınamaz.",
+  "deleteStatistics": "Sil",
+  "statisticsCleared": "İstatistikler başarıyla temizlendi",
+  "errorLoadingStatistics": "İstatistikler yüklenirken hata",
+  "errorLoadingStatisticsWithMessage": "İstatistikler yüklenirken hata: {message}",
+  "@errorLoadingStatisticsWithMessage": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "today": "Bugün",
+  "yesterday": "Dün",
+  "daysAgo": "{count, plural, =0{bugün} =1{# gün önce} other{# gün önce}}",
+  "@daysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "draw": "Beraberlik",
+  "whiteWinsTimeout": "Beyaz kazandı (süre bitti)",
+  "blackWinsTimeout": "Siyah kazandı (süre bitti)",
+  "whiteWinsManual": "Beyaz kazandı",
+  "blackWinsManual": "Siyah kazandı",
+  "viewStatistics": "İstatistikleri Görüntüle",
+  "statisticsSubtitle": "Oyun geçmişi ve detaylı istatistikler",
+  "finishGame": "Oyunu Bitir",
+  "whiteVictory": "Beyaz galibiyeti",
+  "blackVictory": "Siyah galibiyeti",
+  "drawGame": "Beraberlik",
+  "agreementBetweenPlayers": "Karşılıklı anlaşma",
+  "continueGame": "Oyuna Devam Et",
+  "loadingAd": "Reklam yükleniyor...",
+  "adReady": "Reklam hazır!",
+  "debugProMode": "Hata Ayıklama Pro Modu",
+  "debugProModeSubtitle": "Test için Pro’yu etkinleştir",
+  "resumeGame": "Oyunu sürdür",
+  "productNotFound": "Ürün bulunamadı",
+  "purchaseError": "Satın alma hatası",
+  "paypal": "PayPal",
+  "backup": "Yedekleme",
+  "backupSubtitle": "Ayarları ve istatistikleri kaydet",
+  "restore": "Geri Yükle",
+  "restoreSubtitle": "Daha önce kaydedilmiş yedeği yükle",
+  "createBackup": "Yedek Oluştur",
+  "backupCreated": "Yedek başarıyla oluşturuldu",
+  "backupError": "Yedek oluşturma hatası",
+  "restoreBackup": "Yedeği Geri Yükle",
+  "backupRestored": "Yedek başarıyla geri yüklendi",
+  "restoreError": "Geri yükleme hatası",
+  "backupFileInvalid": "Geçersiz yedek dosyası",
+  "backupVersionIncompatible": "Yedek sürümü uyumsuz",
+  "createBackupSubtitle": "Tüm uygulama verilerini kaydet",
+  "restoreBackupSubtitle": "Yedek dosyasından verileri yükle",
+  "backupCreatedMessage": "Yedek oluşturuldu ve İndirilenler klasörüne kaydedildi",
+  "backupRestoreError": "Geri Yükleme Hatası",
+  "exportStatistics": "CSV Dışa Aktar",
+  "exportStatisticsSubtitle": "Oyun verilerini CSV olarak kaydet",
+  "exportCsvShareText": "ChessTime İstatistikleri",
+  "exportCsvShareSubject": "CSV formatında ayrıntılı ChessTime oyun istatistikleri",
+  "exportCsvSuccess": "İstatistikler başarıyla dışa aktarıldı!",
+  "exportCsvNoData": "Dışa aktarılacak istatistik yok veya dışa aktarma hatası.",
+  "exportCsvError": "İstatistik dışa aktarma hatası: {error}",
+  "@exportCsvError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreBackupConfirmMessage": "Bu işlem mevcut tüm verileri değiştirecek. Devam etmek istiyor musunuz?",
+  "csvHeader": "Tarih/Saat,Sonuç Türü,Kazanan,Oyun Süresi,Beyazın Kalan Süresi,Siyahın Kalan Süresi,Beyaz Hamleleri,Siyah Hamleleri,Başlangıç Süresi,Siyah Başlangıç Süresi (Handikap),Ek süre,Zaman Modu",
+  "backupShareTitle": "ChessTime Yedeği",
+  "backupShareSubject": "ChessTime ayarları ve istatistiklerinin yedeği",
+  "backupNoFileSelected": "Dosya seçilmedi",
+  "backupInvalidFile": "Geçersiz dosya",
+  "backupValidationError": "Bilinmeyen doğrulama hatası",
+  "backupRestoreSuccess": "Yedek başarıyla geri yüklendi",
+  "backupRestoreErrorWithMessage": "Yedek geri yükleme hatası: {error}",
+  "@backupRestoreErrorWithMessage": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "backupVersionNotFound": "Geçersiz yedek dosyası: sürüm bulunamadı",
+  "backupVersionIncompatibleWithDetails": "Yedek sürümü uyumsuz. Beklenen: {expected}, bulunan: {found}",
+  "@backupVersionIncompatibleWithDetails": {
+    "placeholders": {
+      "expected": {
+        "type": "String"
+      },
+      "found": {
+        "type": "String"
+      }
+    }
+  },
+  "backupRequiredFieldMissing": "Geçersiz yedek dosyası: gerekli \"{field}\" alanı bulunamadı",
+  "@backupRequiredFieldMissing": {
+    "placeholders": {
+      "field": {
+        "type": "String"
+      }
+    }
+  },
+  "arbiterMode": "Hakem Modu",
+  "penaltyBonusTime": "Süre Cezası / Bonus",
+  "tapPlayerButtonToApply": "Uygulamak için oyuncu düğmesine dokunun",
+  "penalty": "CEZA",
+  "bonus": "BONUS",
+  "timeMode": "Zaman Modu",
+  "modeFischer": "Fischer",
+  "modeBronstein": "Bronstein",
+  "modeUSDelay": "US Delay",
+  "modeNone": "Yok",
+  "handicap": "Handikap",
+  "differentTimesPerPlayer": "Oyuncu başına farklı süreler",
+  "fieldRequired": "Zorunlu alan",
+  "fideStandardTitle": "Turnuva Standardı",
+  "fideStandardFideMode": "FISCHER FIDE MODU",
+  "fideStandardDescription": "Resmi FIDE kurallarına göre, ilk hamleden önce artış başlangıç süresine eklenir.\n\nUygulamanın nasıl çalışmasını tercih edersiniz?",
+  "fideStandardProfessional": "Profesyonel (FIDE)",
+  "fideStandardProfessionalSub": "Saat artış eklenmiş şekilde başlar",
+  "fideStandardClassic": "Klasik (Orijinal)",
+  "fideStandardClassicSub": "Saat yalnızca temel süreyle başlar",
+  "fideStandardSettingsNote": "Bunu daha sonra Ayarlar’dan değiştirebilirsiniz.",
+  "fideStandardSettingTitle": "FIDE Fischer Standardı",
+  "fideStandardSettingSubtitle": "İlk hamleden önce artış ekle"
+}

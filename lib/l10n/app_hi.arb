@@ -1,0 +1,312 @@
+{
+  "@@locale": "hi",
+  "appName": "a Chess Time",
+  "close": "बंद करें",
+  "ok": "ठीक है",
+  "cancel": "रद्द करें",
+  "save": "सहेजें",
+  "saveAndClose": "सहेजें और बंद करें",
+  "settings": "सेटिंग्स",
+  "about": "ऐप के बारे में",
+  "resetConfirm": "क्या आप सचमुच खेल रीसेट करना चाहते हैं?",
+  "confirm": "पुष्टि करें",
+  "tapToStart": "शुरू करने के लिए टैप करें",
+  "gameOver": "खेल समाप्त",
+  "victory": "जीत!",
+  "player1": "खिलाड़ी 1",
+  "player2": "खिलाड़ी 2",
+  "winner": "विजेता",
+  "whitePlayer": "सफेद",
+  "blackPlayer": "काला",
+  "turnOf": "की बारी",
+  "won": "जीता!",
+  "play": "शुरू करें",
+  "pause": "रोकें",
+  "reset": "रीसेट",
+  "swapColors": "रंग बदलें",
+  "quickSettings": "त्वरित सेटिंग्स",
+  "options": "विकल्प",
+  "settingsTitle": "सेटिंग्स",
+  "appearance": "रूप-रंग",
+  "language": "भाषा",
+  "gameSettings": "खेल सेटिंग्स",
+  "timeControls": "समय नियंत्रण",
+  "sounds": "ध्वनि",
+  "other": "अन्य",
+  "help": "सहायता",
+  "darkMode": "डार्क मोड",
+  "darkModeSubtitle": "डार्क थीम वाला इंटरफ़ेस",
+  "soundsSubtitle": "खेल के दौरान ध्वनियां",
+  "vibration": "कंपन",
+  "vibrationSubtitle": "चाल बदलने पर कंपन करें",
+  "player1StartsAsWhite": "खिलाड़ी 1 सफेद से शुरू करता है",
+  "initialTime": "प्रारंभिक समय",
+  "increment": "इंक्रीमेंट",
+  "timePreset": "समय प्रीसेट",
+  "timePresets": "समय प्रीसेट्स",
+  "custom": "कस्टम",
+  "menu": "मेन्यू",
+  "immersiveMode": "इमर्सिव मोड",
+  "immersiveModeSubtitle": "फुल स्क्रीन के लिए सिस्टम बार छिपाएँ",
+  "presetTournament": "टूर्नामेंट",
+  "presetBlitz": "ब्लिट्ज",
+  "presetBullet": "बुलेट",
+  "presetRapid": "रैपिड",
+  "presetClassical": "क्लासिकल",
+  "presetLong": "लंबी बाज़ी",
+  "presetBasic": "मूल",
+  "createCustomPreset": "कस्टम प्रीसेट बनाएँ",
+  "editPreset": "प्रीसेट संपादित करें",
+  "presetName": "प्रीसेट नाम",
+  "presetNameHint": "उदाहरण: प्रो ब्लिट्ज",
+  "presetCreated": "प्रीसेट बनाया गया",
+  "presetUpdated": "प्रीसेट अपडेट किया गया",
+  "presetDeleted": "प्रीसेट हटाया गया",
+  "deletePresetConfirm": "प्रीसेट हटाएँ",
+  "create": "बनाएँ",
+  "edit": "संपादित करें",
+  "delete": "हटाएँ",
+  "aboutTitle": "a Chess Time के बारे में",
+  "aboutContactLinks": "संपर्क और लिंक",
+  "contactGitHub": "GitHub",
+  "contactEmail": "ईमेल",
+  "contactWhatsApp": "WhatsApp",
+  "aboutSupportMessage": "इस ऐप के विकास में सहयोग करें!",
+  "aboutSupportWithPix": "PIX से समर्थन करें",
+  "aboutPixCopied": "PIX कुंजी क्लिपबोर्ड में कॉपी हो गई!",
+  "developedBy": "डेवलपर: André Lopes",
+  "resetTooltip": "खेल रीसेट करें",
+  "swapTooltip": "खिलाड़ियों के रंग बदलें",
+  "settingsTooltip": "सेटिंग्स",
+  "aboutTooltip": "ऐप के बारे में",
+  "advancedSettings": "उन्नत सेटिंग्स",
+  "evaluateInPlayStore": "Play Store पर रेटिंग दें",
+  "share": "शेयर करें",
+  "aboutApp": "ऐप के बारे में",
+  "linkCopied": "लिंक क्लिपबोर्ड पर कॉपी हो गया!",
+  "shareMessage": "ChessTime देखें - एक सरल और आधुनिक शतरंज टाइमर!",
+  "minutes": "मिनट",
+  "seconds": "सेकंड",
+  "minutesShort": "मि",
+  "secondsShort": "से",
+  "minutesUnit": "{count} मिनट",
+  "@minutesUnit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "secondsUnit": "{count} सेकंड",
+  "@secondsUnit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playerWon": "जीता!",
+  "moves": "चालें",
+  "movesCount": "{count}",
+  "@movesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "victoryMessage": "{winnerName} जीता!",
+  "@victoryMessage": {
+    "placeholders": {
+      "winnerName": {
+        "type": "String"
+      }
+    }
+  },
+  "fontSizeTitle": "टाइमर का फ़ॉन्ट आकार",
+  "fontSizeSubtitle": "बेहतर दृश्यता के लिए समायोजित करें",
+  "themeTitle": "थीम",
+  "themeSubtitle": "ऐप का रूप चुनें",
+  "themeClassicDark": "क्लासिक डार्क",
+  "themeTraditionalBoard": "पारंपरिक बोर्ड",
+  "themeGreenFocus": "ग्रीन फोकस",
+  "themeTournamentBlue": "टूर्नामेंट ब्लू",
+  "themeRoyalGold": "रॉयल गोल्ड",
+  "themeGrandmasterPurple": "ग्रैंडमास्टर पर्पल",
+  "themeCompetitiveRed": "कंपेटिटिव रेड",
+  "themeDeepOcean": "डीप ओशन",
+  "themeMysticForest": "मिस्टिक फॉरेस्ट",
+  "themeElegantRose": "एलिगेंट रोज़",
+  "themePremiumSilver": "प्रीमियम सिल्वर",
+  "themeAuroraBoreal": "ऑरोरा बोरियल",
+  "themeCustom": "कस्टम",
+  "premiumThemeRequired": "प्रीमियम थीम - अपग्रेड आवश्यक",
+  "unlockPremiumThemes": "प्रीमियम थीम अनलॉक करें",
+  "premiumThemesDescription": "Pro संस्करण के साथ खास थीम अनलॉक करें और विज्ञापन हटाएँ",
+  "proFeature1": "8 खास थीम तक पहुंच",
+  "proFeature2": "उत्पादकता के लिए अनुकूलित थीम",
+  "proFeature3": "विज्ञापन हटाएँ",
+  "proFeature4": "ऐप विकास का समर्थन करें",
+  "proFeature5": "भविष्य के अपडेट शामिल",
+  "buyPro": "Pro लें",
+  "purchaseFor": "{price} में खरीदें",
+  "@purchaseFor": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "processing": "प्रोसेस हो रहा है...",
+  "unavailable": "उपलब्ध नहीं",
+  "restorePurchases": "खरीदारी बहाल करें",
+  "upgradeToProTitle": "Pro पर अपग्रेड करें",
+  "upgradeToProSubtitle": "8 प्रीमियम थीम + बिना विज्ञापनों के",
+  "statistics": "आंकड़े",
+  "statisticsTitle": "आंकड़े",
+  "generalSummary": "समग्र सारांश",
+  "totalGames": "कुल खेल",
+  "whiteWins": "सफेद की जीत",
+  "blackWins": "काले की जीत",
+  "draws": "ड्रॉ",
+  "timeoutGames": "समय समाप्त होने से",
+  "manualGames": "मैन्युअल रूप से समाप्त खेल",
+  "totalTime": "कुल समय",
+  "averageDuration": "औसत अवधि",
+  "winRate": "जीत दर",
+  "recentGames": "हाल के खेल",
+  "noGamesFound": "कोई खेल नहीं मिला",
+  "clearStatistics": "आंकड़े साफ करें",
+  "clearStatisticsConfirm": "क्या आप सभी आंकड़े हटाना चाहते हैं? यह कार्रवाई वापस नहीं की जा सकती।",
+  "deleteStatistics": "हटाएँ",
+  "statisticsCleared": "आंकड़े सफलतापूर्वक साफ कर दिए गए",
+  "errorLoadingStatistics": "आंकड़े लोड करने में त्रुटि",
+  "errorLoadingStatisticsWithMessage": "आंकड़े लोड करने में त्रुटि: {message}",
+  "@errorLoadingStatisticsWithMessage": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "today": "आज",
+  "yesterday": "कल",
+  "daysAgo": "{count, plural, =0{आज} =1{# दिन पहले} other{# दिन पहले}}",
+  "@daysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "draw": "ड्रॉ",
+  "whiteWinsTimeout": "सफेद की जीत (समय समाप्त)",
+  "blackWinsTimeout": "काले की जीत (समय समाप्त)",
+  "whiteWinsManual": "सफेद की जीत",
+  "blackWinsManual": "काले की जीत",
+  "viewStatistics": "आंकड़े देखें",
+  "statisticsSubtitle": "खेलों का इतिहास और विस्तृत आंकड़े",
+  "finishGame": "खेल समाप्त करें",
+  "whiteVictory": "सफेद की जीत",
+  "blackVictory": "काले की जीत",
+  "drawGame": "ड्रॉ",
+  "agreementBetweenPlayers": "खिलाड़ियों की आपसी सहमति",
+  "continueGame": "खेल जारी रखें",
+  "loadingAd": "विज्ञापन लोड हो रहा है...",
+  "adReady": "विज्ञापन तैयार है!",
+  "debugProMode": "डिबग Pro मोड",
+  "debugProModeSubtitle": "परीक्षण के लिए Pro सक्रिय करें",
+  "resumeGame": "खेल फिर शुरू करें",
+  "productNotFound": "उत्पाद नहीं मिला",
+  "purchaseError": "खरीद त्रुटि",
+  "paypal": "PayPal",
+  "backup": "बैकअप",
+  "backupSubtitle": "सेटिंग्स और आंकड़े सहेजें",
+  "restore": "पुनर्स्थापित करें",
+  "restoreSubtitle": "पहले से सहेजा गया बैकअप लोड करें",
+  "createBackup": "बैकअप बनाएँ",
+  "backupCreated": "बैकअप सफलतापूर्वक बना",
+  "backupError": "बैकअप बनाने में त्रुटि",
+  "restoreBackup": "बैकअप पुनर्स्थापित करें",
+  "backupRestored": "बैकअप सफलतापूर्वक पुनर्स्थापित हुआ",
+  "restoreError": "पुनर्स्थापना में त्रुटि",
+  "backupFileInvalid": "अमान्य बैकअप फ़ाइल",
+  "backupVersionIncompatible": "बैकअप संस्करण असंगत",
+  "createBackupSubtitle": "सभी ऐप डेटा सहेजें",
+  "restoreBackupSubtitle": "बैकअप फ़ाइल से डेटा लोड करें",
+  "backupCreatedMessage": "बैकअप बनाकर Downloads फ़ोल्डर में सहेजा गया है",
+  "backupRestoreError": "पुनर्स्थापना त्रुटि",
+  "exportStatistics": "CSV निर्यात करें",
+  "exportStatisticsSubtitle": "खेल का डेटा CSV में सहेजें",
+  "exportCsvShareText": "ChessTime आंकड़े",
+  "exportCsvShareSubject": "CSV फ़ॉर्मेट में ChessTime के विस्तृत खेल आंकड़े",
+  "exportCsvSuccess": "आंकड़े सफलतापूर्वक निर्यात हुए!",
+  "exportCsvNoData": "निर्यात के लिए कोई आंकड़ा नहीं या निर्यात त्रुटि।",
+  "exportCsvError": "आंकड़े निर्यात करने में त्रुटि: {error}",
+  "@exportCsvError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreBackupConfirmMessage": "यह कार्रवाई वर्तमान सभी डेटा को बदल देगी। क्या आप जारी रखना चाहते हैं?",
+  "csvHeader": "तिथि/समय,परिणाम प्रकार,विजेता,गेम अवधि,सफेद का शेष समय,काले का शेष समय,सफेद की चालें,काले की चालें,प्रारंभिक समय,काले का प्रारंभिक समय (हैंडिकैप),इंक्रीमेंट,समय मोड",
+  "backupShareTitle": "ChessTime बैकअप",
+  "backupShareSubject": "ChessTime सेटिंग्स और आंकड़ों का बैकअप",
+  "backupNoFileSelected": "कोई फ़ाइल चयनित नहीं",
+  "backupInvalidFile": "अमान्य फ़ाइल",
+  "backupValidationError": "अज्ञात सत्यापन त्रुटि",
+  "backupRestoreSuccess": "बैकअप सफलतापूर्वक पुनर्स्थापित हुआ",
+  "backupRestoreErrorWithMessage": "बैकअप पुनर्स्थापित करने में त्रुटि: {error}",
+  "@backupRestoreErrorWithMessage": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "backupVersionNotFound": "अमान्य बैकअप फ़ाइल: संस्करण नहीं मिला",
+  "backupVersionIncompatibleWithDetails": "बैकअप संस्करण असंगत। अपेक्षित: {expected}, मिला: {found}",
+  "@backupVersionIncompatibleWithDetails": {
+    "placeholders": {
+      "expected": {
+        "type": "String"
+      },
+      "found": {
+        "type": "String"
+      }
+    }
+  },
+  "backupRequiredFieldMissing": "अमान्य बैकअप फ़ाइल: आवश्यक फ़ील्ड \"{field}\" नहीं मिला",
+  "@backupRequiredFieldMissing": {
+    "placeholders": {
+      "field": {
+        "type": "String"
+      }
+    }
+  },
+  "arbiterMode": "आर्बिटर मोड",
+  "penaltyBonusTime": "समय दंड / बोनस",
+  "tapPlayerButtonToApply": "लागू करने के लिए खिलाड़ी बटन टैप करें",
+  "penalty": "दंड",
+  "bonus": "बोनस",
+  "timeMode": "समय मोड",
+  "modeFischer": "Fischer",
+  "modeBronstein": "Bronstein",
+  "modeUSDelay": "US Delay",
+  "modeNone": "कोई नहीं",
+  "handicap": "हैंडिकैप",
+  "differentTimesPerPlayer": "प्रत्येक खिलाड़ी के लिए अलग समय",
+  "fieldRequired": "आवश्यक फ़ील्ड",
+  "fideStandardTitle": "टूर्नामेंट मानक",
+  "fideStandardFideMode": "FIDE फिशर मोड",
+  "fideStandardDescription": "आधिकारिक FIDE नियमों के अनुसार, पहली चाल से पहले इंक्रीमेंट शुरुआती समय में जोड़ दिया जाता है।\n\nआप चाहते हैं कि ऐप किस तरह काम करे?",
+  "fideStandardProfessional": "पेशेवर (FIDE)",
+  "fideStandardProfessionalSub": "घड़ी इंक्रीमेंट के साथ शुरू होती है",
+  "fideStandardClassic": "क्लासिक (मूल)",
+  "fideStandardClassicSub": "घड़ी केवल मूल समय से शुरू होती है",
+  "fideStandardSettingsNote": "आप इसे बाद में सेटिंग्स में बदल सकते हैं।",
+  "fideStandardSettingTitle": "FIDE फिशर मानक",
+  "fideStandardSettingSubtitle": "पहली चाल से पहले इंक्रीमेंट जोड़ें"
+}

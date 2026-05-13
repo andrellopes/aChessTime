@@ -245,7 +245,7 @@ class CenterControls extends StatelessWidget {
         return const SizedBox.shrink();
       case GameState.finished:
         final winner = game.player1Time.inMilliseconds <= 0 ? l10n.player2 : l10n.player1;
-        statusText = '$winner ${l10n.playerWon}';
+        statusText = l10n.victoryMessage(winner);
         statusColor = Colors.red;
         break;
     }
