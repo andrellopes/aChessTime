@@ -10,7 +10,7 @@ A simple, beautiful, and efficient chess timer, made in Flutter for Android.
 - Visual warning in critical time
 - Click sound and vibration options
 - Light/dark theme and responsive UI
-- Languages: PT-BR, EN, ES, FR, IT, DE
+- Languages: PT-BR, EN, ES, FR, IT, DE, RU, HI, TR
 - AdMob banner (with test IDs by default)
 - Backup and restoration of preferences, presets, and language
 

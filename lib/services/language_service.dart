@@ -14,6 +14,9 @@ class LanguageService extends ChangeNotifier {
     Locale('de'), // Deutsch
     Locale('fr'), // French
     Locale('it'), // Italiano
+    Locale('ru'), // Русский
+    Locale('hi'), // हिन्दी
+    Locale('tr'), // Türkçe
   ];
 
   static const Map<String, String> languageNames = {
@@ -23,6 +26,9 @@ class LanguageService extends ChangeNotifier {
     'de': 'Deutsch',
     'fr': 'Français',
     'it': 'Italiano',
+    'ru': 'Русский',
+    'hi': 'हिन्दी',
+    'tr': 'Türkçe',
   };
 
   Locale get currentLocale => _currentLocale;
@@ -102,6 +108,12 @@ class LanguageService extends ChangeNotifier {
         return '🇫🇷';
       case 'it':
         return '🇮🇹';
+      case 'ru':
+        return '🇷🇺';
+      case 'hi':
+        return '🇮🇳';
+      case 'tr':
+        return '🇹🇷';
       default:
         return '🌐';
     }

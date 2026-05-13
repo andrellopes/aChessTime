@@ -11,6 +11,9 @@ import 'app_localizations_es.dart';
 import 'app_localizations_fr.dart';
 import 'app_localizations_it.dart';
 import 'app_localizations_pt.dart';
+import 'app_localizations_ru.dart';
+import 'app_localizations_hi.dart';
+import 'app_localizations_tr.dart';
 
 // ignore_for_file: type=lint
 
@@ -104,6 +107,9 @@ abstract class AppLocalizations {
     Locale('de'),
     Locale('fr'),
     Locale('it'),
+    Locale('ru'),
+    Locale('hi'),
+    Locale('tr'),
   ];
 
   /// No description provided for @appName.
@@ -1474,6 +1480,9 @@ class _AppLocalizationsDelegate
     'fr',
     'it',
     'pt',
+    'ru',
+    'hi',
+    'tr',
   ].contains(locale.languageCode);
 
   @override
@@ -1495,6 +1504,12 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsIt();
     case 'pt':
       return AppLocalizationsPt();
+    case 'ru':
+      return AppLocalizationsRu();
+    case 'hi':
+      return AppLocalizationsHi();
+    case 'tr':
+      return AppLocalizationsTr();
   }
 
   throw FlutterError(
