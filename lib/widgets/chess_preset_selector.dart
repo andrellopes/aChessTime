@@ -140,8 +140,8 @@ class _ChessPresetSelectorState extends State<ChessPresetSelector> {
               const Spacer(), // Empurra as informações de tempo para o fundo do card
               Text(
                 preset.player2InitialTime != null
-                  ? '${preset.initialTime.inMinutes}m vs ${preset.player2InitialTime!.inMinutes}m'
-                  : '${preset.initialTime.inMinutes} min',
+                  ? '${preset.initialTime.inMinutes}${l10n.minutesShort} vs ${preset.player2InitialTime!.inMinutes}${l10n.minutesShort}'
+                  : '${preset.initialTime.inMinutes} ${l10n.minutesShort}',
                 style: TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeight.w500,
@@ -154,7 +154,7 @@ class _ChessPresetSelectorState extends State<ChessPresetSelector> {
                 children: [
                   if (preset.increment.inSeconds > 0)
                     Text(
-                      '+${preset.increment.inSeconds}s',
+                      '+${preset.increment.inSeconds}${l10n.secondsShort}',
                       style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
@@ -163,9 +163,7 @@ class _ChessPresetSelectorState extends State<ChessPresetSelector> {
                     ),
                   if (preset.timeMode != TimeMode.none)
                     Text(
-                      preset.timeMode == TimeMode.usDelay 
-                        ? 'US DELAY' 
-                        : preset.timeMode.toString().split('.').last.toUpperCase(),
+                      _getTimeModeLabel(preset.timeMode, l10n),
                       style: TextStyle(
                         fontSize: 8,
                         color: Theme.of(context).colorScheme.primary.withOpacity(0.7),
@@ -218,10 +216,25 @@ class _ChessPresetSelectorState extends State<ChessPresetSelector> {
         return l10n.presetRapid;
       case 'presetClassical':
         return l10n.presetClassical;
+      case 'presetLong':
+        return l10n.presetLong;
       case 'presetBasic':
         return l10n.presetBasic;
       default:
         return preset.customName ?? preset.nameKey;
+    }
+  }
+
+  String _getTimeModeLabel(TimeMode timeMode, AppLocalizations l10n) {
+    switch (timeMode) {
+      case TimeMode.fischer:
+        return l10n.modeFischer;
+      case TimeMode.usDelay:
+        return l10n.modeUSDelay;
+      case TimeMode.bronstein:
+        return l10n.modeBronstein;
+      case TimeMode.none:
+        return l10n.modeNone;
     }
   }
 
@@ -301,7 +314,7 @@ class _ChessPresetSelectorState extends State<ChessPresetSelector> {
                       style: TextStyle(color: themeManager.textPrimaryColor),
                       decoration: InputDecoration(
                         labelText: l10n.presetName,
-                        hintText: 'Ex: Blitz Profissional',
+                        hintText: l10n.presetNameHint,
                         errorText: nameController.text.trim().isEmpty ? l10n.fieldRequired : null,
                         labelStyle: TextStyle(color: themeManager.textSecondaryColor),
                         prefixIcon: Icon(Icons.label_outline, color: themeManager.primaryColor),

@@ -4,6 +4,7 @@ import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
 
+/// The translations for Hindi (`hi`).
 class AppLocalizationsHi extends AppLocalizations {
   AppLocalizationsHi([String locale = 'hi']) : super(locale);
 
@@ -29,10 +30,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get settings => 'सेटिंग्स';
 
   @override
-  String get about => 'जानकारी';
+  String get about => 'ऐप के बारे में';
 
   @override
-  String get resetConfirm => 'क्या आप सचमुच गेम रीसेट करना चाहते हैं?';
+  String get resetConfirm => 'क्या आप सचमुच खेल रीसेट करना चाहते हैं?';
 
   @override
   String get confirm => 'पुष्टि करें';
@@ -89,13 +90,13 @@ class AppLocalizationsHi extends AppLocalizations {
   String get settingsTitle => 'सेटिंग्स';
 
   @override
-  String get appearance => 'दिखावट';
+  String get appearance => 'रूप-रंग';
 
   @override
   String get language => 'भाषा';
 
   @override
-  String get gameSettings => 'गेम सेटिंग्स';
+  String get gameSettings => 'खेल सेटिंग्स';
 
   @override
   String get timeControls => 'समय नियंत्रण';
@@ -113,16 +114,16 @@ class AppLocalizationsHi extends AppLocalizations {
   String get darkMode => 'डार्क मोड';
 
   @override
-  String get darkModeSubtitle => 'डार्क थीम इंटरफ़ेस';
+  String get darkModeSubtitle => 'डार्क थीम वाला इंटरफ़ेस';
 
   @override
-  String get soundsSubtitle => 'गेम के दौरान ध्वनि';
+  String get soundsSubtitle => 'खेल के दौरान ध्वनियां';
 
   @override
-  String get vibration => 'वाइब्रेशन';
+  String get vibration => 'कंपन';
 
   @override
-  String get vibrationSubtitle => 'टर्न बदलते समय वाइब्रेट करें';
+  String get vibrationSubtitle => 'चाल बदलने पर कंपन करें';
 
   @override
   String get player1StartsAsWhite => 'खिलाड़ी 1 सफेद से शुरू करता है';
@@ -137,7 +138,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get timePreset => 'समय प्रीसेट';
 
   @override
-  String get timePresets => 'समय प्रीसेट';
+  String get timePresets => 'समय प्रीसेट्स';
 
   @override
   String get custom => 'कस्टम';
@@ -167,13 +168,13 @@ class AppLocalizationsHi extends AppLocalizations {
   String get presetClassical => 'क्लासिकल';
 
   @override
-  String get presetLong => 'लंबा खेल';
+  String get presetLong => 'लंबी बाज़ी';
 
   @override
-  String get presetBasic => 'बेसिक';
+  String get presetBasic => 'मूल';
 
   @override
-  String get createCustomPreset => 'कस्टम प्रीसेट बनाएं';
+  String get createCustomPreset => 'कस्टम प्रीसेट बनाएँ';
 
   @override
   String get editPreset => 'प्रीसेट संपादित करें';
@@ -182,25 +183,28 @@ class AppLocalizationsHi extends AppLocalizations {
   String get presetName => 'प्रीसेट नाम';
 
   @override
-  String get presetCreated => 'प्रीसेट बन गया';
+  String get presetNameHint => 'उदाहरण: प्रो ब्लिट्ज';
 
   @override
-  String get presetUpdated => 'प्रीसेट अपडेट हुआ';
+  String get presetCreated => 'प्रीसेट बनाया गया';
+
+  @override
+  String get presetUpdated => 'प्रीसेट अपडेट किया गया';
 
   @override
   String get presetDeleted => 'प्रीसेट हटाया गया';
 
   @override
-  String get deletePresetConfirm => 'प्रीसेट हटाएं';
+  String get deletePresetConfirm => 'प्रीसेट हटाएँ';
 
   @override
-  String get create => 'बनाएं';
+  String get create => 'बनाएँ';
 
   @override
   String get edit => 'संपादित करें';
 
   @override
-  String get delete => 'हटाएं';
+  String get delete => 'हटाएँ';
 
   @override
   String get aboutTitle => 'a Chess Time के बारे में';
@@ -209,7 +213,16 @@ class AppLocalizationsHi extends AppLocalizations {
   String get aboutContactLinks => 'संपर्क और लिंक';
 
   @override
-  String get aboutSupportMessage => 'इस ऐप के विकास का समर्थन करें!';
+  String get contactGitHub => 'GitHub';
+
+  @override
+  String get contactEmail => 'ईमेल';
+
+  @override
+  String get contactWhatsApp => 'WhatsApp';
+
+  @override
+  String get aboutSupportMessage => 'इस ऐप के विकास में सहयोग करें!';
 
   @override
   String get aboutSupportWithPix => 'PIX से समर्थन करें';
@@ -218,10 +231,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get aboutPixCopied => 'PIX कुंजी क्लिपबोर्ड में कॉपी हो गई!';
 
   @override
-  String get developedBy => 'विकसितकर्ता: André Lopes';
+  String get developedBy => 'डेवलपर: André Lopes';
 
   @override
-  String get resetTooltip => 'गेम रीसेट करें';
+  String get resetTooltip => 'खेल रीसेट करें';
 
   @override
   String get swapTooltip => 'खिलाड़ियों के रंग बदलें';
@@ -230,13 +243,13 @@ class AppLocalizationsHi extends AppLocalizations {
   String get settingsTooltip => 'सेटिंग्स';
 
   @override
-  String get aboutTooltip => 'जानकारी';
+  String get aboutTooltip => 'ऐप के बारे में';
 
   @override
   String get advancedSettings => 'उन्नत सेटिंग्स';
 
   @override
-  String get evaluateInPlayStore => 'Play Store में रेट करें';
+  String get evaluateInPlayStore => 'Play Store पर रेटिंग दें';
 
   @override
   String get share => 'शेयर करें';
@@ -245,10 +258,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get aboutApp => 'ऐप के बारे में';
 
   @override
-  String get linkCopied => 'लिंक क्लिपबोर्ड में कॉपी हुआ!';
+  String get linkCopied => 'लिंक क्लिपबोर्ड पर कॉपी हो गया!';
 
   @override
-  String get shareMessage => 'ChessTime देखें - सरल और आधुनिक शतरंज टाइमर!';
+  String get shareMessage => 'ChessTime देखें - एक सरल और आधुनिक शतरंज टाइमर!';
 
   @override
   String get minutes => 'मिनट';
@@ -263,10 +276,14 @@ class AppLocalizationsHi extends AppLocalizations {
   String get secondsShort => 'से';
 
   @override
-  String minutesUnit(int count) => '${count} मिनट';
+  String minutesUnit(int count) {
+    return '$count मिनट';
+  }
 
   @override
-  String secondsUnit(int count) => '${count} सेकंड';
+  String secondsUnit(int count) {
+    return '$count सेकंड';
+  }
 
   @override
   String get playerWon => 'जीता!';
@@ -275,10 +292,14 @@ class AppLocalizationsHi extends AppLocalizations {
   String get moves => 'चालें';
 
   @override
-  String movesCount(int count) => '${count}';
+  String movesCount(int count) {
+    return '$count';
+  }
 
   @override
-  String victoryMessage(String winnerName) => '${winnerName} जीता!';
+  String victoryMessage(String winnerName) {
+    return '$winnerName जीता!';
+  }
 
   @override
   String get fontSizeTitle => 'टाइमर का फ़ॉन्ट आकार';
@@ -311,7 +332,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get themeGrandmasterPurple => 'ग्रैंडमास्टर पर्पल';
 
   @override
-  String get themeCompetitiveRed => 'कम्पेटिटिव रेड';
+  String get themeCompetitiveRed => 'कंपेटिटिव रेड';
 
   @override
   String get themeDeepOcean => 'डीप ओशन';
@@ -338,10 +359,11 @@ class AppLocalizationsHi extends AppLocalizations {
   String get unlockPremiumThemes => 'प्रीमियम थीम अनलॉक करें';
 
   @override
-  String get premiumThemesDescription => 'Pro संस्करण के साथ विशेष थीम अनलॉक करें और विज्ञापन हटाएँ';
+  String get premiumThemesDescription =>
+      'Pro संस्करण के साथ खास थीम अनलॉक करें और विज्ञापन हटाएँ';
 
   @override
-  String get proFeature1 => '8 विशेष थीम तक पहुंच';
+  String get proFeature1 => '8 खास थीम तक पहुंच';
 
   @override
   String get proFeature2 => 'उत्पादकता के लिए अनुकूलित थीम';
@@ -356,10 +378,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get proFeature5 => 'भविष्य के अपडेट शामिल';
 
   @override
-  String get buyPro => 'Pro खरीदें';
+  String get buyPro => 'Pro लें';
 
   @override
-  String purchaseFor(String price) => '${price} में खरीदें';
+  String purchaseFor(String price) {
+    return '$price में खरीदें';
+  }
 
   @override
   String get processing => 'प्रोसेस हो रहा है...';
@@ -368,13 +392,13 @@ class AppLocalizationsHi extends AppLocalizations {
   String get unavailable => 'उपलब्ध नहीं';
 
   @override
-  String get restorePurchases => 'खरीदारी पुनर्स्थापित करें';
+  String get restorePurchases => 'खरीदारी बहाल करें';
 
   @override
-  String get upgradeToProTitle => 'Pro में अपग्रेड करें';
+  String get upgradeToProTitle => 'Pro पर अपग्रेड करें';
 
   @override
-  String get upgradeToProSubtitle => '8 प्रीमियम थीम + बिना विज्ञापन';
+  String get upgradeToProSubtitle => '8 प्रीमियम थीम + बिना विज्ञापनों के';
 
   @override
   String get statistics => 'आंकड़े';
@@ -383,10 +407,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get statisticsTitle => 'आंकड़े';
 
   @override
-  String get generalSummary => 'सामान्य सारांश';
+  String get generalSummary => 'समग्र सारांश';
 
   @override
-  String get totalGames => 'कुल गेम';
+  String get totalGames => 'कुल खेल';
 
   @override
   String get whiteWins => 'सफेद की जीत';
@@ -398,10 +422,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get draws => 'ड्रॉ';
 
   @override
-  String get timeoutGames => 'समय समाप्ति से';
+  String get timeoutGames => 'समय समाप्त होने से';
 
   @override
-  String get manualGames => 'मैनुअल समाप्ति';
+  String get manualGames => 'मैन्युअल रूप से समाप्त खेल';
 
   @override
   String get totalTime => 'कुल समय';
@@ -413,28 +437,31 @@ class AppLocalizationsHi extends AppLocalizations {
   String get winRate => 'जीत दर';
 
   @override
-  String get recentGames => 'हाल के गेम';
+  String get recentGames => 'हाल के खेल';
 
   @override
-  String get noGamesFound => 'कोई गेम नहीं मिला';
+  String get noGamesFound => 'कोई खेल नहीं मिला';
 
   @override
   String get clearStatistics => 'आंकड़े साफ करें';
 
   @override
-  String get clearStatisticsConfirm => 'क्या आप सभी आंकड़े हटाना चाहते हैं? यह क्रिया वापस नहीं होगी।';
+  String get clearStatisticsConfirm =>
+      'क्या आप सभी आंकड़े हटाना चाहते हैं? यह कार्रवाई वापस नहीं की जा सकती।';
 
   @override
-  String get deleteStatistics => 'हटाएं';
+  String get deleteStatistics => 'हटाएँ';
 
   @override
-  String get statisticsCleared => 'आंकड़े सफलतापूर्वक साफ हुए';
+  String get statisticsCleared => 'आंकड़े सफलतापूर्वक साफ कर दिए गए';
 
   @override
   String get errorLoadingStatistics => 'आंकड़े लोड करने में त्रुटि';
 
   @override
-  String errorLoadingStatisticsWithMessage(String message) => 'आंकड़े लोड करने में त्रुटि: ${message}';
+  String errorLoadingStatisticsWithMessage(String message) {
+    return 'आंकड़े लोड करने में त्रुटि: $message';
+  }
 
   @override
   String get today => 'आज';
@@ -443,31 +470,40 @@ class AppLocalizationsHi extends AppLocalizations {
   String get yesterday => 'कल';
 
   @override
-  String get daysAgo => 'दिन पहले';
+  String daysAgo(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '# दिन पहले',
+      one: '# दिन पहले',
+      zero: 'आज',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get draw => 'ड्रॉ';
 
   @override
-  String get whiteWinsTimeout => 'सफेद जीता (समय समाप्त)';
+  String get whiteWinsTimeout => 'सफेद की जीत (समय समाप्त)';
 
   @override
-  String get blackWinsTimeout => 'काला जीता (समय समाप्त)';
+  String get blackWinsTimeout => 'काले की जीत (समय समाप्त)';
 
   @override
-  String get whiteWinsManual => 'सफेद जीता';
+  String get whiteWinsManual => 'सफेद की जीत';
 
   @override
-  String get blackWinsManual => 'काला जीता';
+  String get blackWinsManual => 'काले की जीत';
 
   @override
   String get viewStatistics => 'आंकड़े देखें';
 
   @override
-  String get statisticsSubtitle => 'गेम इतिहास और विस्तृत आंकड़े';
+  String get statisticsSubtitle => 'खेलों का इतिहास और विस्तृत आंकड़े';
 
   @override
-  String get finishGame => 'गेम समाप्त करें';
+  String get finishGame => 'खेल समाप्त करें';
 
   @override
   String get whiteVictory => 'सफेद की जीत';
@@ -479,10 +515,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get drawGame => 'ड्रॉ';
 
   @override
-  String get agreementBetweenPlayers => 'खिलाड़ियों की सहमति';
+  String get agreementBetweenPlayers => 'खिलाड़ियों की आपसी सहमति';
 
   @override
-  String get continueGame => 'गेम जारी रखें';
+  String get continueGame => 'खेल जारी रखें';
 
   @override
   String get loadingAd => 'विज्ञापन लोड हो रहा है...';
@@ -494,10 +530,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get debugProMode => 'डिबग Pro मोड';
 
   @override
-  String get debugProModeSubtitle => 'टेस्ट के लिए Pro सक्रिय करें';
+  String get debugProModeSubtitle => 'परीक्षण के लिए Pro सक्रिय करें';
 
   @override
-  String get resumeGame => 'गेम फिर शुरू करें';
+  String get resumeGame => 'खेल फिर शुरू करें';
 
   @override
   String get productNotFound => 'उत्पाद नहीं मिला';
@@ -518,10 +554,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get restore => 'पुनर्स्थापित करें';
 
   @override
-  String get restoreSubtitle => 'पहले सहेजा गया बैकअप लोड करें';
+  String get restoreSubtitle => 'पहले से सहेजा गया बैकअप लोड करें';
 
   @override
-  String get createBackup => 'बैकअप बनाएं';
+  String get createBackup => 'बैकअप बनाएँ';
 
   @override
   String get backupCreated => 'बैकअप सफलतापूर्वक बना';
@@ -551,7 +587,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get restoreBackupSubtitle => 'बैकअप फ़ाइल से डेटा लोड करें';
 
   @override
-  String get backupCreatedMessage => 'बैकअप बनाकर Downloads फ़ोल्डर में सहेजा गया';
+  String get backupCreatedMessage =>
+      'बैकअप बनाकर Downloads फ़ोल्डर में सहेजा गया है';
 
   @override
   String get backupRestoreError => 'पुनर्स्थापना त्रुटि';
@@ -560,28 +597,34 @@ class AppLocalizationsHi extends AppLocalizations {
   String get exportStatistics => 'CSV निर्यात करें';
 
   @override
-  String get exportStatisticsSubtitle => 'गेम डेटा CSV में सहेजें';
+  String get exportStatisticsSubtitle => 'खेल का डेटा CSV में सहेजें';
 
   @override
   String get exportCsvShareText => 'ChessTime आंकड़े';
 
   @override
-  String get exportCsvShareSubject => 'CSV फ़ॉर्मेट में ChessTime के विस्तृत गेम आंकड़े';
+  String get exportCsvShareSubject =>
+      'CSV फ़ॉर्मेट में ChessTime के विस्तृत खेल आंकड़े';
 
   @override
   String get exportCsvSuccess => 'आंकड़े सफलतापूर्वक निर्यात हुए!';
 
   @override
-  String get exportCsvNoData => 'निर्यात के लिए कोई आंकड़ा नहीं या निर्यात त्रुटि।';
+  String get exportCsvNoData =>
+      'निर्यात के लिए कोई आंकड़ा नहीं या निर्यात त्रुटि।';
 
   @override
-  String exportCsvError(String error) => 'आंकड़े निर्यात करने में त्रुटि: ${error}';
+  String exportCsvError(String error) {
+    return 'आंकड़े निर्यात करने में त्रुटि: $error';
+  }
 
   @override
-  String get restoreBackupConfirmMessage => 'यह क्रिया वर्तमान सभी डेटा बदल देगी। क्या आप जारी रखना चाहते हैं?';
+  String get restoreBackupConfirmMessage =>
+      'यह कार्रवाई वर्तमान सभी डेटा को बदल देगी। क्या आप जारी रखना चाहते हैं?';
 
   @override
-  String get csvHeader => 'Date/Time,Result Type,Winner,Game Duration,White Time Remaining,Black Time Remaining,White Moves,Black Moves,Initial Time,Initial Time Black (Handicap),Increment,Time Mode';
+  String get csvHeader =>
+      'तिथि/समय,परिणाम प्रकार,विजेता,गेम अवधि,सफेद का शेष समय,काले का शेष समय,सफेद की चालें,काले की चालें,प्रारंभिक समय,काले का प्रारंभिक समय (हैंडिकैप),इंक्रीमेंट,समय मोड';
 
   @override
   String get backupShareTitle => 'ChessTime बैकअप';
@@ -602,16 +645,22 @@ class AppLocalizationsHi extends AppLocalizations {
   String get backupRestoreSuccess => 'बैकअप सफलतापूर्वक पुनर्स्थापित हुआ';
 
   @override
-  String backupRestoreErrorWithMessage(String error) => 'बैकअप पुनर्स्थापित करने में त्रुटि: ${error}';
+  String backupRestoreErrorWithMessage(String error) {
+    return 'बैकअप पुनर्स्थापित करने में त्रुटि: $error';
+  }
 
   @override
   String get backupVersionNotFound => 'अमान्य बैकअप फ़ाइल: संस्करण नहीं मिला';
 
   @override
-  String backupVersionIncompatibleWithDetails(String expected, String found) => 'बैकअप संस्करण असंगत। अपेक्षित: ${expected}, मिला: ${found}';
+  String backupVersionIncompatibleWithDetails(String expected, String found) {
+    return 'बैकअप संस्करण असंगत। अपेक्षित: $expected, मिला: $found';
+  }
 
   @override
-  String backupRequiredFieldMissing(String field) => 'अमान्य बैकअप फ़ाइल: आवश्यक फ़ील्ड "${field}" नहीं मिला';
+  String backupRequiredFieldMissing(String field) {
+    return 'अमान्य बैकअप फ़ाइल: आवश्यक फ़ील्ड \"$field\" नहीं मिला';
+  }
 
   @override
   String get arbiterMode => 'आर्बिटर मोड';
@@ -656,16 +705,18 @@ class AppLocalizationsHi extends AppLocalizations {
   String get fideStandardTitle => 'टूर्नामेंट मानक';
 
   @override
-  String get fideStandardFideMode => 'फिशर FIDE मोड';
+  String get fideStandardFideMode => 'FIDE फिशर मोड';
 
   @override
-  String get fideStandardDescription => 'आधिकारिक FIDE नियमों के अनुसार, पहली चाल से पहले इंक्रीमेंट प्रारंभिक समय में जोड़ दिया जाता है.\n\nआप ऐप को कैसे काम करते देखना पसंद करेंगे?';
+  String get fideStandardDescription =>
+      'आधिकारिक FIDE नियमों के अनुसार, पहली चाल से पहले इंक्रीमेंट शुरुआती समय में जोड़ दिया जाता है।\n\nआप चाहते हैं कि ऐप किस तरह काम करे?';
 
   @override
   String get fideStandardProfessional => 'पेशेवर (FIDE)';
 
   @override
-  String get fideStandardProfessionalSub => 'घड़ी इंक्रीमेंट जोड़कर शुरू होती है';
+  String get fideStandardProfessionalSub =>
+      'घड़ी इंक्रीमेंट के साथ शुरू होती है';
 
   @override
   String get fideStandardClassic => 'क्लासिक (मूल)';
@@ -674,12 +725,13 @@ class AppLocalizationsHi extends AppLocalizations {
   String get fideStandardClassicSub => 'घड़ी केवल मूल समय से शुरू होती है';
 
   @override
-  String get fideStandardSettingsNote => 'आप इसे बाद में सेटिंग्स में बदल सकते हैं।';
+  String get fideStandardSettingsNote =>
+      'आप इसे बाद में सेटिंग्स में बदल सकते हैं।';
 
   @override
   String get fideStandardSettingTitle => 'FIDE फिशर मानक';
 
   @override
-  String get fideStandardSettingSubtitle => 'पहली चाल से पहले इंक्रीमेंट जोड़ें';
-
+  String get fideStandardSettingSubtitle =>
+      'पहली चाल से पहले इंक्रीमेंट जोड़ें';
 }

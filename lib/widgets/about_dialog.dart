@@ -58,11 +58,11 @@ void showAppAboutDialog(BuildContext context) {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  buildContactButton(Icons.code, 'GitHub',
+                  buildContactButton(Icons.code, l10n.contactGitHub,
                     () => _launchURL('https://github.com/allc-dev/aChessTime')),
-                  buildContactButton(Icons.email_outlined, 'Email',
+                  buildContactButton(Icons.email_outlined, l10n.contactEmail,
                       () => _launchURL('mailto:allc.dev@outlook.com')),
-                  buildContactButton(Icons.chat_bubble_outline, 'WhatsApp',
+                  buildContactButton(Icons.chat_bubble_outline, l10n.contactWhatsApp,
                       () => _launchURL('https://wa.me/5512988543055')),
                 ],
               ),

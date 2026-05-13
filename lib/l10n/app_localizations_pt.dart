@@ -39,7 +39,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get confirm => 'Confirmar';
 
   @override
-  String get tapToStart => 'Toque para Começar';
+  String get tapToStart => 'Toque para começar';
 
   @override
   String get gameOver => 'Fim do Jogo';
@@ -126,7 +126,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get vibrationSubtitle => 'Vibrar ao trocar o turno';
 
   @override
-  String get player1StartsAsWhite => 'Jogador 1 começa como brancas';
+  String get player1StartsAsWhite => 'Jogador 1 começa com as brancas';
 
   @override
   String get initialTime => 'Tempo Inicial';
@@ -184,6 +184,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get presetName => 'Nome do Preset';
 
   @override
+  String get presetNameHint => 'Ex.: Blitz Pro';
+
+  @override
   String get presetCreated => 'Preset criado';
 
   @override
@@ -209,6 +212,15 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get aboutContactLinks => 'Contato e Links';
+
+  @override
+  String get contactGitHub => 'GitHub';
+
+  @override
+  String get contactEmail => 'E-mail';
+
+  @override
+  String get contactWhatsApp => 'WhatsApp';
 
   @override
   String get aboutSupportMessage => 'Apoie o desenvolvimento deste app!';
@@ -416,7 +428,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get timeoutGames => 'Por Timeout';
 
   @override
-  String get manualGames => 'Finalizados Manual.';
+  String get manualGames => 'Finalizações manuais';
 
   @override
   String get totalTime => 'Tempo Total';
@@ -461,7 +473,16 @@ class AppLocalizationsPt extends AppLocalizations {
   String get yesterday => 'Ontem';
 
   @override
-  String get daysAgo => 'dias atrás';
+  String daysAgo(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'há # dias',
+      one: 'há # dia',
+      zero: 'hoje',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get draw => 'Empate';

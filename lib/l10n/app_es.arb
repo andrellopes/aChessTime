@@ -10,7 +10,7 @@
   "about": "Acerca de",
   "resetConfirm": "¿Realmente desea reiniciar la partida?",
   "confirm": "Confirmar",
-  "tapToStart": "Toca para Empezar",
+  "tapToStart": "Toca para empezar",
   "gameOver": "Fin del Juego",
   "victory": "¡Victoria!",
   "player1": "Jugador 1",
@@ -39,7 +39,7 @@
   "soundsSubtitle": "Sonidos durante el juego",
   "vibration": "Vibración",
   "vibrationSubtitle": "Vibrar al cambiar el turno",
-  "player1StartsAsWhite": "Jugador 1 comienza como blancas",
+  "player1StartsAsWhite": "Jugador 1 comienza con blancas",
   "initialTime": "Tiempo Inicial",
   "increment": "Incremento",
   "timePreset": "Preajuste de Tiempo",
@@ -58,6 +58,7 @@
   "createCustomPreset": "Crear Preajuste Personalizado",
   "editPreset": "Editar Preajuste",
   "presetName": "Nombre del Preajuste",
+  "presetNameHint": "Ej.: Blitz Pro",
   "presetCreated": "Preajuste creado",
   "presetUpdated": "Preajuste actualizado",
   "presetDeleted": "Preajuste eliminado",
@@ -67,6 +68,9 @@
   "delete": "Eliminar",
   "aboutTitle": "Acerca de a Chess Time",
   "aboutContactLinks": "Contacto y Enlaces",
+  "contactGitHub": "GitHub",
+  "contactEmail": "Correo",
+  "contactWhatsApp": "WhatsApp",
   "aboutSupportMessage": "¡Apoya el desarrollo de esta app!",
   "aboutSupportWithPix": "Apoyar con PIX",
   "aboutPixCopied": "¡Clave PIX copiada al portapapeles!",
@@ -78,7 +82,7 @@
   "advancedSettings": "Configuración Avanzada",
   "evaluateInPlayStore": "Calificar en Play Store",
   "share": "Compartir",
-  "aboutApp": "Acerca de la App",
+  "aboutApp": "Acerca de la app",
   "linkCopied": "¡Enlace copiado al portapapeles!",
   "shareMessage": "¡Mira ChessTime - un temporizador de ajedrez simple y moderno!",
   "minutes": "Minutos",
@@ -101,7 +105,7 @@
       }
     }
   },
-  "playerWon": "¡ganó!",
+  "playerWon": "ganó!",
   "moves": "Jugadas",
   "movesCount": "{count}",
   "@movesCount": {
@@ -111,7 +115,7 @@
       }
     }
   },
-  "victoryMessage": "{winnerName} ¡ganó!",
+  "victoryMessage": "{winnerName} ganó!",
   "@victoryMessage": {
     "placeholders": {
       "winnerName": {
@@ -128,7 +132,7 @@
   "themeGreenFocus": "Verde Concentración",
   "themeTournamentBlue": "Azul Torneo",
   "themeRoyalGold": "Oro Real",
-  "themeGrandmasterPurple": "Púrpura Grandmaster",
+  "themeGrandmasterPurple": "Púrpura Gran Maestro",
   "themeCompetitiveRed": "Rojo Competitivo",
   "themeDeepOcean": "Océano Profundo",
   "themeMysticForest": "Bosque Místico",
@@ -166,7 +170,7 @@
   "blackWins": "Victorias Negras",
   "draws": "Empates",
   "timeoutGames": "Por Tiempo",
-  "manualGames": "Finales Manuales",
+  "manualGames": "Finalizaciones manuales",
   "totalTime": "Tiempo Total",
   "averageDuration": "Duración Promedio",
   "winRate": "Tasa de Victorias",
@@ -187,7 +191,14 @@
   },
   "today": "Hoy",
   "yesterday": "Ayer",
-  "daysAgo": "días atrás",
+  "daysAgo": "{count, plural, =0{hoy} =1{hace # día} other{hace # días}}",
+  "@daysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "draw": "Empate",
   "whiteWinsTimeout": "Blancas ganan (tiempo)",
   "blackWinsTimeout": "Negras ganan (tiempo)",

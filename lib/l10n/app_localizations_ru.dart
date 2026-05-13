@@ -4,6 +4,7 @@ import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
 
+/// The translations for Russian (`ru`).
 class AppLocalizationsRu extends AppLocalizations {
   AppLocalizationsRu([String locale = 'ru']) : super(locale);
 
@@ -32,16 +33,16 @@ class AppLocalizationsRu extends AppLocalizations {
   String get about => 'О приложении';
 
   @override
-  String get resetConfirm => 'Вы действительно хотите сбросить игру?';
+  String get resetConfirm => 'Вы действительно хотите сбросить партию?';
 
   @override
   String get confirm => 'Подтвердить';
 
   @override
-  String get tapToStart => 'Нажмите для старта';
+  String get tapToStart => 'Нажмите, чтобы начать';
 
   @override
-  String get gameOver => 'Игра окончена';
+  String get gameOver => 'Партия окончена';
 
   @override
   String get victory => 'Победа!';
@@ -68,7 +69,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get won => 'победил!';
 
   @override
-  String get play => 'Старт';
+  String get play => 'Играть';
 
   @override
   String get pause => 'Пауза';
@@ -95,7 +96,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get language => 'Язык';
 
   @override
-  String get gameSettings => 'Настройки игры';
+  String get gameSettings => 'Настройки партии';
 
   @override
   String get timeControls => 'Контроль времени';
@@ -131,7 +132,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get initialTime => 'Начальное время';
 
   @override
-  String get increment => 'Добавление';
+  String get increment => 'Инкремент';
 
   @override
   String get timePreset => 'Пресет времени';
@@ -149,7 +150,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get immersiveMode => 'Полноэкранный режим';
 
   @override
-  String get immersiveModeSubtitle => 'Скрыть системные панели для полного экрана';
+  String get immersiveModeSubtitle =>
+      'Скрыть системные панели для полного экрана';
 
   @override
   String get presetTournament => 'Турнир';
@@ -167,7 +169,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get presetClassical => 'Классика';
 
   @override
-  String get presetLong => 'Долгая игра';
+  String get presetLong => 'Длинная партия';
 
   @override
   String get presetBasic => 'Базовый';
@@ -180,6 +182,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get presetName => 'Название пресета';
+
+  @override
+  String get presetNameHint => 'Например: Pro Blitz';
 
   @override
   String get presetCreated => 'Пресет создан';
@@ -209,6 +214,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get aboutContactLinks => 'Контакты и ссылки';
 
   @override
+  String get contactGitHub => 'GitHub';
+
+  @override
+  String get contactEmail => 'Эл. почта';
+
+  @override
+  String get contactWhatsApp => 'WhatsApp';
+
+  @override
   String get aboutSupportMessage => 'Поддержите развитие приложения!';
 
   @override
@@ -221,7 +235,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get developedBy => 'Разработчик: André Lopes';
 
   @override
-  String get resetTooltip => 'Сбросить игру';
+  String get resetTooltip => 'Сбросить партию';
 
   @override
   String get swapTooltip => 'Поменять цвета игроков';
@@ -248,7 +262,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get linkCopied => 'Ссылка скопирована в буфер!';
 
   @override
-  String get shareMessage => 'Попробуйте ChessTime — простой и современный шахматный таймер!';
+  String get shareMessage =>
+      'Попробуйте ChessTime — простой и современный шахматный таймер!';
 
   @override
   String get minutes => 'Минуты';
@@ -263,10 +278,30 @@ class AppLocalizationsRu extends AppLocalizations {
   String get secondsShort => 'сек';
 
   @override
-  String minutesUnit(int count) => '${count} минут';
+  String minutesUnit(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '# минуты',
+      many: '# минут',
+      few: '# минуты',
+      one: '# минута',
+    );
+    return '$_temp0';
+  }
 
   @override
-  String secondsUnit(int count) => '${count} секунд';
+  String secondsUnit(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '# секунды',
+      many: '# секунд',
+      few: '# секунды',
+      one: '# секунда',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get playerWon => 'победил!';
@@ -275,10 +310,14 @@ class AppLocalizationsRu extends AppLocalizations {
   String get moves => 'Ходы';
 
   @override
-  String movesCount(int count) => '${count}';
+  String movesCount(int count) {
+    return '$count';
+  }
 
   @override
-  String victoryMessage(String winnerName) => '${winnerName} победил!';
+  String victoryMessage(String winnerName) {
+    return '$winnerName победил!';
+  }
 
   @override
   String get fontSizeTitle => 'Размер шрифта таймера';
@@ -293,7 +332,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get themeSubtitle => 'Выберите внешний вид приложения';
 
   @override
-  String get themeClassicDark => 'Классическая темная';
+  String get themeClassicDark => 'Классическая тёмная';
 
   @override
   String get themeTraditionalBoard => 'Традиционная доска';
@@ -308,7 +347,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get themeRoyalGold => 'Королевское золото';
 
   @override
-  String get themeGrandmasterPurple => 'Гроссмейстерский фиолетовый';
+  String get themeGrandmasterPurple => 'Гроссмейстерский пурпурный';
 
   @override
   String get themeCompetitiveRed => 'Соревновательный красный';
@@ -323,7 +362,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get themeElegantRose => 'Элегантная роза';
 
   @override
-  String get themePremiumSilver => 'Премиум серебро';
+  String get themePremiumSilver => 'Премиальное серебро';
 
   @override
   String get themeAuroraBoreal => 'Северное сияние';
@@ -338,7 +377,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get unlockPremiumThemes => 'Открыть премиум-темы';
 
   @override
-  String get premiumThemesDescription => 'Откройте эксклюзивные темы и уберите рекламу с версией Pro';
+  String get premiumThemesDescription =>
+      'Откройте эксклюзивные темы и уберите рекламу с версией Pro';
 
   @override
   String get proFeature1 => 'Доступ к 8 эксклюзивным темам';
@@ -359,7 +399,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get buyPro => 'Купить Pro';
 
   @override
-  String purchaseFor(String price) => 'Купить за ${price}';
+  String purchaseFor(String price) {
+    return 'Купить за $price';
+  }
 
   @override
   String get processing => 'Обработка...';
@@ -371,7 +413,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get restorePurchases => 'Восстановить покупки';
 
   @override
-  String get upgradeToProTitle => 'Обновиться до Pro';
+  String get upgradeToProTitle => 'Перейти на Pro';
 
   @override
   String get upgradeToProSubtitle => '8 премиум-тем + без рекламы';
@@ -386,7 +428,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get generalSummary => 'Общий обзор';
 
   @override
-  String get totalGames => 'Всего игр';
+  String get totalGames => 'Всего партий';
 
   @override
   String get whiteWins => 'Победы белых';
@@ -401,7 +443,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get timeoutGames => 'По времени';
 
   @override
-  String get manualGames => 'Ручные завершения';
+  String get manualGames => 'Партии, завершенные вручную';
 
   @override
   String get totalTime => 'Общее время';
@@ -413,16 +455,17 @@ class AppLocalizationsRu extends AppLocalizations {
   String get winRate => 'Процент побед';
 
   @override
-  String get recentGames => 'Последние игры';
+  String get recentGames => 'Последние партии';
 
   @override
-  String get noGamesFound => 'Игры не найдены';
+  String get noGamesFound => 'Партии не найдены';
 
   @override
   String get clearStatistics => 'Очистить статистику';
 
   @override
-  String get clearStatisticsConfirm => 'Вы уверены, что хотите удалить всю статистику? Это действие нельзя отменить.';
+  String get clearStatisticsConfirm =>
+      'Вы уверены, что хотите удалить всю статистику? Это действие нельзя отменить.';
 
   @override
   String get deleteStatistics => 'Удалить';
@@ -434,7 +477,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get errorLoadingStatistics => 'Ошибка загрузки статистики';
 
   @override
-  String errorLoadingStatisticsWithMessage(String message) => 'Ошибка загрузки статистики: ${message}';
+  String errorLoadingStatisticsWithMessage(String message) {
+    return 'Ошибка загрузки статистики: $message';
+  }
 
   @override
   String get today => 'Сегодня';
@@ -443,7 +488,18 @@ class AppLocalizationsRu extends AppLocalizations {
   String get yesterday => 'Вчера';
 
   @override
-  String get daysAgo => 'дней назад';
+  String daysAgo(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '# дня назад',
+      many: '# дней назад',
+      few: '# дня назад',
+      one: '# день назад',
+      zero: 'сегодня',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get draw => 'Ничья';
@@ -461,13 +517,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get blackWinsManual => 'Черные победили';
 
   @override
-  String get viewStatistics => 'Просмотр статистики';
+  String get viewStatistics => 'Посмотреть статистику';
 
   @override
-  String get statisticsSubtitle => 'История игр и подробная статистика';
+  String get statisticsSubtitle => 'История партий и подробная статистика';
 
   @override
-  String get finishGame => 'Завершить игру';
+  String get finishGame => 'Завершить партию';
 
   @override
   String get whiteVictory => 'Победа белых';
@@ -479,10 +535,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get drawGame => 'Ничья';
 
   @override
-  String get agreementBetweenPlayers => 'Согласие между игроками';
+  String get agreementBetweenPlayers => 'По соглашению сторон';
 
   @override
-  String get continueGame => 'Продолжить игру';
+  String get continueGame => 'Продолжить партию';
 
   @override
   String get loadingAd => 'Загрузка рекламы...';
@@ -494,16 +550,16 @@ class AppLocalizationsRu extends AppLocalizations {
   String get debugProMode => 'Режим отладки Pro';
 
   @override
-  String get debugProModeSubtitle => 'Активировать Pro для тестов';
+  String get debugProModeSubtitle => 'Включить Pro для тестирования';
 
   @override
-  String get resumeGame => 'Продолжить игру';
+  String get resumeGame => 'Продолжить партию';
 
   @override
   String get productNotFound => 'Товар не найден';
 
   @override
-  String get purchaseError => 'Ошибка покупки';
+  String get purchaseError => 'Ошибка при покупке';
 
   @override
   String get paypal => 'PayPal';
@@ -542,16 +598,19 @@ class AppLocalizationsRu extends AppLocalizations {
   String get backupFileInvalid => 'Недопустимый файл резервной копии';
 
   @override
-  String get backupVersionIncompatible => 'Несовместимая версия резервной копии';
+  String get backupVersionIncompatible =>
+      'Несовместимая версия резервной копии';
 
   @override
   String get createBackupSubtitle => 'Сохранить все данные приложения';
 
   @override
-  String get restoreBackupSubtitle => 'Загрузить данные из файла резервной копии';
+  String get restoreBackupSubtitle =>
+      'Загрузить данные из файла резервной копии';
 
   @override
-  String get backupCreatedMessage => 'Резервная копия создана и сохранена в папке Downloads';
+  String get backupCreatedMessage =>
+      'Резервная копия создана и сохранена в папке Downloads';
 
   @override
   String get backupRestoreError => 'Ошибка восстановления';
@@ -560,34 +619,41 @@ class AppLocalizationsRu extends AppLocalizations {
   String get exportStatistics => 'Экспорт CSV';
 
   @override
-  String get exportStatisticsSubtitle => 'Сохранить данные игр в CSV';
+  String get exportStatisticsSubtitle => 'Сохранить данные партий в CSV';
 
   @override
   String get exportCsvShareText => 'Статистика ChessTime';
 
   @override
-  String get exportCsvShareSubject => 'Подробная статистика игр ChessTime в формате CSV';
+  String get exportCsvShareSubject =>
+      'Подробная статистика партий ChessTime в формате CSV';
 
   @override
   String get exportCsvSuccess => 'Статистика успешно экспортирована!';
 
   @override
-  String get exportCsvNoData => 'Нет статистики для экспорта или ошибка экспорта.';
+  String get exportCsvNoData =>
+      'Нет статистики для экспорта или ошибка экспорта.';
 
   @override
-  String exportCsvError(String error) => 'Ошибка экспорта статистики: ${error}';
+  String exportCsvError(String error) {
+    return 'Ошибка экспорта статистики: $error';
+  }
 
   @override
-  String get restoreBackupConfirmMessage => 'Это действие заменит все текущие данные. Продолжить?';
+  String get restoreBackupConfirmMessage =>
+      'Это действие заменит все текущие данные. Продолжить?';
 
   @override
-  String get csvHeader => 'Date/Time,Result Type,Winner,Game Duration,White Time Remaining,Black Time Remaining,White Moves,Black Moves,Initial Time,Initial Time Black (Handicap),Increment,Time Mode';
+  String get csvHeader =>
+      'Дата/время,Тип результата,Победитель,Длительность игры,Оставшееся время белых,Оставшееся время черных,Ходы белых,Ходы черных,Начальное время,Начальное время черных (фора),Инкремент,Режим времени';
 
   @override
   String get backupShareTitle => 'Резервная копия ChessTime';
 
   @override
-  String get backupShareSubject => 'Резервная копия настроек и статистики ChessTime';
+  String get backupShareSubject =>
+      'Резервная копия настроек и статистики ChessTime';
 
   @override
   String get backupNoFileSelected => 'Файл не выбран';
@@ -602,16 +668,23 @@ class AppLocalizationsRu extends AppLocalizations {
   String get backupRestoreSuccess => 'Резервная копия успешно восстановлена';
 
   @override
-  String backupRestoreErrorWithMessage(String error) => 'Ошибка восстановления резервной копии: ${error}';
+  String backupRestoreErrorWithMessage(String error) {
+    return 'Ошибка восстановления резервной копии: $error';
+  }
 
   @override
-  String get backupVersionNotFound => 'Недопустимый файл резервной копии: версия не найдена';
+  String get backupVersionNotFound =>
+      'Недопустимый файл резервной копии: версия не найдена';
 
   @override
-  String backupVersionIncompatibleWithDetails(String expected, String found) => 'Несовместимая версия резервной копии. Ожидалось: ${expected}, найдено: ${found}';
+  String backupVersionIncompatibleWithDetails(String expected, String found) {
+    return 'Несовместимая версия резервной копии. Ожидалось: $expected, найдено: $found';
+  }
 
   @override
-  String backupRequiredFieldMissing(String field) => 'Недопустимый файл резервной копии: обязательное поле "${field}" не найдено';
+  String backupRequiredFieldMissing(String field) {
+    return 'Недопустимый файл резервной копии: обязательное поле \"$field\" не найдено';
+  }
 
   @override
   String get arbiterMode => 'Режим арбитра';
@@ -659,27 +732,31 @@ class AppLocalizationsRu extends AppLocalizations {
   String get fideStandardFideMode => 'РЕЖИМ ФИШЕРА FIDE';
 
   @override
-  String get fideStandardDescription => 'Согласно официальным правилам FIDE, добавление времени применяется к стартовому времени до первого хода.\n\nКак вы предпочитаете, чтобы работало приложение?';
+  String get fideStandardDescription =>
+      'Согласно официальным правилам FIDE, инкремент добавляется к начальному времени до первого хода.\n\nКакой вариант работы приложения вы предпочитаете?';
 
   @override
   String get fideStandardProfessional => 'Профессиональный (FIDE)';
 
   @override
-  String get fideStandardProfessionalSub => 'Часы запускаются с добавленным инкрементом';
+  String get fideStandardProfessionalSub =>
+      'Часы стартуют уже с добавленным инкрементом';
 
   @override
   String get fideStandardClassic => 'Классический (Оригинал)';
 
   @override
-  String get fideStandardClassicSub => 'Часы запускаются только с базовым временем';
+  String get fideStandardClassicSub =>
+      'Часы стартуют только с базовым временем';
 
   @override
-  String get fideStandardSettingsNote => 'Вы можете изменить это позже в настройках.';
+  String get fideStandardSettingsNote =>
+      'Вы можете изменить это позже в настройках.';
 
   @override
   String get fideStandardSettingTitle => 'Стандарт Фишера FIDE';
 
   @override
-  String get fideStandardSettingSubtitle => 'Добавлять инкремент до первого хода';
-
+  String get fideStandardSettingSubtitle =>
+      'Добавлять инкремент до первого хода';
 }

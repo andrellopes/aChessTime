@@ -30,7 +30,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settings => 'Einstellungen';
 
   @override
-  String get about => 'Über';
+  String get about => 'Über die App';
 
   @override
   String get resetConfirm => 'Möchten Sie das Spiel wirklich zurücksetzen?';
@@ -39,10 +39,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get confirm => 'Bestätigen';
 
   @override
-  String get tapToStart => 'Tippen zum Starten';
+  String get tapToStart => 'Zum Starten tippen';
 
   @override
-  String get gameOver => 'Spiel beendet';
+  String get gameOver => 'Partie beendet';
 
   @override
   String get victory => 'Sieg!';
@@ -114,7 +114,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get darkMode => 'Dunkler Modus';
 
   @override
-  String get darkModeSubtitle => 'Dunkles Thema Interface';
+  String get darkModeSubtitle => 'Oberfläche im dunklen Design';
 
   @override
   String get soundsSubtitle => 'Töne während des Spiels';
@@ -123,10 +123,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get vibration => 'Vibration';
 
   @override
-  String get vibrationSubtitle => 'Vibrieren beim Wechseln der Züge';
+  String get vibrationSubtitle => 'Beim Zugwechsel vibrieren';
 
   @override
-  String get player1StartsAsWhite => 'Spieler 1 beginnt als Weiß';
+  String get player1StartsAsWhite => 'Spieler 1 beginnt mit Weiß';
 
   @override
   String get initialTime => 'Anfangszeit';
@@ -168,10 +168,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get presetClassical => 'Klassisch';
 
   @override
-  String get presetLong => 'Langes Spiel';
+  String get presetLong => 'Lange Partie';
 
   @override
-  String get presetBasic => 'Basis';
+  String get presetBasic => 'Einfach';
 
   @override
   String get createCustomPreset =>
@@ -182,6 +182,9 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get presetName => 'Name der Voreinstellung';
+
+  @override
+  String get presetNameHint => 'Z. B. Pro-Blitz';
 
   @override
   String get presetCreated => 'Voreinstellung erstellt';
@@ -211,6 +214,15 @@ class AppLocalizationsDe extends AppLocalizations {
   String get aboutContactLinks => 'Kontakt & Links';
 
   @override
+  String get contactGitHub => 'GitHub';
+
+  @override
+  String get contactEmail => 'E-Mail';
+
+  @override
+  String get contactWhatsApp => 'WhatsApp';
+
+  @override
   String get aboutSupportMessage =>
       'Unterstützen Sie die Entwicklung dieser App!';
 
@@ -233,7 +245,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settingsTooltip => 'Einstellungen';
 
   @override
-  String get aboutTooltip => 'Über';
+  String get aboutTooltip => 'Über die App';
 
   @override
   String get advancedSettings => 'Erweiterte Einstellungen';
@@ -277,7 +289,7 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get playerWon => 'gewonnen!';
+  String get playerWon => 'hat gewonnen!';
 
   @override
   String get moves => 'Züge';
@@ -289,7 +301,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String victoryMessage(String winnerName) {
-    return '$winnerName gewonnen!';
+    return '$winnerName hat gewonnen!';
   }
 
   @override
@@ -320,7 +332,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get themeRoyalGold => 'Königliches Gold';
 
   @override
-  String get themeGrandmasterPurple => 'Großmeister Lila';
+  String get themeGrandmasterPurple => 'Großmeister-Violett';
 
   @override
   String get themeCompetitiveRed => 'Wettkampf Rot';
@@ -373,7 +385,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String purchaseFor(String price) {
-    return 'Kaufen für $price';
+    return 'Für $price kaufen';
   }
 
   @override
@@ -428,10 +440,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get winRate => 'Siegesrate';
 
   @override
-  String get recentGames => 'Kürzliche Spiele';
+  String get recentGames => 'Letzte Partien';
 
   @override
-  String get noGamesFound => 'Keine Spiele gefunden';
+  String get noGamesFound => 'Keine Partien gefunden';
 
   @override
   String get clearStatistics => 'Statistiken löschen';
@@ -461,7 +473,16 @@ class AppLocalizationsDe extends AppLocalizations {
   String get yesterday => 'Gestern';
 
   @override
-  String get daysAgo => 'Tage her';
+  String daysAgo(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'vor # Tagen',
+      one: 'vor # Tag',
+      zero: 'heute',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get draw => 'Unentschieden';
@@ -488,16 +509,16 @@ class AppLocalizationsDe extends AppLocalizations {
   String get finishGame => 'Spiel beenden';
 
   @override
-  String get whiteVictory => 'Weiß-Sieg';
+  String get whiteVictory => 'Sieg für Weiß';
 
   @override
-  String get blackVictory => 'Schwarz-Sieg';
+  String get blackVictory => 'Sieg für Schwarz';
 
   @override
   String get drawGame => 'Unentschieden';
 
   @override
-  String get agreementBetweenPlayers => 'Vereinbarung zwischen Spielern';
+  String get agreementBetweenPlayers => 'Einvernehmliches Remis';
 
   @override
   String get continueGame => 'Spiel fortsetzen';
@@ -530,13 +551,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get backup => 'Backup';
 
   @override
-  String get backupSubtitle => 'Backup';
+  String get backupSubtitle => 'Einstellungen und Statistiken sichern';
 
   @override
   String get restore => 'Wiederherstellen';
 
   @override
-  String get restoreSubtitle => 'Wiederherstellen';
+  String get restoreSubtitle => 'Ein zuvor gespeichertes Backup laden';
 
   @override
   String get createBackup => 'Backup erstellen';
@@ -576,7 +597,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get backupRestoreError => 'Wiederherstellungs-Fehler';
 
   @override
-  String get exportStatistics => 'CSV Exportieren';
+  String get exportStatistics => 'CSV exportieren';
 
   @override
   String get exportStatisticsSubtitle => 'Spieldaten als CSV speichern';

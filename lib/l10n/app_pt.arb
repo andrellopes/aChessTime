@@ -10,7 +10,7 @@
   "about": "Sobre",
   "resetConfirm": "Deseja realmente reiniciar a partida?",
   "confirm": "Confirmar",
-  "tapToStart": "Toque para Começar",
+  "tapToStart": "Toque para começar",
   "gameOver": "Fim do Jogo",
   "victory": "Vitória!",
   "player1": "Jogador 1",
@@ -39,7 +39,7 @@
   "soundsSubtitle": "Sons durante o jogo",
   "vibration": "Vibração",
   "vibrationSubtitle": "Vibrar ao trocar o turno",
-  "player1StartsAsWhite": "Jogador 1 começa como brancas",
+  "player1StartsAsWhite": "Jogador 1 começa com as brancas",
   "initialTime": "Tempo Inicial",
   "increment": "Incremento",
   "timePreset": "Preset de Tempo",
@@ -58,6 +58,7 @@
   "createCustomPreset": "Criar Preset Personalizado",
   "editPreset": "Editar Preset",
   "presetName": "Nome do Preset",
+  "presetNameHint": "Ex.: Blitz Pro",
   "presetCreated": "Preset criado",
   "presetUpdated": "Preset atualizado",
   "presetDeleted": "Preset excluído",
@@ -67,6 +68,9 @@
   "delete": "Excluir",
   "aboutTitle": "Sobre a Chess Time",
   "aboutContactLinks": "Contato e Links",
+  "contactGitHub": "GitHub",
+  "contactEmail": "E-mail",
+  "contactWhatsApp": "WhatsApp",
   "aboutSupportMessage": "Apoie o desenvolvimento deste app!",
   "aboutSupportWithPix": "Apoiar com PIX",
   "aboutPixCopied": "Chave PIX copiada para a área de transferência!",
@@ -166,7 +170,7 @@
   "blackWins": "Vitórias Pretas",
   "draws": "Empates",
   "timeoutGames": "Por Timeout",
-  "manualGames": "Finalizados Manual.",
+  "manualGames": "Finalizações manuais",
   "totalTime": "Tempo Total",
   "averageDuration": "Duração Média",
   "winRate": "Taxa de Vitórias",
@@ -187,7 +191,14 @@
   },
   "today": "Hoje",
   "yesterday": "Ontem",
-  "daysAgo": "dias atrás",
+  "daysAgo": "{count, plural, =0{hoje} =1{há # dia} other{há # dias}}",
+  "@daysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "draw": "Empate",
   "whiteWinsTimeout": "Brancas vencem (timeout)",
   "blackWinsTimeout": "Pretas vencem (timeout)",

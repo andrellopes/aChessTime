@@ -114,7 +114,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get darkMode => 'Mode sombre';
 
   @override
-  String get darkModeSubtitle => 'Interface thème sombre';
+  String get darkModeSubtitle => 'Interface en thème sombre';
 
   @override
   String get soundsSubtitle => 'Sons pendant le jeu';
@@ -123,10 +123,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get vibration => 'Vibration';
 
   @override
-  String get vibrationSubtitle => 'Vibrer lors du changement de tours';
+  String get vibrationSubtitle => 'Vibrer à chaque changement de tour';
 
   @override
-  String get player1StartsAsWhite => 'Le joueur 1 commence en blanc';
+  String get player1StartsAsWhite => 'Le joueur 1 commence avec les blancs';
 
   @override
   String get initialTime => 'Temps initial';
@@ -184,6 +184,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get presetName => 'Nom du préréglage';
 
   @override
+  String get presetNameHint => 'Ex. : Blitz Pro';
+
+  @override
   String get presetCreated => 'Préréglage créé';
 
   @override
@@ -209,6 +212,15 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get aboutContactLinks => 'Contact & Liens';
+
+  @override
+  String get contactGitHub => 'GitHub';
+
+  @override
+  String get contactEmail => 'E-mail';
+
+  @override
+  String get contactWhatsApp => 'WhatsApp';
 
   @override
   String get aboutSupportMessage => 'Soutenez le développement de cette app !';
@@ -276,7 +288,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get playerWon => 'gagné !';
+  String get playerWon => 'a gagné !';
 
   @override
   String get moves => 'Coups';
@@ -288,7 +300,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String victoryMessage(String winnerName) {
-    return '$winnerName gagné !';
+    return '$winnerName a gagné !';
   }
 
   @override
@@ -403,19 +415,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get totalGames => 'Total des parties';
 
   @override
-  String get whiteWins => 'Victoires blanches';
+  String get whiteWins => 'Victoires des blancs';
 
   @override
-  String get blackWins => 'Victoires noires';
+  String get blackWins => 'Victoires des noirs';
 
   @override
   String get draws => 'Nuls';
 
   @override
-  String get timeoutGames => 'Par temps dépassé';
+  String get timeoutGames => 'Au temps';
 
   @override
-  String get manualGames => 'Terminaisons manuelles';
+  String get manualGames => 'Fins manuelles';
 
   @override
   String get totalTime => 'Temps total';
@@ -461,7 +473,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get yesterday => 'Hier';
 
   @override
-  String get daysAgo => 'jours';
+  String daysAgo(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'il y a # jours',
+      one: 'il y a # jour',
+      zero: 'aujourd\'hui',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get draw => 'Nul';
@@ -609,7 +630,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get csvHeader =>
-      'Date/Heure,Type de Résultat,Gagnant,Durée de la Partie,Temps Restant Blanc,Temps Restant Noir,Coups Blanc,Coups Noir,Temps Initial,Temps Initial Noir (Handicap),Incrément,Mode de Temps';
+      'Date/Heure,Type de Résultat,Gagnant,Durée de la Partie,Temps Restant Blanc,Temps Restant Noir,Coups Blancs,Coups Noirs,Temps Initial,Temps Initial Noir (Handicap),Incrément,Mode de Temps';
 
   @override
   String get backupShareTitle => 'Sauvegarde ChessTime';

@@ -464,7 +464,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> with SingleTickerPr
     } else if (difference.inDays == 1) {
       return '${l10n.yesterday} ${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}';
     } else if (difference.inDays < 7) {
-      return '${difference.inDays} ${l10n.daysAgo}';
+      return l10n.daysAgo(difference.inDays);
     } else {
       return '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}';
     }

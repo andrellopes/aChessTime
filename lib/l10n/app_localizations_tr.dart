@@ -4,6 +4,7 @@ import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
 
+/// The translations for Turkish (`tr`).
 class AppLocalizationsTr extends AppLocalizations {
   AppLocalizationsTr([String locale = 'tr']) : super(locale);
 
@@ -131,7 +132,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get initialTime => 'Başlangıç Süresi';
 
   @override
-  String get increment => 'Artış';
+  String get increment => 'Ek süre';
 
   @override
   String get timePreset => 'Zaman Ön Ayarı';
@@ -182,6 +183,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get presetName => 'Ön Ayar Adı';
 
   @override
+  String get presetNameHint => 'Örn.: Pro Blitz';
+
+  @override
   String get presetCreated => 'Ön ayar oluşturuldu';
 
   @override
@@ -209,7 +213,17 @@ class AppLocalizationsTr extends AppLocalizations {
   String get aboutContactLinks => 'İletişim ve Bağlantılar';
 
   @override
-  String get aboutSupportMessage => 'Bu uygulamanın geliştirilmesini destekleyin!';
+  String get contactGitHub => 'GitHub';
+
+  @override
+  String get contactEmail => 'E-posta';
+
+  @override
+  String get contactWhatsApp => 'WhatsApp';
+
+  @override
+  String get aboutSupportMessage =>
+      'Bu uygulamanın geliştirilmesini destekleyin!';
 
   @override
   String get aboutSupportWithPix => 'PIX ile destekle';
@@ -248,7 +262,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get linkCopied => 'Bağlantı panoya kopyalandı!';
 
   @override
-  String get shareMessage => 'ChessTime’a göz atın - basit ve modern bir satranç saati!';
+  String get shareMessage =>
+      'ChessTime’a göz atın - basit ve modern bir satranç saati!';
 
   @override
   String get minutes => 'Dakika';
@@ -263,10 +278,14 @@ class AppLocalizationsTr extends AppLocalizations {
   String get secondsShort => 'sn';
 
   @override
-  String minutesUnit(int count) => '${count} dakika';
+  String minutesUnit(int count) {
+    return '$count dakika';
+  }
 
   @override
-  String secondsUnit(int count) => '${count} saniye';
+  String secondsUnit(int count) {
+    return '$count saniye';
+  }
 
   @override
   String get playerWon => 'kazandı!';
@@ -275,10 +294,14 @@ class AppLocalizationsTr extends AppLocalizations {
   String get moves => 'Hamleler';
 
   @override
-  String movesCount(int count) => '${count}';
+  String movesCount(int count) {
+    return '$count';
+  }
 
   @override
-  String victoryMessage(String winnerName) => '${winnerName} kazandı!';
+  String victoryMessage(String winnerName) {
+    return '$winnerName kazandı!';
+  }
 
   @override
   String get fontSizeTitle => 'Zamanlayıcı yazı boyutu';
@@ -338,7 +361,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get unlockPremiumThemes => 'Premium temaların kilidini aç';
 
   @override
-  String get premiumThemesDescription => 'Pro sürümle özel temaların kilidini açın ve reklamları kaldırın';
+  String get premiumThemesDescription =>
+      'Pro sürümle özel temaların kilidini açın ve reklamları kaldırın';
 
   @override
   String get proFeature1 => '8 özel temaya erişim';
@@ -359,7 +383,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get buyPro => 'Pro Satın Al';
 
   @override
-  String purchaseFor(String price) => '${price} karşılığında satın al';
+  String purchaseFor(String price) {
+    return '$price karşılığında satın al';
+  }
 
   @override
   String get processing => 'İşleniyor...';
@@ -389,10 +415,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get totalGames => 'Toplam Oyun';
 
   @override
-  String get whiteWins => 'Beyaz Kazançları';
+  String get whiteWins => 'Beyaz galibiyetleri';
 
   @override
-  String get blackWins => 'Siyah Kazançları';
+  String get blackWins => 'Siyah galibiyetleri';
 
   @override
   String get draws => 'Beraberlikler';
@@ -422,7 +448,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get clearStatistics => 'İstatistikleri Temizle';
 
   @override
-  String get clearStatisticsConfirm => 'Tüm istatistikleri silmek istediğinize emin misiniz? Bu işlem geri alınamaz.';
+  String get clearStatisticsConfirm =>
+      'Tüm istatistikleri silmek istediğinize emin misiniz? Bu işlem geri alınamaz.';
 
   @override
   String get deleteStatistics => 'Sil';
@@ -434,7 +461,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get errorLoadingStatistics => 'İstatistikler yüklenirken hata';
 
   @override
-  String errorLoadingStatisticsWithMessage(String message) => 'İstatistikler yüklenirken hata: ${message}';
+  String errorLoadingStatisticsWithMessage(String message) {
+    return 'İstatistikler yüklenirken hata: $message';
+  }
 
   @override
   String get today => 'Bugün';
@@ -443,7 +472,16 @@ class AppLocalizationsTr extends AppLocalizations {
   String get yesterday => 'Dün';
 
   @override
-  String get daysAgo => 'gün önce';
+  String daysAgo(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '# gün önce',
+      one: '# gün önce',
+      zero: 'bugün',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get draw => 'Beraberlik';
@@ -470,16 +508,16 @@ class AppLocalizationsTr extends AppLocalizations {
   String get finishGame => 'Oyunu Bitir';
 
   @override
-  String get whiteVictory => 'Beyaz Zaferi';
+  String get whiteVictory => 'Beyaz galibiyeti';
 
   @override
-  String get blackVictory => 'Siyah Zaferi';
+  String get blackVictory => 'Siyah galibiyeti';
 
   @override
   String get drawGame => 'Beraberlik';
 
   @override
-  String get agreementBetweenPlayers => 'Oyuncuların anlaşması';
+  String get agreementBetweenPlayers => 'Karşılıklı anlaşma';
 
   @override
   String get continueGame => 'Oyuna Devam Et';
@@ -551,7 +589,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get restoreBackupSubtitle => 'Yedek dosyasından verileri yükle';
 
   @override
-  String get backupCreatedMessage => 'Yedek oluşturuldu ve İndirilenler klasörüne kaydedildi';
+  String get backupCreatedMessage =>
+      'Yedek oluşturuldu ve İndirilenler klasörüne kaydedildi';
 
   @override
   String get backupRestoreError => 'Geri Yükleme Hatası';
@@ -566,28 +605,35 @@ class AppLocalizationsTr extends AppLocalizations {
   String get exportCsvShareText => 'ChessTime İstatistikleri';
 
   @override
-  String get exportCsvShareSubject => 'CSV formatında ayrıntılı ChessTime oyun istatistikleri';
+  String get exportCsvShareSubject =>
+      'CSV formatında ayrıntılı ChessTime oyun istatistikleri';
 
   @override
   String get exportCsvSuccess => 'İstatistikler başarıyla dışa aktarıldı!';
 
   @override
-  String get exportCsvNoData => 'Dışa aktarılacak istatistik yok veya dışa aktarma hatası.';
+  String get exportCsvNoData =>
+      'Dışa aktarılacak istatistik yok veya dışa aktarma hatası.';
 
   @override
-  String exportCsvError(String error) => 'İstatistik dışa aktarma hatası: ${error}';
+  String exportCsvError(String error) {
+    return 'İstatistik dışa aktarma hatası: $error';
+  }
 
   @override
-  String get restoreBackupConfirmMessage => 'Bu işlem mevcut tüm verileri değiştirecek. Devam etmek istiyor musunuz?';
+  String get restoreBackupConfirmMessage =>
+      'Bu işlem mevcut tüm verileri değiştirecek. Devam etmek istiyor musunuz?';
 
   @override
-  String get csvHeader => 'Date/Time,Result Type,Winner,Game Duration,White Time Remaining,Black Time Remaining,White Moves,Black Moves,Initial Time,Initial Time Black (Handicap),Increment,Time Mode';
+  String get csvHeader =>
+      'Tarih/Saat,Sonuç Türü,Kazanan,Oyun Süresi,Beyazın Kalan Süresi,Siyahın Kalan Süresi,Beyaz Hamleleri,Siyah Hamleleri,Başlangıç Süresi,Siyah Başlangıç Süresi (Handikap),Ek süre,Zaman Modu';
 
   @override
   String get backupShareTitle => 'ChessTime Yedeği';
 
   @override
-  String get backupShareSubject => 'ChessTime ayarları ve istatistiklerinin yedeği';
+  String get backupShareSubject =>
+      'ChessTime ayarları ve istatistiklerinin yedeği';
 
   @override
   String get backupNoFileSelected => 'Dosya seçilmedi';
@@ -602,16 +648,23 @@ class AppLocalizationsTr extends AppLocalizations {
   String get backupRestoreSuccess => 'Yedek başarıyla geri yüklendi';
 
   @override
-  String backupRestoreErrorWithMessage(String error) => 'Yedek geri yükleme hatası: ${error}';
+  String backupRestoreErrorWithMessage(String error) {
+    return 'Yedek geri yükleme hatası: $error';
+  }
 
   @override
-  String get backupVersionNotFound => 'Geçersiz yedek dosyası: sürüm bulunamadı';
+  String get backupVersionNotFound =>
+      'Geçersiz yedek dosyası: sürüm bulunamadı';
 
   @override
-  String backupVersionIncompatibleWithDetails(String expected, String found) => 'Yedek sürümü uyumsuz. Beklenen: ${expected}, bulunan: ${found}';
+  String backupVersionIncompatibleWithDetails(String expected, String found) {
+    return 'Yedek sürümü uyumsuz. Beklenen: $expected, bulunan: $found';
+  }
 
   @override
-  String backupRequiredFieldMissing(String field) => 'Geçersiz yedek dosyası: gerekli "${field}" alanı bulunamadı';
+  String backupRequiredFieldMissing(String field) {
+    return 'Geçersiz yedek dosyası: gerekli \"$field\" alanı bulunamadı';
+  }
 
   @override
   String get arbiterMode => 'Hakem Modu';
@@ -620,7 +673,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get penaltyBonusTime => 'Süre Cezası / Bonus';
 
   @override
-  String get tapPlayerButtonToApply => 'Uygulamak için oyuncu düğmesine dokunun';
+  String get tapPlayerButtonToApply =>
+      'Uygulamak için oyuncu düğmesine dokunun';
 
   @override
   String get penalty => 'CEZA';
@@ -659,13 +713,15 @@ class AppLocalizationsTr extends AppLocalizations {
   String get fideStandardFideMode => 'FISCHER FIDE MODU';
 
   @override
-  String get fideStandardDescription => 'Resmi FIDE kurallarına göre, ilk hamleden önce artış başlangıç süresine eklenir.\n\nUygulamanın nasıl çalışmasını tercih edersiniz?';
+  String get fideStandardDescription =>
+      'Resmi FIDE kurallarına göre, ilk hamleden önce artış başlangıç süresine eklenir.\n\nUygulamanın nasıl çalışmasını tercih edersiniz?';
 
   @override
   String get fideStandardProfessional => 'Profesyonel (FIDE)';
 
   @override
-  String get fideStandardProfessionalSub => 'Saat artış eklenmiş şekilde başlar';
+  String get fideStandardProfessionalSub =>
+      'Saat artış eklenmiş şekilde başlar';
 
   @override
   String get fideStandardClassic => 'Klasik (Orijinal)';
@@ -674,12 +730,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get fideStandardClassicSub => 'Saat yalnızca temel süreyle başlar';
 
   @override
-  String get fideStandardSettingsNote => 'Bunu daha sonra Ayarlar’dan değiştirebilirsiniz.';
+  String get fideStandardSettingsNote =>
+      'Bunu daha sonra Ayarlar’dan değiştirebilirsiniz.';
 
   @override
   String get fideStandardSettingTitle => 'FIDE Fischer Standardı';
 
   @override
   String get fideStandardSettingSubtitle => 'İlk hamleden önce artış ekle';
-
 }

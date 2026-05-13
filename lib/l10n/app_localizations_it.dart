@@ -39,10 +39,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get confirm => 'Conferma';
 
   @override
-  String get tapToStart => 'Tocca per Iniziare';
+  String get tapToStart => 'Tocca per iniziare';
 
   @override
-  String get gameOver => 'Partita Terminata';
+  String get gameOver => 'Partita finita';
 
   @override
   String get victory => 'Vittoria!';
@@ -78,7 +78,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get reset => 'Resetta';
 
   @override
-  String get swapColors => 'Scambia Colori';
+  String get swapColors => 'Scambia i colori';
 
   @override
   String get quickSettings => 'Impostazioni Rapide';
@@ -126,7 +126,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get vibrationSubtitle => 'Vibra quando cambi turno';
 
   @override
-  String get player1StartsAsWhite => 'Il giocatore 1 inizia come bianco';
+  String get player1StartsAsWhite => 'Il giocatore 1 inizia con il Bianco';
 
   @override
   String get initialTime => 'Tempo Iniziale';
@@ -135,10 +135,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get increment => 'Incremento';
 
   @override
-  String get timePreset => 'Preset Tempo';
+  String get timePreset => 'Preset di tempo';
 
   @override
-  String get timePresets => 'Preset Tempo';
+  String get timePresets => 'Preset di tempo';
 
   @override
   String get custom => 'Personalizzato';
@@ -184,6 +184,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get presetName => 'Nome Preset';
 
   @override
+  String get presetNameHint => 'Es.: Blitz Pro';
+
+  @override
   String get presetCreated => 'Preset creato';
 
   @override
@@ -209,6 +212,15 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get aboutContactLinks => 'Contatto & Link';
+
+  @override
+  String get contactGitHub => 'GitHub';
+
+  @override
+  String get contactEmail => 'E-mail';
+
+  @override
+  String get contactWhatsApp => 'WhatsApp';
 
   @override
   String get aboutSupportMessage => 'Sostieni lo sviluppo di questa app!';
@@ -276,7 +288,7 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get playerWon => 'vinto!';
+  String get playerWon => 'ha vinto!';
 
   @override
   String get moves => 'Mosse';
@@ -288,14 +300,14 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String victoryMessage(String winnerName) {
-    return '$winnerName vinto!';
+    return '$winnerName ha vinto!';
   }
 
   @override
   String get fontSizeTitle => 'Dimensione font del timer';
 
   @override
-  String get fontSizeSubtitle => 'Regola per migliore visibilità';
+  String get fontSizeSubtitle => 'Regola per una migliore leggibilità';
 
   @override
   String get themeTitle => 'Tema';
@@ -350,7 +362,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get premiumThemesDescription =>
-      'Sblocca temi esclusivi e rimuovi annunci con versione Pro';
+      'Sblocca temi esclusivi e rimuovi gli annunci con la versione Pro';
 
   @override
   String get proFeature1 => 'Accesso a 8 temi esclusivi';
@@ -415,7 +427,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get timeoutGames => 'Per Timeout';
 
   @override
-  String get manualGames => 'Terminazioni Manuali';
+  String get manualGames => 'Partite concluse manualmente';
 
   @override
   String get totalTime => 'Tempo Totale';
@@ -460,7 +472,16 @@ class AppLocalizationsIt extends AppLocalizations {
   String get yesterday => 'Ieri';
 
   @override
-  String get daysAgo => 'giorni fa';
+  String daysAgo(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '# giorni fa',
+      one: '# giorno fa',
+      zero: 'oggi',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get draw => 'Pareggio';
@@ -487,16 +508,16 @@ class AppLocalizationsIt extends AppLocalizations {
   String get finishGame => 'Termina Partita';
 
   @override
-  String get whiteVictory => 'Vittoria Bianchi';
+  String get whiteVictory => 'Vittoria del Bianco';
 
   @override
-  String get blackVictory => 'Vittoria Neri';
+  String get blackVictory => 'Vittoria del Nero';
 
   @override
   String get drawGame => 'Pareggio';
 
   @override
-  String get agreementBetweenPlayers => 'Accordo tra giocatori';
+  String get agreementBetweenPlayers => 'Accordo tra i giocatori';
 
   @override
   String get continueGame => 'Continua Partita';
@@ -529,13 +550,13 @@ class AppLocalizationsIt extends AppLocalizations {
   String get backup => 'Backup';
 
   @override
-  String get backupSubtitle => 'Backup';
+  String get backupSubtitle => 'Salva impostazioni e statistiche';
 
   @override
   String get restore => 'Ripristina';
 
   @override
-  String get restoreSubtitle => 'Ripristina';
+  String get restoreSubtitle => 'Carica un backup salvato in precedenza';
 
   @override
   String get createBackup => 'Crea Backup';
